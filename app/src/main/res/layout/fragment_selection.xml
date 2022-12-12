@@ -21,20 +21,22 @@
             android:gravity="center_horizontal">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/hpBannerBtn"
+                android:id="@+id/cardPromotionBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="8dp"
-                android:text="Hp Banner" />
+                android:textAllCaps="false"
+                android:text="Card Promotion" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/hpBannerSliderBtn"
+                android:id="@+id/cardPromotionSliderBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="8dp"
-                android:text="Hp Banner Slider" />
+                android:textAllCaps="false"
+                android:text="Card Promotion Slider" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/quickActionsBtn"
@@ -42,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="8dp"
+                android:textAllCaps="false"
                 android:text="Quick Actions" />
 
             <com.google.android.material.button.MaterialButton
@@ -50,7 +53,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="8dp"
+                android:textAllCaps="false"
                 android:text="Quick Actions Slider" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/crossUpsellDialogBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:textAllCaps="false"
+                android:text="Cross &amp; Upsell" />
 
         </LinearLayout>
 

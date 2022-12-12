@@ -95,6 +95,7 @@ class CardPromotionSliderView : ConstraintLayout, DyWidget {
             cardPromotionView.setBottomPanelTextSize(cardPromotionData.bottomPanelTextSize.toFloat())
             cardPromotionView.setBottomPanelButtonText(cardPromotionData.bottomPanelButtonText)
             cardPromotionView.setBottomPanelButtonTextSize(cardPromotionData.bottomPanelButtonTextSize.toFloat())
+            cardPromotionView.setBottomPanelButtonTextColor(cardPromotionData.bottomPanelButtonTextColor)
             cardPromotionView.setupBottomPanelButtonBackground(
                 backgroundColor = cardPromotionData.bottomPanelButtonColor,
                 pressedBackgroundColor = cardPromotionData.bottomPanelButtonHoverColor,

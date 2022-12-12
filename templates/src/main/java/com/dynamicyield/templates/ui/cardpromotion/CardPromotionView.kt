@@ -124,6 +124,11 @@ class CardPromotionView : MaterialCardView, DyWidget {
         bottomBtn.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
     }
 
+    fun setBottomPanelButtonTextColor(colorStr: String) {
+        val color = colorStr.parseColorOrNull() ?: return
+        bottomBtn.setTextColor(color)
+    }
+
     fun setupBottomPanelButtonBackground(
         backgroundColor: String? = null,
         borderColor: String? = null,

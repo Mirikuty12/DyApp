@@ -39,7 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="16dp"
-            android:text="bottom text"
+            tools:text="bottom text"
             android:textAlignment="center"
             android:textSize="18sp"
             app:layout_constrainedHeight="true"

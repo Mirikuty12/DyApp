@@ -7,16 +7,20 @@ import androidx.core.view.setMargins
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dynamicyield.templates.R
+import com.dynamicyield.templates.ui.DyWidget
+import com.dynamicyield.templates.ui.DyWidgetName
 import com.dynamicyield.templates.ui.base.recyclerview.*
 import com.dynamicyield.templates.ui.base.util.dpToPx
 
-class QuickActionsView : ConstraintLayout {
+class QuickActionsView : ConstraintLayout, DyWidget {
 
     private lateinit var recyclerView: RecyclerView
     private val adapter = DelegateAdapter(
         createQuickActionDelegate(),
         createFeaturedQuickActionDelegate(),
     )
+
+    override val dyName = DyWidgetName.QuickActions
 
     constructor(context: Context) : super(context) {
         dyViewInit(context)

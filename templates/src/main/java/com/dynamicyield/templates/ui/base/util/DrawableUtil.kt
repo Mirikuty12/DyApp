@@ -28,27 +28,51 @@ fun createRectDrawable(
     @ColorInt fillColor: Int? = null,
     @ColorInt strokeColor: Int? = null,
     strokeWidthPx: Int = 0,
-    cornerRadiusPx: Int = 0,
+    tlCornerRadiusPx: Int = 0,
+    trCornerRadiusPx: Int = 0,
+    brCornerRadiusPx: Int = 0,
+    blCornerRadiusPx: Int = 0,
 ): Drawable? {
     var fillDrawable: Drawable? = null
     var strokeDrawable: Drawable? = null
+    val isAntiAlias = listOf(
+        tlCornerRadiusPx, trCornerRadiusPx, brCornerRadiusPx, blCornerRadiusPx
+    ).max() > 0
 
     if (fillColor != null && fillColor != Color.TRANSPARENT) {
         fillDrawable = ShapeDrawable().apply {
-            shape = RoundRectShape(FloatArray(8) { cornerRadiusPx.toFloat() }, null, null)
+            shape = RoundRectShape(
+                floatArrayOf(
+                    tlCornerRadiusPx.toFloat(), tlCornerRadiusPx.toFloat(),
+                    trCornerRadiusPx.toFloat(), trCornerRadiusPx.toFloat(),
+                    brCornerRadiusPx.toFloat(), brCornerRadiusPx.toFloat(),
+                    blCornerRadiusPx.toFloat(), blCornerRadiusPx.toFloat(),
+                ),
+                null,
+                null
+            )
 //            shape = RectShape()
 //            paint.pathEffect = CornerPathEffect(cornerRadiusPx.toFloat())
-            if (cornerRadiusPx > 0) paint.isAntiAlias = true
+            paint.isAntiAlias = isAntiAlias
             paint.color = fillColor
         }
     }
 
     if (strokeColor != null && strokeColor != Color.TRANSPARENT && strokeWidthPx > 0) {
         strokeDrawable = ShapeDrawable().apply {
-            shape = RoundRectShape(FloatArray(8) { cornerRadiusPx.toFloat() }, null, null)
+            shape = RoundRectShape(
+                floatArrayOf(
+                    tlCornerRadiusPx.toFloat(), tlCornerRadiusPx.toFloat(),
+                    trCornerRadiusPx.toFloat(), trCornerRadiusPx.toFloat(),
+                    brCornerRadiusPx.toFloat(), brCornerRadiusPx.toFloat(),
+                    blCornerRadiusPx.toFloat(), blCornerRadiusPx.toFloat(),
+                ),
+                null,
+                null
+            )
 //            shape = RectShape()
 //            paint.pathEffect = CornerPathEffect(rPx)
-            if (cornerRadiusPx > 0) paint.isAntiAlias = true
+            paint.isAntiAlias = isAntiAlias
             paint.color = strokeColor
             paint.style = Paint.Style.STROKE
             paint.strokeWidth = strokeWidthPx.toFloat()
@@ -70,3 +94,13 @@ fun createRectDrawable(
         else -> null
     }
 }
+
+fun createRectDrawable(
+    @ColorInt fillColor: Int? = null,
+    @ColorInt strokeColor: Int? = null,
+    strokeWidthPx: Int = 0,
+    cornerRadiusPx: Int = 0,
+) = createRectDrawable(
+    fillColor, strokeColor, strokeWidthPx,
+    cornerRadiusPx, cornerRadiusPx, cornerRadiusPx, cornerRadiusPx
+)

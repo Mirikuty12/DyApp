@@ -7,15 +7,17 @@ interface DyWidget {
 enum class DyWidgetName(val selector: String) {
     CreditCardPromotion("credit-card-promotion"),
     CreditCardPromotionSlider("credit-card-promotion-slider"),
-    QuickAction("quick-action"),
-    QuickActionSlider("quick-action-slider");
+    QuickActions("quick-actions"),
+    QuickActionsSlider("quick-actions-slider"),
+    CrossUpsell("cross-upsell");
 
     companion object {
         fun fromSelector(selector: String): DyWidgetName? = when (selector) {
             CreditCardPromotion.selector -> CreditCardPromotion
             CreditCardPromotionSlider.selector -> CreditCardPromotionSlider
-            QuickAction.selector -> QuickAction
-            QuickActionSlider.selector -> QuickActionSlider
+            QuickActions.selector -> QuickActions
+            QuickActionsSlider.selector -> QuickActionsSlider
+            CrossUpsell.selector -> CrossUpsell
             else -> null
         }
     }

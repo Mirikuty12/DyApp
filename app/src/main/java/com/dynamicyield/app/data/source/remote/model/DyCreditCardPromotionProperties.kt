@@ -19,19 +19,3 @@ data class DyCreditCardPromotionProperties(
     @SerialName("bottomPanelButtonColor") val bottomPanelButtonColor: String,
     @SerialName("bottomPanelButtonHoverColor") val bottomPanelButtonHoverColor: String,
 ) : DyWidgetProperties
-
-//@Serializable
-//data class DyCreditCardPromotionProperties(
-//    @SerialName("top") val top: String,// "",
-//    @SerialName("topFontColor") val topFontColor: String,// "#ffffff",
-//    @SerialName("topFontSize") val topFontSize: Int,// 16,
-//    @SerialName("topBackgroundColor") val topBackgroundColor: String,// "#242424",
-//    @SerialName("bottom") val bottom: String,// "Enjoy a card that earn you rewards as you shop!",
-//    @SerialName("bottomFontColor") val bottomFontColor: String,// "#ffffff",
-//    @SerialName("bottomFontSize") val bottomFontSize: Int,// 14,
-//    @SerialName("bottomBackgroundColor") val bottomBackgroundColor: String,// "#000000",
-//    @SerialName("ctaText") val ctaText: String,// "Apply",
-//    @SerialName("ctaBackgroundColor") val ctaBackgroundColor: String,// "#ffffff",
-//    @SerialName("image") val image: String,// "https://finance-demo.dynamicyield.com/img/rewards-card.png",
-////    @SerialName("enableClose") val enableClose: Boolean,// "true"
-//) : DyWidgetProperties

@@ -6,16 +6,20 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dynamicyield.templates.R
+import com.dynamicyield.templates.ui.DyWidget
+import com.dynamicyield.templates.ui.DyWidgetName
 import com.dynamicyield.templates.ui.base.recyclerview.*
 import com.dynamicyield.templates.ui.base.recyclerview.multisnap.MultiSnapHelper
 import com.dynamicyield.templates.ui.base.util.dpToPx
 
-class QuickActionsSliderView : ConstraintLayout {
+class QuickActionsSliderView : ConstraintLayout, DyWidget {
 
     private lateinit var recyclerView: RecyclerView
     private val adapter = DelegateAdapter(
         createQuickActionDelegate()
     )
+
+    override val dyName = DyWidgetName.QuickActionsSlider
 
     constructor(context: Context) : super(context) {
         dyViewInit(context)
