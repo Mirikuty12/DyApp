@@ -1,6 +1,5 @@
 package com.dynamicyield.templates.ui.cardpromotion
 
-import android.view.View
 import com.dynamicyield.templates.ui.base.data.ImageScaleType
 
 data class CardPromotionData(
@@ -17,5 +16,4 @@ data class CardPromotionData(
     val bottomPanelButtonTextColor: String,
     val bottomPanelButtonColor: String,
     val bottomPanelButtonHoverColor: String,
-    val bottomPanelButtonListener: View.OnClickListener,
 )

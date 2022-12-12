@@ -114,7 +114,7 @@ class QuickActionView : ConstraintLayout {
         }
     }
 
-    fun setActionClickListener(l : View.OnClickListener?) {
+    fun setActionClickListener(l : OnClickListener?) {
         actionContainer.setOnClickListener(l)
     }
 

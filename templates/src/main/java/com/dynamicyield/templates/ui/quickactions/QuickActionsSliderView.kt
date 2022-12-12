@@ -13,6 +13,7 @@ import com.dynamicyield.templates.ui.base.recyclerview.multisnap.MultiSnapHelper
 import com.dynamicyield.templates.ui.base.util.dpToPx
 
 class QuickActionsSliderView : ConstraintLayout, DyWidget {
+    private var clickListener: OnClickListener? = null
 
     private lateinit var recyclerView: RecyclerView
     private val adapter = DelegateAdapter(
@@ -68,6 +69,10 @@ class QuickActionsSliderView : ConstraintLayout, DyWidget {
         adapter.submitList(items)
     }
 
+    fun setClickListener(listener: OnClickListener?) {
+        clickListener = listener
+    }
+
     private fun createQuickActionDelegate() = itemDelegate<QuickActionData> { context ->
         QuickActionView(context)
     }.create { parent ->
@@ -88,7 +93,7 @@ class QuickActionsSliderView : ConstraintLayout, DyWidget {
                 setMargins(horizontalM, verticalM, horizontalM, verticalM)
             }
         }
-    }.bind { _, quickActionData ->
+    }.bind { position, quickActionData ->
         (itemView as? QuickActionView)?.let { quickActionView ->
             quickActionView.setTitle(quickActionData.title)
             quickActionView.setTitleColor(quickActionData.titleColor)
@@ -104,6 +109,13 @@ class QuickActionsSliderView : ConstraintLayout, DyWidget {
                 pressedBorderWidth = quickActionData.pressedBorderWidth,
                 pressedCornerRadius = quickActionData.pressedCornerRadius,
             )
+            quickActionView.setActionClickListener {
+                clickListener?.onClick(position, quickActionData)
+            }
         }
+    }
+
+    interface OnClickListener {
+        fun onClick(position: Int, actionData: QuickActionData)
     }
 }

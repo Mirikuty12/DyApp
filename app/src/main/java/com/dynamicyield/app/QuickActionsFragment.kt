@@ -13,6 +13,7 @@ import com.dynamicyield.app.data.repository.onRawError
 import com.dynamicyield.app.data.repository.onSuccess
 import com.dynamicyield.app.data.source.remote.model.DyWidgetChoice
 import com.dynamicyield.templates.ui.DyWidgetName
+import com.dynamicyield.templates.ui.quickactions.IQuickActionData
 import com.dynamicyield.templates.ui.quickactions.QuickActionsView
 import kotlinx.coroutines.launch
 
@@ -43,6 +44,12 @@ class QuickActionsFragment : Fragment(R.layout.fragment_quick_actions) {
         val quickActionsView = DyWidgets.createDyWidgetFromChoice<QuickActionsView>(
             requireContext(), quickActionsChoice
         ) ?: return
+
+        quickActionsView.setClickListener(object : QuickActionsView.OnClickListener {
+            override fun onClick(position: Int, actionData: IQuickActionData) {
+                Toast.makeText(context, "$position-${actionData.title}", Toast.LENGTH_SHORT).show()
+            }
+        })
 
         quickActionsView.layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT

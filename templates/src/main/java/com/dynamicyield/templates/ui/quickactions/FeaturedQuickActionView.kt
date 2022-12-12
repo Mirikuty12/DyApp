@@ -1,7 +1,6 @@
 package com.dynamicyield.templates.ui.quickactions
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.drawable.StateListDrawable
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -118,7 +117,7 @@ class FeaturedQuickActionView : ConstraintLayout {
         }
     }
 
-    fun setActionClickListener(l : View.OnClickListener?) {
+    fun setActionClickListener(l : OnClickListener?) {
         actionContainer.setOnClickListener(l)
     }
 }

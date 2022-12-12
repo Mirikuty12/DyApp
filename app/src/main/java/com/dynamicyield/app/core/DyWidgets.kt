@@ -2,7 +2,6 @@ package com.dynamicyield.app.core
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import com.dynamicyield.app.data.repository.CommonError
 import com.dynamicyield.app.data.repository.DyResultWrapper
 import com.dynamicyield.app.data.repository.widget.DyWidgetRepository
@@ -80,9 +79,6 @@ object DyWidgets {
                         bottomPanelButtonTextColor = properties.bottomPanelButtonTextColorCard1,
                         bottomPanelButtonColor = properties.bottomPanelButtonColorCard1,
                         bottomPanelButtonHoverColor = properties.bottomPanelButtonHoverColorCard1,
-                        bottomPanelButtonListener = {
-                            Toast.makeText(it.context, "CLICK 1", Toast.LENGTH_SHORT).show()
-                        },
                     ),
                     CardPromotionData(
                         topGradientColor = properties.topGradientColorCard2,
@@ -98,9 +94,6 @@ object DyWidgets {
                         bottomPanelButtonTextColor = properties.bottomPanelButtonTextColorCard2,
                         bottomPanelButtonColor = properties.bottomPanelButtonColorCard2,
                         bottomPanelButtonHoverColor = properties.bottomPanelButtonHoverColorCard2,
-                        bottomPanelButtonListener = {
-                            Toast.makeText(it.context, "CLICK 2", Toast.LENGTH_SHORT).show()
-                        },
                     ),
                     CardPromotionData(
                         topGradientColor = properties.topGradientColorCard3,
@@ -116,9 +109,6 @@ object DyWidgets {
                         bottomPanelButtonTextColor = properties.bottomPanelButtonTextColorCard3,
                         bottomPanelButtonColor = properties.bottomPanelButtonColorCard3,
                         bottomPanelButtonHoverColor = properties.bottomPanelButtonHoverColorCard3,
-                        bottomPanelButtonListener = {
-                            Toast.makeText(it.context, "CLICK 3", Toast.LENGTH_SHORT).show()
-                        },
                     )
                 )
 
@@ -413,14 +403,12 @@ object DyWidgets {
                 image, ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
                 backgroundColor, borderColor, 1, 16,
                 backgroundHoverColor, borderColor, 1, 16,
-                null
             )
             false -> QuickActionData(
                 title, titleColor, titleSize,
                 image, ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
                 backgroundColor, borderColor, 1, 16,
                 backgroundHoverColor, borderColor, 1, 16,
-                null
             )
         }
     }
@@ -442,7 +430,6 @@ object DyWidgets {
             image, ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
             backgroundColor, borderColor, 1, 16,
             backgroundHoverColor, borderColor, 1, 16,
-            null
         )
     }
 }

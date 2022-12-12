@@ -13,6 +13,7 @@ import com.dynamicyield.templates.ui.base.recyclerview.*
 import com.dynamicyield.templates.ui.base.util.dpToPx
 
 class QuickActionsView : ConstraintLayout, DyWidget {
+    private var clickListener: OnClickListener? = null
 
     private lateinit var recyclerView: RecyclerView
     private val adapter = DelegateAdapter(
@@ -76,7 +77,9 @@ class QuickActionsView : ConstraintLayout, DyWidget {
         adapter.submitList(items)
     }
 
-    fun getQuickActions(): List<IQuickActionData> = adapter.currentList
+    fun setClickListener(listener: OnClickListener?) {
+        clickListener = listener
+    }
 
     private fun createQuickActionDelegate() = itemDelegate<QuickActionData> { context ->
         QuickActionView(context)
@@ -89,7 +92,7 @@ class QuickActionsView : ConstraintLayout, DyWidget {
                 setMargins(8f.dpToPx())
             }
         }
-    }.bind { _, quickActionData ->
+    }.bind { position, quickActionData ->
         (itemView as? QuickActionView)?.let { quickActionView ->
             quickActionView.setTitle(quickActionData.title)
             quickActionView.setTitleColor(quickActionData.titleColor)
@@ -105,7 +108,9 @@ class QuickActionsView : ConstraintLayout, DyWidget {
                 pressedBorderWidth = quickActionData.pressedBorderWidth,
                 pressedCornerRadius = quickActionData.pressedCornerRadius,
             )
-            quickActionView.setActionClickListener(quickActionData.clickListener)
+            quickActionView.setActionClickListener {
+                clickListener?.onClick(position, quickActionData)
+            }
         }
     }
 
@@ -120,7 +125,7 @@ class QuickActionsView : ConstraintLayout, DyWidget {
                 setMargins(8f.dpToPx())
             }
         }
-    }.bind { _, featuredQuickActionData ->
+    }.bind { position, featuredQuickActionData ->
         (itemView as? FeaturedQuickActionView)?.let { featuredQuickActionView ->
             featuredQuickActionView.setTitle(featuredQuickActionData.title)
             featuredQuickActionView.setTitleColor(featuredQuickActionData.titleColor)
@@ -139,7 +144,13 @@ class QuickActionsView : ConstraintLayout, DyWidget {
                 pressedBorderWidth = featuredQuickActionData.pressedBorderWidth,
                 pressedCornerRadius = featuredQuickActionData.pressedCornerRadius,
             )
-            featuredQuickActionView.setActionClickListener(featuredQuickActionData.clickListener)
+            featuredQuickActionView.setActionClickListener {
+                clickListener?.onClick(position, featuredQuickActionData)
+            }
         }
+    }
+
+    interface OnClickListener {
+        fun onClick(position: Int, actionData: IQuickActionData)
     }
 }

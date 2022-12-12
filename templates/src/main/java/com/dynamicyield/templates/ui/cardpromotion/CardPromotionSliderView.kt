@@ -9,10 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dynamicyield.templates.R
 import com.dynamicyield.templates.ui.DyWidget
 import com.dynamicyield.templates.ui.DyWidgetName
-import com.dynamicyield.templates.ui.base.recyclerview.*
+import com.dynamicyield.templates.ui.base.recyclerview.DelegateAdapter
+import com.dynamicyield.templates.ui.base.recyclerview.bind
+import com.dynamicyield.templates.ui.base.recyclerview.create
+import com.dynamicyield.templates.ui.base.recyclerview.itemDelegate
 import com.dynamicyield.templates.ui.base.util.dpToPx
 
 class CardPromotionSliderView : ConstraintLayout, DyWidget {
+    private var clickListener: OnClickListener? = null
 
     private val promotionAdapter = DelegateAdapter(
         createCardPromotionDelegate()
@@ -71,6 +75,10 @@ class CardPromotionSliderView : ConstraintLayout, DyWidget {
         promotionAdapter.submitList(dataList)
     }
 
+    fun setClickListener(listener: OnClickListener) {
+        clickListener = listener
+    }
+
     private fun createCardPromotionDelegate() = itemDelegate<CardPromotionData> { context ->
         CardPromotionView(context)
     }.create { parent ->
@@ -82,7 +90,7 @@ class CardPromotionSliderView : ConstraintLayout, DyWidget {
                 setMargins(8f.dpToPx(), 0, 8f.dpToPx(), 0)
             }
         }
-    }.bind { _, cardPromotionData ->
+    }.bind { position, cardPromotionData ->
         (itemView as? CardPromotionView)?.let { cardPromotionView ->
             cardPromotionView.setBackgroundGradient(
                 cardPromotionData.topGradientColor,
@@ -100,8 +108,13 @@ class CardPromotionSliderView : ConstraintLayout, DyWidget {
                 backgroundColor = cardPromotionData.bottomPanelButtonColor,
                 pressedBackgroundColor = cardPromotionData.bottomPanelButtonHoverColor,
             )
-            cardPromotionView.setBottomPanelButtonListener(cardPromotionData.bottomPanelButtonListener)
+            cardPromotionView.setBottomPanelButtonListener {
+                clickListener?.onClick(position, cardPromotionData)
+            }
         }
     }
 
+    interface OnClickListener {
+        fun onClick(position: Int, cardData: CardPromotionData)
+    }
 }

@@ -14,6 +14,7 @@ import com.dynamicyield.app.data.repository.onSuccess
 import com.dynamicyield.app.data.source.remote.model.DyWidgetChoice
 import com.dynamicyield.templates.ui.DyWidgetName
 import com.dynamicyield.templates.ui.base.util.dpToPx
+import com.dynamicyield.templates.ui.cardpromotion.CardPromotionData
 import com.dynamicyield.templates.ui.cardpromotion.CardPromotionSliderView
 import kotlinx.coroutines.launch
 
@@ -41,6 +42,12 @@ class CardPromotionSliderFragment : Fragment(R.layout.fragment_card_promotion_sl
     private fun addCreditCardPromotionSlider(vararg choices: DyWidgetChoice) {
         val creditCardPromotionSliderChoice = choices.find { it.name == DyWidgetName.CreditCardPromotionSlider.selector } ?: return
         val cardPromotionSliderView = DyWidgets.createDyWidgetFromChoice<CardPromotionSliderView>(requireContext(), creditCardPromotionSliderChoice) ?: return
+
+        cardPromotionSliderView.setClickListener(object : CardPromotionSliderView.OnClickListener {
+            override fun onClick(position: Int, cardData: CardPromotionData) {
+                Toast.makeText(context, "$position-${cardData.bottomPanelButtonText}", Toast.LENGTH_SHORT).show()
+            }
+        })
 
         cardPromotionSliderView.layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
