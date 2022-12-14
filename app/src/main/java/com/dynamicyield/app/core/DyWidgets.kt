@@ -8,6 +8,8 @@ import com.dynamicyield.app.data.repository.widget.DyWidgetRepository
 import com.dynamicyield.app.data.repository.widget.DyWidgetRepositoryImpl
 import com.dynamicyield.app.data.source.remote.DyApiBuilder
 import com.dynamicyield.app.data.source.remote.model.*
+import com.dynamicyield.templates.ui.DyWidgetName
+import com.dynamicyield.templates.ui.activation.ActivationDialogFragment
 import com.dynamicyield.templates.ui.base.data.ImageScaleType
 import com.dynamicyield.templates.ui.base.data.ImageSizeType
 import com.dynamicyield.templates.ui.cardpromotion.CardPromotionData
@@ -27,14 +29,14 @@ object DyWidgets {
     private val dyWidgetRepository: DyWidgetRepository = DyWidgetRepositoryImpl(dyApi, Dispatchers.IO)
 
     suspend fun chooseDyWidgets(
-        vararg widgetNames: com.dynamicyield.templates.ui.DyWidgetName
+        vararg widgetNames: DyWidgetName
     ): DyResultWrapper<List<DyWidgetChoice>, CommonError> =
         dyWidgetRepository.chooseDyWidgets(*widgetNames)
             .also { Log.d(TAG, "resultWrapper = $it") }
 
     inline fun <reified T : com.dynamicyield.templates.ui.DyWidget> createDyWidgetFromChoice(context: Context, choice: DyWidgetChoice): T? {
         return when(choice.name) {
-            com.dynamicyield.templates.ui.DyWidgetName.CreditCardPromotion.selector -> {
+            DyWidgetName.CreditCardPromotion.selector -> {
                 CardPromotionView(context).apply {
                     val bannerChoice = (choice as? DyCardPromotionChoice) ?: return@apply
                     val variation = bannerChoice.variations.firstOrNull() ?: return@apply
@@ -58,7 +60,7 @@ object DyWidgets {
                     )
                 } as? T
             }
-            com.dynamicyield.templates.ui.DyWidgetName.CreditCardPromotionSlider.selector -> {
+            DyWidgetName.CreditCardPromotionSlider.selector -> {
                 val cardPromotionSliderView = CardPromotionSliderView(context)
                 val bannerChoice = (choice as? DyCardPromotionSliderChoice) ?: return null
                 val variation = bannerChoice.variations.firstOrNull() ?: return null
@@ -115,7 +117,7 @@ object DyWidgets {
                 cardPromotionSliderView.setBannerDataList(cardPromotionDataList)
                 cardPromotionSliderView as? T
             }
-            com.dynamicyield.templates.ui.DyWidgetName.QuickActions.selector -> {
+            DyWidgetName.QuickActions.selector -> {
                 val quickActionsView = QuickActionsView(context)
                 val quickActionsChoice = (choice as? DyQuickActionsChoice) ?: return null
                 val variation = quickActionsChoice.variations.firstOrNull() ?: return null
@@ -215,7 +217,7 @@ object DyWidgets {
                 quickActionsView.setQuickActions(quickActions)
                 quickActionsView as? T
             }
-            com.dynamicyield.templates.ui.DyWidgetName.QuickActionsSlider.selector -> {
+            DyWidgetName.QuickActionsSlider.selector -> {
                 val quickActionsSliderView = QuickActionsSliderView(context)
                 val quickActionsSliderChoice = (choice as? DyQuickActionsSliderChoice) ?: return null
                 val variation = quickActionsSliderChoice.variations.firstOrNull() ?: return null
@@ -307,7 +309,7 @@ object DyWidgets {
                 quickActionsSliderView.setQuickActions(quickActions)
                 quickActionsSliderView as? T
             }
-            com.dynamicyield.templates.ui.DyWidgetName.CrossUpsell.selector -> {
+            DyWidgetName.CrossUpsell.selector -> {
                 val crossUpsellDialogFragment = CrossUpsellDialogFragment()
                 val bannerChoice = (choice as? DyCrossUpsellChoice) ?: return null
                 val variation = bannerChoice.variations.firstOrNull() ?: return null
@@ -379,6 +381,46 @@ object DyWidgets {
                 crossUpsellDialogFragment.setSteps(steps)
 
                 crossUpsellDialogFragment as? T
+            }
+            DyWidgetName.Activation.selector -> {
+                val activationDialogFragment = ActivationDialogFragment()
+                val activationChoice = (choice as? DyActivationChoice) ?: return null
+                val variation = activationChoice.variations.firstOrNull() ?: return null
+                val properties = variation.payload.properties
+
+                activationDialogFragment.apply {
+                    setTopHandleColor(color = properties.topHandleColor)
+                    setBackgroundProps(
+                        backgroundColor = properties.backgroundColor,
+                        topCornerRadius = properties.topCornerRadius.toFloat()
+                    )
+                    setImageProps(
+                        imageUrl = properties.image,
+                        imageScaleType = ImageScaleType.fromString(properties.imageScaleType) ?: ImageScaleType.FIT,
+                        imageSizeType = ImageSizeType.fromString(properties.imageSizeType) ?: ImageSizeType.MEDIUM
+                    )
+                    setTitleProps(
+                        titleText = properties.title,
+                        titleSizeSp = properties.titleSize,
+                        titleColorString = properties.titleColor
+                    )
+                    setSubtitleProps(
+                        subtitleText = properties.subtitle,
+                        subtitleSizeSp = properties.subtitleSize,
+                        subtitleColorString = properties.subtitleColor
+                    )
+                    setButtonProps(
+                        buttonText = properties.buttonText,
+                        buttonTextSizeSp = properties.buttonTextSize,
+                        buttonTextColorString = properties.buttonTextColor,
+                        pressedButtonTextColorString = properties.pressedButtonTextColor,
+                        buttonBackgroundColorString = properties.buttonBackgroundColor,
+                        pressedButtonBackgroundColorString = properties.pressedButtonBackgroundColor,
+                        buttonStrokeColorString = properties.buttonBorderColor,
+                        buttonStrokeWidth = properties.buttonBorderWidth.toFloat(),
+                    )
+                }
+                activationDialogFragment as? T
             }
             else -> null
         }

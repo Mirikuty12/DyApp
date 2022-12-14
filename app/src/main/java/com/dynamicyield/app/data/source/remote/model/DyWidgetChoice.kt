@@ -82,6 +82,17 @@ data class DyCrossUpsellChoice(
     val variations: List<DyWidgetVariation<DyCrossUpsellProperties>>
 ) : DyWidgetChoice()
 
+@Serializable
+data class DyActivationChoice(
+    override val id: Long,
+    override val name: String,
+    override val type: String,
+    override val groups: List<String>,
+    override val decisionId: String,
+    @SerialName("variations")
+    val variations: List<DyWidgetVariation<DyActivationProperties>>
+) : DyWidgetChoice()
+
 object DyWidgetChoiceSerializer : JsonContentPolymorphicSerializer<DyWidgetChoice>(DyWidgetChoice::class) {
     override fun selectDeserializer(element: JsonElement): DeserializationStrategy<out DyWidgetChoice> {
         return when(val widgetName = element.jsonObject["name"]?.jsonPrimitive?.content) {
@@ -90,6 +101,7 @@ object DyWidgetChoiceSerializer : JsonContentPolymorphicSerializer<DyWidgetChoic
             com.dynamicyield.templates.ui.DyWidgetName.CrossUpsell.selector -> DyCrossUpsellChoice.serializer()
             com.dynamicyield.templates.ui.DyWidgetName.QuickActions.selector -> DyQuickActionsChoice.serializer()
             com.dynamicyield.templates.ui.DyWidgetName.QuickActionsSlider.selector -> DyQuickActionsSliderChoice.serializer()
+            com.dynamicyield.templates.ui.DyWidgetName.Activation.selector -> DyActivationChoice.serializer()
             else -> throw SerializationException("Unknown DyWidgetChoice: key 'name' does not matches any widget name. Value of key 'name' is '$widgetName'")
         }
     }
