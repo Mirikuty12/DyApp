@@ -67,6 +67,9 @@ class CrossUpsellDialogFragment : DialogFragment(R.layout.cross_upsell_dialog_la
             progress = ceil((((position + 1f) / stepAdapter.currentList.size) * 100)).toInt()
         )
         progressTextView.text = "${position + 1}/${stepAdapter.currentList.size}"
+        crossUpsellStepData.progressTextColor.parseColorOrNull()?.let {
+            progressTextView.setTextColor(it)
+        }
     }
 
     override val dyName = DyWidgetName.CrossUpsell
