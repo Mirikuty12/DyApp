@@ -17,6 +17,10 @@ import com.dynamicyield.templates.ui.cardpromotion.CardPromotionSliderView
 import com.dynamicyield.templates.ui.cardpromotion.CardPromotionView
 import com.dynamicyield.templates.ui.crossupsell.CrossUpsellDialogFragment
 import com.dynamicyield.templates.ui.crossupsell.CrossUpsellStepData
+import com.dynamicyield.templates.ui.offers.OfferData
+import com.dynamicyield.templates.ui.offers.OfferView
+import com.dynamicyield.templates.ui.offers.OffersDialogFragment
+import com.dynamicyield.templates.ui.offers.OffersSliderView
 import com.dynamicyield.templates.ui.quickactions.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -422,6 +426,127 @@ object DyWidgets {
                 }
                 activationDialogFragment as? T
             }
+            DyWidgetName.Offers.selector -> {
+                val offersChoice = (choice as? DyOffersChoice) ?: return null
+                val variation = offersChoice.variations.firstOrNull() ?: return null
+                val properties = variation.payload.properties
+                val offersDialogFragment = OffersDialogFragment().apply {
+                    setBackgroundProps(
+                        backgroundColor = properties.backgroundColor,
+                        topCornerRadius = properties.topCornerRadius.toFloat()
+                    )
+                    setTopHandleColor(properties.topHandleColor)
+                    setTitleProps(
+                        titleText = properties.title,
+                        titleSizeSp = properties.titleSize,
+                        titleColorString = properties.titleColor
+                    )
+                    setSubtitleProps(
+                        subtitleText = properties.subtitle,
+                        subtitleSizeSp = properties.subtitleSize,
+                        subtitleColorString = properties.subtitleColor
+                    )
+                    setOfferViewMode(
+                        OfferView.OfferViewMode.fromString(properties.offerViewMode)
+                            ?: OfferView.OfferViewMode.RECTANGLE
+                    )
+                    setOffers(
+                        listOfNotNull(
+                            createOfferData(
+                                backgroundImage = properties.backgroundImageOffer1,
+                                backgroundImageScaleType = properties.backgroundImageScaleTypeOffer1,
+                                logoImage = properties.logoImageOffer1,
+                                logoImageScaleType = properties.logoImageScaleTypeOffer1,
+                                labelText = properties.labelOffer1,
+                                labelTextColor = properties.labelTextColorOffer1,
+                                labelTextSize = properties.labelTextSizeOffer1,
+                                labelBackgroundColor = properties.labelBackgroundColorOffer1,
+                                titleText = properties.titleOffer1,
+                                titleTextColor = properties.titleTextColorOffer1,
+                                titleTextSize = properties.titleTextSizeOffer1,
+                            ),
+                            createOfferData(
+                                backgroundImage = properties.backgroundImageOffer2,
+                                backgroundImageScaleType = properties.backgroundImageScaleTypeOffer2,
+                                logoImage = properties.logoImageOffer2,
+                                logoImageScaleType = properties.logoImageScaleTypeOffer2,
+                                labelText = properties.labelOffer2,
+                                labelTextColor = properties.labelTextColorOffer2,
+                                labelTextSize = properties.labelTextSizeOffer2,
+                                labelBackgroundColor = properties.labelBackgroundColorOffer2,
+                                titleText = properties.titleOffer2,
+                                titleTextColor = properties.titleTextColorOffer2,
+                                titleTextSize = properties.titleTextSizeOffer2,
+                            ),
+                            createOfferData(
+                                backgroundImage = properties.backgroundImageOffer3,
+                                backgroundImageScaleType = properties.backgroundImageScaleTypeOffer3,
+                                logoImage = properties.logoImageOffer3,
+                                logoImageScaleType = properties.logoImageScaleTypeOffer3,
+                                labelText = properties.labelOffer3,
+                                labelTextColor = properties.labelTextColorOffer3,
+                                labelTextSize = properties.labelTextSizeOffer3,
+                                labelBackgroundColor = properties.labelBackgroundColorOffer3,
+                                titleText = properties.titleOffer3,
+                                titleTextColor = properties.titleTextColorOffer3,
+                                titleTextSize = properties.titleTextSizeOffer3,
+                            ),
+                        )
+                    )
+                }
+                offersDialogFragment as? T
+            }
+            DyWidgetName.OffersSlider.selector -> {
+                val offersSliderChoice = (choice as? DyOffersSliderChoice) ?: return null
+                val variation = offersSliderChoice.variations.firstOrNull() ?: return null
+                val properties = variation.payload.properties
+                val offersSliderView = OffersSliderView(context).apply {
+                    setOfferDataList(
+                        listOfNotNull(
+                            createOfferData(
+                                backgroundImage = properties.backgroundImageOffer1,
+                                backgroundImageScaleType = properties.backgroundImageScaleTypeOffer1,
+                                logoImage = properties.logoImageOffer1,
+                                logoImageScaleType = properties.logoImageScaleTypeOffer1,
+                                labelText = properties.labelOffer1,
+                                labelTextColor = properties.labelTextColorOffer1,
+                                labelTextSize = properties.labelTextSizeOffer1,
+                                labelBackgroundColor = properties.labelBackgroundColorOffer1,
+                                titleText = properties.titleOffer1,
+                                titleTextColor = properties.titleTextColorOffer1,
+                                titleTextSize = properties.titleTextSizeOffer1,
+                            ),
+                            createOfferData(
+                                backgroundImage = properties.backgroundImageOffer2,
+                                backgroundImageScaleType = properties.backgroundImageScaleTypeOffer2,
+                                logoImage = properties.logoImageOffer2,
+                                logoImageScaleType = properties.logoImageScaleTypeOffer2,
+                                labelText = properties.labelOffer2,
+                                labelTextColor = properties.labelTextColorOffer2,
+                                labelTextSize = properties.labelTextSizeOffer2,
+                                labelBackgroundColor = properties.labelBackgroundColorOffer2,
+                                titleText = properties.titleOffer2,
+                                titleTextColor = properties.titleTextColorOffer2,
+                                titleTextSize = properties.titleTextSizeOffer2,
+                            ),
+                            createOfferData(
+                                backgroundImage = properties.backgroundImageOffer3,
+                                backgroundImageScaleType = properties.backgroundImageScaleTypeOffer3,
+                                logoImage = properties.logoImageOffer3,
+                                logoImageScaleType = properties.logoImageScaleTypeOffer3,
+                                labelText = properties.labelOffer3,
+                                labelTextColor = properties.labelTextColorOffer3,
+                                labelTextSize = properties.labelTextSizeOffer3,
+                                labelBackgroundColor = properties.labelBackgroundColorOffer3,
+                                titleText = properties.titleOffer3,
+                                titleTextColor = properties.titleTextColorOffer3,
+                                titleTextSize = properties.titleTextSizeOffer3,
+                            ),
+                        )
+                    )
+                }
+                offersSliderView as? T
+            }
             else -> null
         }
     }
@@ -472,6 +597,36 @@ object DyWidgets {
             image, ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
             backgroundColor, borderColor, 1, 16,
             backgroundHoverColor, borderColor, 1, 16,
+        )
+    }
+
+    fun createOfferData(
+        backgroundImage: String?,
+        backgroundImageScaleType: String,
+        logoImage: String?,
+        logoImageScaleType: String,
+        labelText: String?,
+        labelTextColor: String,
+        labelTextSize: Int,
+        labelBackgroundColor: String,
+        titleText: String?,
+        titleTextColor: String,
+        titleTextSize: Int,
+    ): OfferData? {
+        if (titleText.isNullOrBlank()) return null
+
+        return OfferData(
+            backgroundImage = backgroundImage,
+            backgroundImageScaleType = ImageScaleType.fromString(backgroundImageScaleType) ?: ImageScaleType.FIT,
+            logoImage = logoImage,
+            logoImageScaleType = ImageScaleType.fromString(logoImageScaleType) ?: ImageScaleType.FIT,
+            labelText = labelText,
+            labelTextColor = labelTextColor,
+            labelTextSize = labelTextSize,
+            labelBackgroundColor = labelBackgroundColor,
+            titleText = titleText,
+            titleTextColor = titleTextColor,
+            titleTextSize = titleTextSize,
         )
     }
 }

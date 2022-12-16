@@ -18,14 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:paddingVertical="8dp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/cardPromotionBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="8dp"
                 android:textAllCaps="false"
                 android:text="Card Promotion" />
 
@@ -34,7 +34,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="8dp"
                 android:textAllCaps="false"
                 android:text="Card Promotion Slider" />
 
@@ -43,7 +42,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="8dp"
                 android:textAllCaps="false"
                 android:text="Quick Actions" />
 
@@ -52,7 +50,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="8dp"
                 android:textAllCaps="false"
                 android:text="Quick Actions Slider" />
 
@@ -61,7 +58,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="8dp"
                 android:textAllCaps="false"
                 android:text="Cross &amp; Upsell" />
 
@@ -70,9 +66,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="8dp"
                 android:textAllCaps="false"
                 android:text="Activation" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/offersDialogBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:textAllCaps="false"
+                android:text="Offers" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/offersSliderBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:textAllCaps="false"
+                android:text="Offers Slider" />
 
         </LinearLayout>
 

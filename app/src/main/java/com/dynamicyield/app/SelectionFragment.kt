@@ -14,6 +14,8 @@ import com.dynamicyield.app.data.source.remote.model.DyWidgetChoice
 import com.dynamicyield.templates.ui.DyWidgetName
 import com.dynamicyield.templates.ui.activation.ActivationDialogFragment
 import com.dynamicyield.templates.ui.crossupsell.CrossUpsellDialogFragment
+import com.dynamicyield.templates.ui.offers.OfferData
+import com.dynamicyield.templates.ui.offers.OffersDialogFragment
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
 
@@ -38,6 +40,8 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
         )
         findViewById<MaterialButton>(R.id.crossUpsellDialogBtn).setOnClickListener(selectionListener)
         findViewById<MaterialButton>(R.id.activationDialogBtn).setOnClickListener(selectionListener)
+        findViewById<MaterialButton>(R.id.offersDialogBtn).setOnClickListener(selectionListener)
+        findViewById<MaterialButton>(R.id.offersSliderBtn).setOnClickListener(selectionListener)
     }
 
     private val selectionListener = View.OnClickListener {
@@ -54,6 +58,11 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
                 loadActivation()
                 return@OnClickListener
             }
+            R.id.offersDialogBtn -> {
+                loadOffers()
+                return@OnClickListener
+            }
+            R.id.offersSliderBtn -> OffersSliderFragment.newInstance()
             else -> return@OnClickListener
         }
 
@@ -138,6 +147,42 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
             }
         )
         activationDialogFragment.show(childFragmentManager, ActivationDialogFragment.TAG)
+    }
+
+    private fun loadOffers() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            DyWidgets.chooseDyWidgets(DyWidgetName.Offers)
+                .onSuccess { choices ->
+                    showOffers(*choices.toTypedArray())
+                }
+                .onError { error ->
+                    Log.e("SelectionFragment", "error: $error")
+                    Toast.makeText(context, "$error", Toast.LENGTH_SHORT).show()
+                }
+                .onRawError { code, msg ->
+                    Log.e("SelectionFragment", "raw error: code=$code, msg=$msg")
+                    Toast.makeText(context, "$code $msg", Toast.LENGTH_SHORT).show()
+                }
+        }
+    }
+
+    private fun showOffers(vararg choices: DyWidgetChoice) {
+        val offersChoice = choices.find { it.name == DyWidgetName.Offers.selector } ?: return
+        val offersDialogFragment = DyWidgets.createDyWidgetFromChoice<OffersDialogFragment>(
+            requireContext(), offersChoice
+        ) ?: return
+
+        offersDialogFragment.setOffersListener(object : OffersDialogFragment.OffersListener {
+            override fun onSuccess(position: Int, offerData: OfferData) {
+                Toast.makeText(context, "Offers: success($position)", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onCancel() {
+                Toast.makeText(context, "Offers: cancel", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        offersDialogFragment.show(childFragmentManager, OffersDialogFragment.TAG)
     }
 
     companion object {

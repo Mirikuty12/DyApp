@@ -1,5 +1,6 @@
 package com.dynamicyield.app.data.source.remote.model
 
+import com.dynamicyield.templates.ui.DyWidgetName.*
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -93,15 +94,39 @@ data class DyActivationChoice(
     val variations: List<DyWidgetVariation<DyActivationProperties>>
 ) : DyWidgetChoice()
 
+@Serializable
+data class DyOffersChoice(
+    override val id: Long,
+    override val name: String,
+    override val type: String,
+    override val groups: List<String>,
+    override val decisionId: String,
+    @SerialName("variations")
+    val variations: List<DyWidgetVariation<DyOffersProperties>>
+) : DyWidgetChoice()
+
+@Serializable
+data class DyOffersSliderChoice(
+    override val id: Long,
+    override val name: String,
+    override val type: String,
+    override val groups: List<String>,
+    override val decisionId: String,
+    @SerialName("variations")
+    val variations: List<DyWidgetVariation<DyOffersSliderProperties>>
+) : DyWidgetChoice()
+
 object DyWidgetChoiceSerializer : JsonContentPolymorphicSerializer<DyWidgetChoice>(DyWidgetChoice::class) {
     override fun selectDeserializer(element: JsonElement): DeserializationStrategy<out DyWidgetChoice> {
         return when(val widgetName = element.jsonObject["name"]?.jsonPrimitive?.content) {
-            com.dynamicyield.templates.ui.DyWidgetName.CreditCardPromotion.selector -> DyCardPromotionChoice.serializer()
-            com.dynamicyield.templates.ui.DyWidgetName.CreditCardPromotionSlider.selector -> DyCardPromotionSliderChoice.serializer()
-            com.dynamicyield.templates.ui.DyWidgetName.CrossUpsell.selector -> DyCrossUpsellChoice.serializer()
-            com.dynamicyield.templates.ui.DyWidgetName.QuickActions.selector -> DyQuickActionsChoice.serializer()
-            com.dynamicyield.templates.ui.DyWidgetName.QuickActionsSlider.selector -> DyQuickActionsSliderChoice.serializer()
-            com.dynamicyield.templates.ui.DyWidgetName.Activation.selector -> DyActivationChoice.serializer()
+            CreditCardPromotion.selector -> DyCardPromotionChoice.serializer()
+            CreditCardPromotionSlider.selector -> DyCardPromotionSliderChoice.serializer()
+            CrossUpsell.selector -> DyCrossUpsellChoice.serializer()
+            QuickActions.selector -> DyQuickActionsChoice.serializer()
+            QuickActionsSlider.selector -> DyQuickActionsSliderChoice.serializer()
+            Activation.selector -> DyActivationChoice.serializer()
+            Offers.selector -> DyOffersChoice.serializer()
+            OffersSlider.selector -> DyOffersSliderChoice.serializer()
             else -> throw SerializationException("Unknown DyWidgetChoice: key 'name' does not matches any widget name. Value of key 'name' is '$widgetName'")
         }
     }
