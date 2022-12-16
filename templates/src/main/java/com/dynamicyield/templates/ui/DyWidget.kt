@@ -10,7 +10,8 @@ enum class DyWidgetName(val selector: String) {
     QuickActions("quick-actions"),
     QuickActionsSlider("quick-actions-slider"),
     CrossUpsell("cross-upsell"),
-    Activation("activation");
+    Activation("activation"),
+    Offers("offers");
 
     companion object {
         fun fromSelector(selector: String): DyWidgetName? = when (selector) {
@@ -20,6 +21,7 @@ enum class DyWidgetName(val selector: String) {
             QuickActionsSlider.selector -> QuickActionsSlider
             CrossUpsell.selector -> CrossUpsell
             Activation.selector -> Activation
+            Offers.selector -> Offers
             else -> null
         }
     }
