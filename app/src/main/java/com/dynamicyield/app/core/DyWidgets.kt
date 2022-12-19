@@ -22,6 +22,9 @@ import com.dynamicyield.templates.ui.offers.OfferView
 import com.dynamicyield.templates.ui.offers.OffersDialogFragment
 import com.dynamicyield.templates.ui.offers.OffersSliderView
 import com.dynamicyield.templates.ui.quickactions.*
+import com.dynamicyield.templates.ui.refinance.RefinanceData
+import com.dynamicyield.templates.ui.refinance.RefinanceSliderView
+import com.dynamicyield.templates.ui.refinance.RefinanceView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.ExperimentalSerializationApi
 
@@ -547,6 +550,146 @@ object DyWidgets {
                 }
                 offersSliderView as? T
             }
+            DyWidgetName.Refinance.selector -> {
+                val refinanceChoice = (choice as? DyRefinanceChoice) ?: return null
+                val variation = refinanceChoice.variations.firstOrNull() ?: return null
+                val properties = variation.payload.properties
+                val refinanceView = RefinanceView(context).apply {
+                    setCornerRadius(properties.cornerRadius.toFloat())
+                    setBackgroundColorStr(properties.backgroundColor)
+                    setImage(
+                        url = properties.image,
+                        scaleType = ImageScaleType.fromString(properties.imageScaleType) ?: ImageScaleType.FILL,
+                    )
+                    setTitle(
+                        text = properties.title,
+                        textColor = properties.titleTextColor,
+                        textSize = properties.titleTextSize.toFloat(),
+                    )
+                    setSubtitle(
+                        text = properties.subtitle,
+                        textColor = properties.subtitleTextColor,
+                        textSize = properties.subtitleTextSize.toFloat(),
+                    )
+                    setCtaButton1(
+                        buttonText = properties.ctaButton1Text,
+                        buttonTextSizeSp = properties.ctaButton1TextSize.toFloat(),
+                        buttonTextColorString = properties.ctaButton1TextColor,
+                        pressedButtonTextColorString = properties.ctaButton1PressedTextColor,
+                        buttonBackgroundColorString = properties.ctaButton1BackgroundColor,
+                        pressedButtonBackgroundColorString = properties.ctaButton1PressedBackgroundColor,
+                        buttonStrokeColorString = properties.ctaButton1StrokeColor,
+                        buttonStrokeWidth = properties.ctaButton1StrokeWidth,
+                    )
+                    setCtaButton2(
+                        buttonText = properties.ctaButton2Text,
+                        buttonTextSizeSp = properties.ctaButton2TextSize.toFloat(),
+                        buttonTextColorString = properties.ctaButton2TextColor,
+                        pressedButtonTextColorString = properties.ctaButton2PressedTextColor,
+                        buttonBackgroundColorString = properties.ctaButton2BackgroundColor,
+                        pressedButtonBackgroundColorString = properties.ctaButton2PressedBackgroundColor,
+                        buttonStrokeColorString = properties.ctaButton2StrokeColor,
+                        buttonStrokeWidth = properties.ctaButton2StrokeWidth,
+                    )
+                }
+                refinanceView as? T
+            }
+            DyWidgetName.RefinanceSlider.selector -> {
+                val refinanceSliderChoice = (choice as? DyRefinanceSliderChoice) ?: return null
+                val variation = refinanceSliderChoice.variations.firstOrNull() ?: return null
+                val properties = variation.payload.properties
+                val refinanceSliderView = RefinanceSliderView(context).apply {
+                    setRefinanceDataList(
+                        listOfNotNull(
+                            createRefinanceData(
+                                backgroundColor = properties.backgroundColorItem1,
+                                cornerRadius = properties.cornerRadiusItem1,
+                                image = properties.imageItem1,
+                                imageScaleType = properties.imageScaleTypeItem1,
+                                title = properties.titleItem1,
+                                titleTextColor = properties.titleTextColorItem1,
+                                titleTextSize = properties.titleTextSizeItem1,
+                                subtitle = properties.subtitleItem1,
+                                subtitleTextColor = properties.subtitleTextColorItem1,
+                                subtitleTextSize = properties.subtitleTextSizeItem1,
+                                ctaButton1Text = properties.ctaButton1TextItem1,
+                                ctaButton1TextSize = properties.ctaButton1TextSizeItem1,
+                                ctaButton1TextColor = properties.ctaButton1TextColorItem1,
+                                ctaButton1PressedTextColor = properties.ctaButton1PressedTextColorItem1,
+                                ctaButton1BackgroundColor = properties.ctaButton1BackgroundColorItem1,
+                                ctaButton1PressedBackgroundColor = properties.ctaButton1PressedBackgroundColorItem1,
+                                ctaButton1StrokeColor = properties.ctaButton1StrokeColorItem1,
+                                ctaButton1StrokeWidth = properties.ctaButton1StrokeWidthItem1,
+                                ctaButton2Text = properties.ctaButton2TextItem1,
+                                ctaButton2TextSize = properties.ctaButton2TextSizeItem1,
+                                ctaButton2TextColor = properties.ctaButton2TextColorItem1,
+                                ctaButton2PressedTextColor = properties.ctaButton2PressedTextColorItem1,
+                                ctaButton2BackgroundColor = properties.ctaButton2BackgroundColorItem1,
+                                ctaButton2PressedBackgroundColor = properties.ctaButton2PressedBackgroundColorItem1,
+                                ctaButton2StrokeColor = properties.ctaButton2StrokeColorItem1,
+                                ctaButton2StrokeWidth = properties.ctaButton2StrokeWidthItem1,
+                            ),
+                            createRefinanceData(
+                                backgroundColor = properties.backgroundColorItem2,
+                                cornerRadius = properties.cornerRadiusItem2,
+                                image = properties.imageItem2,
+                                imageScaleType = properties.imageScaleTypeItem2,
+                                title = properties.titleItem2,
+                                titleTextColor = properties.titleTextColorItem2,
+                                titleTextSize = properties.titleTextSizeItem2,
+                                subtitle = properties.subtitleItem2,
+                                subtitleTextColor = properties.subtitleTextColorItem2,
+                                subtitleTextSize = properties.subtitleTextSizeItem2,
+                                ctaButton1Text = properties.ctaButton1TextItem2,
+                                ctaButton1TextSize = properties.ctaButton1TextSizeItem2,
+                                ctaButton1TextColor = properties.ctaButton1TextColorItem2,
+                                ctaButton1PressedTextColor = properties.ctaButton1PressedTextColorItem2,
+                                ctaButton1BackgroundColor = properties.ctaButton1BackgroundColorItem2,
+                                ctaButton1PressedBackgroundColor = properties.ctaButton1PressedBackgroundColorItem2,
+                                ctaButton1StrokeColor = properties.ctaButton1StrokeColorItem2,
+                                ctaButton1StrokeWidth = properties.ctaButton1StrokeWidthItem2,
+                                ctaButton2Text = properties.ctaButton2TextItem2,
+                                ctaButton2TextSize = properties.ctaButton2TextSizeItem2,
+                                ctaButton2TextColor = properties.ctaButton2TextColorItem2,
+                                ctaButton2PressedTextColor = properties.ctaButton2PressedTextColorItem2,
+                                ctaButton2BackgroundColor = properties.ctaButton2BackgroundColorItem2,
+                                ctaButton2PressedBackgroundColor = properties.ctaButton2PressedBackgroundColorItem2,
+                                ctaButton2StrokeColor = properties.ctaButton2StrokeColorItem2,
+                                ctaButton2StrokeWidth = properties.ctaButton2StrokeWidthItem2,
+                            ),
+                            createRefinanceData(
+                                backgroundColor = properties.backgroundColorItem3,
+                                cornerRadius = properties.cornerRadiusItem3,
+                                image = properties.imageItem3,
+                                imageScaleType = properties.imageScaleTypeItem3,
+                                title = properties.titleItem3,
+                                titleTextColor = properties.titleTextColorItem3,
+                                titleTextSize = properties.titleTextSizeItem3,
+                                subtitle = properties.subtitleItem3,
+                                subtitleTextColor = properties.subtitleTextColorItem3,
+                                subtitleTextSize = properties.subtitleTextSizeItem3,
+                                ctaButton1Text = properties.ctaButton1TextItem3,
+                                ctaButton1TextSize = properties.ctaButton1TextSizeItem3,
+                                ctaButton1TextColor = properties.ctaButton1TextColorItem3,
+                                ctaButton1PressedTextColor = properties.ctaButton1PressedTextColorItem3,
+                                ctaButton1BackgroundColor = properties.ctaButton1BackgroundColorItem3,
+                                ctaButton1PressedBackgroundColor = properties.ctaButton1PressedBackgroundColorItem3,
+                                ctaButton1StrokeColor = properties.ctaButton1StrokeColorItem3,
+                                ctaButton1StrokeWidth = properties.ctaButton1StrokeWidthItem3,
+                                ctaButton2Text = properties.ctaButton2TextItem3,
+                                ctaButton2TextSize = properties.ctaButton2TextSizeItem3,
+                                ctaButton2TextColor = properties.ctaButton2TextColorItem3,
+                                ctaButton2PressedTextColor = properties.ctaButton2PressedTextColorItem3,
+                                ctaButton2BackgroundColor = properties.ctaButton2BackgroundColorItem3,
+                                ctaButton2PressedBackgroundColor = properties.ctaButton2PressedBackgroundColorItem3,
+                                ctaButton2StrokeColor = properties.ctaButton2StrokeColorItem3,
+                                ctaButton2StrokeWidth = properties.ctaButton2StrokeWidthItem3,
+                            )
+                        )
+                    )
+                }
+                refinanceSliderView as? T
+            }
             else -> null
         }
     }
@@ -627,6 +770,71 @@ object DyWidgets {
             titleText = titleText,
             titleTextColor = titleTextColor,
             titleTextSize = titleTextSize,
+        )
+    }
+
+    fun createRefinanceData(
+        backgroundColor: String,
+        cornerRadius: Int,
+        image: String?,
+        imageScaleType: String,
+        title: String,
+        titleTextColor: String,
+        titleTextSize: Int,
+        subtitle: String,
+        subtitleTextColor: String,
+        subtitleTextSize: Int,
+        ctaButton1Text: String?,
+        ctaButton1TextSize: Int,
+        ctaButton1TextColor: String,
+        ctaButton1PressedTextColor: String,
+        ctaButton1BackgroundColor: String,
+        ctaButton1PressedBackgroundColor: String,
+        ctaButton1StrokeColor: String,
+        ctaButton1StrokeWidth: Float,
+        ctaButton2Text: String?,
+        ctaButton2TextSize: Int,
+        ctaButton2TextColor: String,
+        ctaButton2PressedTextColor: String,
+        ctaButton2BackgroundColor: String,
+        ctaButton2PressedBackgroundColor: String,
+        ctaButton2StrokeColor: String,
+        ctaButton2StrokeWidth: Float,
+    ): RefinanceData? {
+        if (title.isNullOrBlank()) return null
+
+        return RefinanceData(
+            backgroundColor = backgroundColor,
+            cornerRadius = cornerRadius,
+
+            image = image,
+            imageScaleType = ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FILL,
+
+            title = title,
+            titleTextColor = titleTextColor,
+            titleTextSize = titleTextSize,
+
+            subtitle = subtitle,
+            subtitleTextColor = subtitleTextColor,
+            subtitleTextSize = subtitleTextSize,
+
+            ctaButton1Text = ctaButton1Text,
+            ctaButton1TextSize = ctaButton1TextSize,
+            ctaButton1TextColor = ctaButton1TextColor,
+            ctaButton1PressedTextColor = ctaButton1PressedTextColor,
+            ctaButton1BackgroundColor = ctaButton1BackgroundColor,
+            ctaButton1PressedBackgroundColor = ctaButton1PressedBackgroundColor,
+            ctaButton1StrokeColor = ctaButton1StrokeColor,
+            ctaButton1StrokeWidth = ctaButton1StrokeWidth,
+
+            ctaButton2Text = ctaButton2Text,
+            ctaButton2TextSize = ctaButton2TextSize,
+            ctaButton2TextColor = ctaButton2TextColor,
+            ctaButton2PressedTextColor = ctaButton2PressedTextColor,
+            ctaButton2BackgroundColor = ctaButton2BackgroundColor,
+            ctaButton2PressedBackgroundColor = ctaButton2PressedBackgroundColor,
+            ctaButton2StrokeColor = ctaButton2StrokeColor,
+            ctaButton2StrokeWidth = ctaButton2StrokeWidth,
         )
     }
 }

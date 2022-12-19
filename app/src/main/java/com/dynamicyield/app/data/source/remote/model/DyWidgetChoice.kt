@@ -116,6 +116,28 @@ data class DyOffersSliderChoice(
     val variations: List<DyWidgetVariation<DyOffersSliderProperties>>
 ) : DyWidgetChoice()
 
+@Serializable
+data class DyRefinanceChoice(
+    override val id: Long,
+    override val name: String,
+    override val type: String,
+    override val groups: List<String>,
+    override val decisionId: String,
+    @SerialName("variations")
+    val variations: List<DyWidgetVariation<DyRefinanceProperties>>
+) : DyWidgetChoice()
+
+@Serializable
+data class DyRefinanceSliderChoice(
+    override val id: Long,
+    override val name: String,
+    override val type: String,
+    override val groups: List<String>,
+    override val decisionId: String,
+    @SerialName("variations")
+    val variations: List<DyWidgetVariation<DyRefinanceSliderProperties>>
+) : DyWidgetChoice()
+
 object DyWidgetChoiceSerializer : JsonContentPolymorphicSerializer<DyWidgetChoice>(DyWidgetChoice::class) {
     override fun selectDeserializer(element: JsonElement): DeserializationStrategy<out DyWidgetChoice> {
         return when(val widgetName = element.jsonObject["name"]?.jsonPrimitive?.content) {
@@ -127,6 +149,8 @@ object DyWidgetChoiceSerializer : JsonContentPolymorphicSerializer<DyWidgetChoic
             Activation.selector -> DyActivationChoice.serializer()
             Offers.selector -> DyOffersChoice.serializer()
             OffersSlider.selector -> DyOffersSliderChoice.serializer()
+            Refinance.selector -> DyRefinanceChoice.serializer()
+            RefinanceSlider.selector -> DyRefinanceSliderChoice.serializer()
             else -> throw SerializationException("Unknown DyWidgetChoice: key 'name' does not matches any widget name. Value of key 'name' is '$widgetName'")
         }
     }
