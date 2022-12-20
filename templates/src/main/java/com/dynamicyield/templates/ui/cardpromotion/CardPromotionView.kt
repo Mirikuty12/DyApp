@@ -20,6 +20,9 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 
+/**
+ * The view representing the DY Card Promotion template
+ */
 class CardPromotionView : MaterialCardView, DyWidget {
 
     private lateinit var promotionContentContainer: ConstraintLayout
@@ -69,15 +72,24 @@ class CardPromotionView : MaterialCardView, DyWidget {
         )
     }
 
+    /**
+     * Set the corner radius for the entire view
+     */
     fun setCornerRadius(radiusDp: Float) {
         radius = radiusDp.dpToPx().toFloat()
     }
 
+    /**
+     * Set the background color for the entire view
+     */
     fun setBackgroundColorStr(colorStr: String) {
         val color = colorStr.parseColorOrNull() ?: return
         promotionContentContainer.setBackgroundColor(color)
     }
 
+    /**
+     * Set the gradient for the entire view
+     */
     fun setBackgroundGradient(topColorStr: String, bottomColorStr: String) {
         val topColor = topColorStr.parseColorOrNull() ?: return
         val bottomColor = bottomColorStr.parseColorOrNull() ?: return
@@ -86,6 +98,9 @@ class CardPromotionView : MaterialCardView, DyWidget {
         )
     }
 
+    /**
+     * Set the image for internal card view
+     */
     fun setImage(url: String?, scaleType: ImageScaleType = ImageScaleType.FIT) {
         promotionImageView.scaleType = when (scaleType) {
             ImageScaleType.FIT -> ImageView.ScaleType.FIT_CENTER
@@ -96,39 +111,63 @@ class CardPromotionView : MaterialCardView, DyWidget {
         }
     }
 
+    /**
+     * Set the background color for the bottom panel
+     */
     fun setBottomPanelColor(colorStr: String) {
         val color = colorStr.parseColorOrNull() ?: return
         bottomPanelImage.setBackgroundColor(color)
     }
 
+    /**
+     * Set the text for the bottom panel
+     */
     fun setBottomPanelText(text: CharSequence?) {
         bottomText.text = text
         bottomText.visibility = if (text.isNullOrBlank()) View.INVISIBLE else View.VISIBLE
     }
 
+    /**
+     * Set the color of the bottom panel text
+     */
     fun setBottomPanelTextColor(colorStr: String) {
         val color = colorStr.parseColorOrNull() ?: return
         bottomText.setTextColor(color)
     }
 
+    /**
+     * Set the size of the bottom panel text
+     */
     fun setBottomPanelTextSize(size: Float) {
         bottomText.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
     }
 
+    /**
+     * Set the text for the bottom panel button
+     */
     fun setBottomPanelButtonText(text: CharSequence?) {
         bottomBtn.text = text
         bottomBtn.visibility = if (text.isNullOrBlank()) View.INVISIBLE else View.VISIBLE
     }
 
+    /**
+     * Set the size of the bottom panel button text
+     */
     fun setBottomPanelButtonTextSize(size: Float) {
         bottomBtn.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
     }
 
+    /**
+     * Set the color of the bottom panel button text
+     */
     fun setBottomPanelButtonTextColor(colorStr: String) {
         val color = colorStr.parseColorOrNull() ?: return
         bottomBtn.setTextColor(color)
     }
 
+    /**
+     * Setup background of the bottom panel button
+     */
     fun setupBottomPanelButtonBackground(
         backgroundColor: String? = null,
         borderColor: String? = null,
@@ -161,6 +200,9 @@ class CardPromotionView : MaterialCardView, DyWidget {
         bottomBtn.backgroundTintList = null
     }
 
+    /**
+     * Set the click listener for the bottom panel button
+     */
     fun setBottomPanelButtonListener(l: OnClickListener) {
         bottomBtn.setOnClickListener(l)
     }

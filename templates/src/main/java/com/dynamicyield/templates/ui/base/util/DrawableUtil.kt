@@ -9,6 +9,9 @@ import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.RoundRectShape
 import androidx.annotation.ColorInt
 
+/**
+ * Create a gradient drawable with rounded corners and a border
+ */
 fun createGradientRectDrawable(
     @ColorInt gColors: IntArray,
     gOrientation: GradientDrawable.Orientation = GradientDrawable.Orientation.TOP_BOTTOM,
@@ -24,6 +27,9 @@ fun createGradientRectDrawable(
     if (strokeWidthPx > 0 && strokeColor != null) setStroke(strokeWidthPx, strokeColor)
 }
 
+/**
+ * Create a filled drawable with rounded corners and a border
+ */
 fun createRectDrawable(
     @ColorInt fillColor: Int? = null,
     @ColorInt strokeColor: Int? = null,
@@ -91,6 +97,9 @@ fun createRectDrawable(
     }
 }
 
+/**
+ * Create a filled drawable with rounded corners and a border
+ */
 fun createRectDrawable(
     @ColorInt fillColor: Int? = null,
     @ColorInt strokeColor: Int? = null,

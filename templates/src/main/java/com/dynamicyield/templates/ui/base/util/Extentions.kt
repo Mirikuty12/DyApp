@@ -21,6 +21,9 @@ fun String?.parseColorOrNull(): Int? = try {
     null
 }
 
+/**
+ * Lock screen orientation
+ */
 fun Activity.lockOrientation() {
     requestedOrientation = when (resources.configuration.orientation) {
         Configuration.ORIENTATION_PORTRAIT -> ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT
@@ -28,6 +31,9 @@ fun Activity.lockOrientation() {
     }
 }
 
+/**
+ * Unlock screen orientation
+ */
 fun Activity.unlockOrientation() {
     requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 }

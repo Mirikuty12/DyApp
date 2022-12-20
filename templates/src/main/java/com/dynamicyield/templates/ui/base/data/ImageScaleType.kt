@@ -1,5 +1,8 @@
 package com.dynamicyield.templates.ui.base.data
 
+/**
+ * Image scale type for images in DY templates.
+ */
 enum class ImageScaleType(val valueStr: String) {
     FIT("fit"), FILL("fill");
 

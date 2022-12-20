@@ -1,9 +1,16 @@
 package com.dynamicyield.templates.ui
 
+/**
+ * Common interface for DY templates
+ */
 interface DyWidget {
     val dyName: DyWidgetName
 }
 
+/**
+ * DY names for DY templates.
+ * The string value is a selector for getting template properties from the DY admin panel.
+ */
 enum class DyWidgetName(val selector: String) {
     CreditCardPromotion("credit-card-promotion"),
     CreditCardPromotionSlider("credit-card-promotion-slider"),
