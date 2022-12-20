@@ -51,8 +51,6 @@ fun createRectDrawable(
                 null,
                 null
             )
-//            shape = RectShape()
-//            paint.pathEffect = CornerPathEffect(cornerRadiusPx.toFloat())
             paint.isAntiAlias = isAntiAlias
             paint.color = fillColor
         }
@@ -70,8 +68,6 @@ fun createRectDrawable(
                 null,
                 null
             )
-//            shape = RectShape()
-//            paint.pathEffect = CornerPathEffect(rPx)
             paint.isAntiAlias = isAntiAlias
             paint.color = strokeColor
             paint.style = Paint.Style.STROKE
