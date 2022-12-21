@@ -15,6 +15,9 @@ import com.dynamicyield.templates.ui.base.util.createRectDrawable
 import com.dynamicyield.templates.ui.base.util.dpToPx
 import com.dynamicyield.templates.ui.base.util.parseColorOrNull
 
+/**
+ * The view representing the DY Featured Quick Action item
+ */
 class FeaturedQuickActionView : ConstraintLayout {
 
     private lateinit var actionContainer: ConstraintLayout
@@ -63,20 +66,32 @@ class FeaturedQuickActionView : ConstraintLayout {
 
     }
 
+    /**
+     * Set the text for the action title
+     */
     fun setTitle(text: CharSequence?) {
         titleTv.text = text
         titleTv.visibility = if (text.isNullOrBlank()) View.INVISIBLE else View.VISIBLE
     }
 
+    /**
+     * Set the text color for the action title
+     */
     fun setTitleColor(colorStr: String) {
         val color = colorStr.parseColorOrNull() ?: return
         titleTv.setTextColor(color)
     }
 
+    /**
+     * Set the text size for the action title
+     */
     fun setTitleSize(size: Float) {
         titleTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
     }
 
+    /**
+     * Set the remote url for the action image
+     */
     fun setImage(url: String?, scaleType: ImageScaleType = ImageScaleType.FIT) {
         imageView.scaleType = when (scaleType) {
             ImageScaleType.FIT -> ImageView.ScaleType.FIT_CENTER
@@ -87,6 +102,9 @@ class FeaturedQuickActionView : ConstraintLayout {
         }
     }
 
+    /**
+     * Setup background of the quick action
+     */
     fun setupBackground(
         backgroundColor: String? = null,
         borderColor: String? = null,
@@ -117,6 +135,9 @@ class FeaturedQuickActionView : ConstraintLayout {
         }
     }
 
+    /**
+     * Set the click listener for the quick action
+     */
     fun setActionClickListener(l : OnClickListener?) {
         actionContainer.setOnClickListener(l)
     }

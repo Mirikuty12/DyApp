@@ -709,16 +709,34 @@ object DyWidgets {
 
         return when (isFeaturedStr.toBooleanStrict()) {
             true -> FeaturedQuickActionData(
-                title, titleColor, titleSize,
-                image, ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
-                backgroundColor, borderColor, 1, 16,
-                backgroundHoverColor, borderColor, 1, 16,
+                title = title,
+                titleColor = titleColor,
+                titleSize = titleSize,
+                image = image,
+                imageScaleType = ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
+                backgroundColor = backgroundColor,
+                borderColor = borderColor,
+                borderWidth = 1,
+                cornerRadius = 16,
+                pressedBackgroundColor = backgroundHoverColor,
+                pressedBorderColor = borderColor,
+                pressedBorderWidth = 1,
+                pressedCornerRadius = 16,
             )
             false -> QuickActionData(
-                title, titleColor, titleSize,
-                image, ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
-                backgroundColor, borderColor, 1, 16,
-                backgroundHoverColor, borderColor, 1, 16,
+                title = title,
+                titleColor = titleColor,
+                titleSize = titleSize,
+                image = image,
+                imageScaleType = ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
+                backgroundColor = backgroundColor,
+                borderColor = borderColor,
+                borderWidth = 1,
+                cornerRadius = 16,
+                pressedBackgroundColor = backgroundHoverColor,
+                pressedBorderColor = borderColor,
+                pressedBorderWidth = 1,
+                pressedCornerRadius = 16,
             )
         }
     }
@@ -736,10 +754,19 @@ object DyWidgets {
         if (title.isBlank() && image.isBlank()) return null
 
         return QuickActionData(
-            title, titleColor, titleSize,
-            image, ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
-            backgroundColor, borderColor, 1, 16,
-            backgroundHoverColor, borderColor, 1, 16,
+            title = title,
+            titleColor = titleColor,
+            titleSize = titleSize,
+            image = image,
+            imageScaleType = ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
+            backgroundColor = backgroundColor,
+            borderColor = borderColor,
+            borderWidth = 1,
+            cornerRadius = 16,
+            pressedBackgroundColor = backgroundHoverColor,
+            pressedBorderColor = borderColor,
+            pressedBorderWidth = 1,
+            pressedCornerRadius = 16,
         )
     }
 

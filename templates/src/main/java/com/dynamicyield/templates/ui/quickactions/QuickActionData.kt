@@ -2,6 +2,10 @@ package com.dynamicyield.templates.ui.quickactions
 
 import com.dynamicyield.templates.ui.base.data.ImageScaleType
 
+/**
+ * Common interface that represents a Quick Action item
+ * in the QuickActionsView and QuickActionsSliderView
+ */
 interface IQuickActionData {
     val title: String
     val titleColor: String
@@ -19,6 +23,10 @@ interface IQuickActionData {
     val isFeatured: Boolean
 }
 
+/**
+ * The data class that represents a Quick Action item
+ * in the QuickActionsView and QuickActionsSliderView
+ */
 data class QuickActionData(
     override val title: String,
     override val titleColor: String,
@@ -37,6 +45,10 @@ data class QuickActionData(
     override val isFeatured: Boolean = false
 }
 
+/**
+ * The data class that represents a Featured Quick Action item
+ * in the QuickActionsView and QuickActionsSliderView
+ */
 data class FeaturedQuickActionData(
     override val title: String,
     override val titleColor: String,

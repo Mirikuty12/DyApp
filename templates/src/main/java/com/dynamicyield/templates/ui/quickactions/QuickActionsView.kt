@@ -12,6 +12,9 @@ import com.dynamicyield.templates.ui.DyWidgetName
 import com.dynamicyield.templates.ui.base.recyclerview.*
 import com.dynamicyield.templates.ui.base.util.dpToPx
 
+/**
+ * The view representing the DY Quick Actions template
+ */
 class QuickActionsView : ConstraintLayout, DyWidget {
     private var clickListener: OnClickListener? = null
 
@@ -73,10 +76,16 @@ class QuickActionsView : ConstraintLayout, DyWidget {
         recyclerView.adapter = adapter
     }
 
+    /**
+     * Set a new list of IQuickActionData items
+     */
     fun setQuickActions(items: List<IQuickActionData>) {
         adapter.submitList(items)
     }
 
+    /**
+     * Set the click listener
+     */
     fun setClickListener(listener: OnClickListener?) {
         clickListener = listener
     }

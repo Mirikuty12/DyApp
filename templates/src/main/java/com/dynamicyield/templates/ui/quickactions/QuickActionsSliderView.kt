@@ -12,6 +12,9 @@ import com.dynamicyield.templates.ui.base.recyclerview.*
 import com.dynamicyield.templates.ui.base.recyclerview.multisnap.MultiSnapHelper
 import com.dynamicyield.templates.ui.base.util.dpToPx
 
+/**
+ * The view representing the DY Quick Actions Slider template
+ */
 class QuickActionsSliderView : ConstraintLayout, DyWidget {
     private var clickListener: OnClickListener? = null
 
@@ -65,10 +68,16 @@ class QuickActionsSliderView : ConstraintLayout, DyWidget {
         MultiSnapHelper(interval = 1).attachToRecyclerView(recyclerView)
     }
 
+    /**
+     * Set a new list of QuickActionData items
+     */
     fun setQuickActions(items: List<QuickActionData>) {
         adapter.submitList(items)
     }
 
+    /**
+     * Set the click listener
+     */
     fun setClickListener(listener: OnClickListener?) {
         clickListener = listener
     }
