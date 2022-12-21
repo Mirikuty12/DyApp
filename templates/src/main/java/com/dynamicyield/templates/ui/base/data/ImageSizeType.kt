@@ -1,5 +1,8 @@
 package com.dynamicyield.templates.ui.base.data
 
+/**
+ * Image size type for images in DY templates.
+ */
 enum class ImageSizeType(val valueStr: String) {
     MEDIUM("medium"), BIG("big");
 

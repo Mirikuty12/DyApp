@@ -15,6 +15,9 @@ import com.dynamicyield.templates.ui.base.recyclerview.create
 import com.dynamicyield.templates.ui.base.recyclerview.itemDelegate
 import com.dynamicyield.templates.ui.base.util.dpToPx
 
+/**
+ * The view representing the DY Card Promotion Slider template
+ */
 class CardPromotionSliderView : ConstraintLayout, DyWidget {
     private var clickListener: OnClickListener? = null
 
@@ -71,10 +74,16 @@ class CardPromotionSliderView : ConstraintLayout, DyWidget {
         pagerSnapHelper.attachToRecyclerView(recyclerView)
     }
 
+    /**
+     * Set a new list of CardPromotionData items
+     */
     fun setBannerDataList(dataList: List<CardPromotionData>) {
         promotionAdapter.submitList(dataList)
     }
 
+    /**
+     * Set the click listener for the bottom panel button for each CardPromotionData item
+     */
     fun setClickListener(listener: OnClickListener) {
         clickListener = listener
     }

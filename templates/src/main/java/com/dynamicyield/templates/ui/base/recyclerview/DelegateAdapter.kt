@@ -5,6 +5,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * Implementation of the Delegate Adapter pattern for RecyclerView
+ */
 class DelegateAdapter<I : Any>(
     diffUtilCallback: DiffUtil.ItemCallback<I>, vararg itemDelegate: ItemDelegate<out I, *>
 ) : ListAdapter<I, RecyclerView.ViewHolder>(diffUtilCallback) {

@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * Common delegates for different element types in the Delegate Adapter pattern.
+ */
+
 class LayoutItemDelegate<I>(
     private val type: Class<out I>,
     @LayoutRes private val layoutId: Int
@@ -51,6 +55,10 @@ class BindItemDelegate<I>(
         holder.bindBlock(position, item)
     }
 }
+
+/**
+ * Helper functions for creating delegates
+ */
 
 inline fun <reified I> itemDelegate(
     @LayoutRes layoutId: Int
