@@ -25,6 +25,7 @@ import com.dynamicyield.templates.ui.quickactions.*
 import com.dynamicyield.templates.ui.refinance.RefinanceData
 import com.dynamicyield.templates.ui.refinance.RefinanceSliderView
 import com.dynamicyield.templates.ui.refinance.RefinanceView
+import com.dynamicyield.templates.ui.stimulation.StimulationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.ExperimentalSerializationApi
 
@@ -689,6 +690,33 @@ object DyWidgets {
                     )
                 }
                 refinanceSliderView as? T
+            }
+            DyWidgetName.Stimulation.selector -> {
+                val stimulationChoice = (choice as? DyStimulationChoice) ?: return null
+                val variation = stimulationChoice.variations.firstOrNull() ?: return null
+                val properties = variation.payload.properties
+                val stimulationView = StimulationView(context).apply {
+                    setBackgroundColor(properties.backgroundColor)
+                    setTitle(
+                        text = properties.title,
+                        textColor = properties.titleTextColor,
+                        textSize = properties.titleTextSize.toFloat()
+                    )
+                    setExpirationTimer(
+                        expirationTimestampSec = properties.expirationTimestampSec,
+                        textColor = properties.expirationTextColor,
+                        textSize = properties.expirationTextSize.toFloat()
+                    )
+                    setButton(
+                        buttonText = properties.buttonText,
+                        buttonTextSizeSp = properties.buttonTextSize.toFloat(),
+                        buttonTextColorString = properties.buttonTextColor,
+                        buttonBackgroundColorString = properties.buttonBackgroundColor,
+                        pressedButtonBackgroundColorString = properties.buttonPressedBackgroundColor
+                    )
+                    setCloseButtonColor(properties.closeButtonColor)
+                }
+                stimulationView as? T
             }
             else -> null
         }

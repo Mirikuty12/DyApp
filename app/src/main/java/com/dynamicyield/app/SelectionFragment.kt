@@ -44,6 +44,7 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
         findViewById<MaterialButton>(R.id.offersSliderBtn).setOnClickListener(selectionListener)
         findViewById<MaterialButton>(R.id.refinanceBtn).setOnClickListener(selectionListener)
         findViewById<MaterialButton>(R.id.refinanceSliderBtn).setOnClickListener(selectionListener)
+        findViewById<MaterialButton>(R.id.stimulationBtn).setOnClickListener(selectionListener)
     }
 
     private val selectionListener = View.OnClickListener {
@@ -67,6 +68,7 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
             R.id.offersSliderBtn -> OffersSliderFragment.newInstance()
             R.id.refinanceBtn -> RefinanceFragment.newInstance()
             R.id.refinanceSliderBtn -> RefinanceSliderFragment.newInstance()
+            R.id.stimulationBtn -> StimulationFragment.newInstance()
             else -> return@OnClickListener
         }
 

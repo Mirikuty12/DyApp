@@ -2,9 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clickable="true"
-    android:focusable="true">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="0dp"
@@ -17,8 +15,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingVertical="8dp">
 
             <com.google.android.material.button.MaterialButton
@@ -26,80 +24,88 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textAllCaps="false"
-                android:text="Card Promotion" />
+                android:text="Card Promotion"
+                android:textAllCaps="false" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/cardPromotionSliderBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textAllCaps="false"
-                android:text="Card Promotion Slider" />
+                android:text="Card Promotion Slider"
+                android:textAllCaps="false" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/quickActionsBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textAllCaps="false"
-                android:text="Quick Actions" />
+                android:text="Quick Actions"
+                android:textAllCaps="false" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/quickActionsSliderBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textAllCaps="false"
-                android:text="Quick Actions Slider" />
+                android:text="Quick Actions Slider"
+                android:textAllCaps="false" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/crossUpsellDialogBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textAllCaps="false"
-                android:text="Cross &amp; Upsell" />
+                android:text="Cross &amp; Upsell"
+                android:textAllCaps="false" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/activationDialogBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textAllCaps="false"
-                android:text="Activation" />
+                android:text="Activation"
+                android:textAllCaps="false" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/offersDialogBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textAllCaps="false"
-                android:text="Offers" />
+                android:text="Offers"
+                android:textAllCaps="false" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/offersSliderBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textAllCaps="false"
-                android:text="Offers Slider" />
+                android:text="Offers Slider"
+                android:textAllCaps="false" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/refinanceBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textAllCaps="false"
-                android:text="Refinance" />
+                android:text="Refinance"
+                android:textAllCaps="false" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/refinanceSliderBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textAllCaps="false"
-                android:text="Refinance Slider" />
+                android:text="Refinance Slider"
+                android:textAllCaps="false" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/stimulationBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:text="Stimulation"
+                android:textAllCaps="false" />
 
         </LinearLayout>
 
