@@ -22,7 +22,8 @@ enum class DyWidgetName(val selector: String) {
     OffersSlider("offers-slider"),
     Refinance("refinance"),
     RefinanceSlider("refinance-slider"),
-    Stimulation("stimulation");
+    Stimulation("stimulation"),
+    StoriesSlider("stories-slider");
 
     companion object {
         fun fromSelector(selector: String): DyWidgetName? = when (selector) {
@@ -37,6 +38,7 @@ enum class DyWidgetName(val selector: String) {
             Refinance.selector -> Refinance
             RefinanceSlider.selector -> RefinanceSlider
             Stimulation.selector -> Stimulation
+            StoriesSlider.selector -> StoriesSlider
             else -> null
         }
     }
