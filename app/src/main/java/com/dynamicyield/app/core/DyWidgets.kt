@@ -26,6 +26,8 @@ import com.dynamicyield.templates.ui.refinance.RefinanceData
 import com.dynamicyield.templates.ui.refinance.RefinanceSliderView
 import com.dynamicyield.templates.ui.refinance.RefinanceView
 import com.dynamicyield.templates.ui.stimulation.StimulationView
+import com.dynamicyield.templates.ui.stories.slider.CircleStoryData
+import com.dynamicyield.templates.ui.stories.slider.StoriesSliderView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.ExperimentalSerializationApi
 
@@ -718,6 +720,72 @@ object DyWidgets {
                 }
                 stimulationView as? T
             }
+            DyWidgetName.StoriesSlider.selector -> {
+                val storiesSliderChoice = (choice as? DyStoriesSliderChoice) ?: return null
+                val variation = storiesSliderChoice.variations.firstOrNull() ?: return null
+                val properties = variation.payload.properties
+                val storiesSliderView = StoriesSliderView(context).apply {
+                    setStoryDataList(
+                        listOfNotNull(
+                            createCircleStoryData(
+                                titleText = properties.titleTextStory1,
+                                titleTextColor = properties.titleTextColorStory1,
+                                titleTextSize = properties.titleTextSizeStory1,
+                                image = properties.imageStory1,
+                                imageScaleType = properties.imageScaleTypeStory1,
+                                imageBorderColor = properties.imageBorderColorStory1,
+                                imageBorderWidth = properties.imageBorderWidthStory1,
+                            ),
+                            createCircleStoryData(
+                                titleText = properties.titleTextStory2,
+                                titleTextColor = properties.titleTextColorStory2,
+                                titleTextSize = properties.titleTextSizeStory2,
+                                image = properties.imageStory2,
+                                imageScaleType = properties.imageScaleTypeStory2,
+                                imageBorderColor = properties.imageBorderColorStory2,
+                                imageBorderWidth = properties.imageBorderWidthStory2,
+                            ),
+                            createCircleStoryData(
+                                titleText = properties.titleTextStory3,
+                                titleTextColor = properties.titleTextColorStory3,
+                                titleTextSize = properties.titleTextSizeStory3,
+                                image = properties.imageStory3,
+                                imageScaleType = properties.imageScaleTypeStory3,
+                                imageBorderColor = properties.imageBorderColorStory3,
+                                imageBorderWidth = properties.imageBorderWidthStory3,
+                            ),
+                            createCircleStoryData(
+                                titleText = properties.titleTextStory4,
+                                titleTextColor = properties.titleTextColorStory4,
+                                titleTextSize = properties.titleTextSizeStory4,
+                                image = properties.imageStory4,
+                                imageScaleType = properties.imageScaleTypeStory4,
+                                imageBorderColor = properties.imageBorderColorStory4,
+                                imageBorderWidth = properties.imageBorderWidthStory4,
+                            ),
+                            createCircleStoryData(
+                                titleText = properties.titleTextStory5,
+                                titleTextColor = properties.titleTextColorStory5,
+                                titleTextSize = properties.titleTextSizeStory5,
+                                image = properties.imageStory5,
+                                imageScaleType = properties.imageScaleTypeStory5,
+                                imageBorderColor = properties.imageBorderColorStory5,
+                                imageBorderWidth = properties.imageBorderWidthStory5,
+                            ),
+                            createCircleStoryData(
+                                titleText = properties.titleTextStory6,
+                                titleTextColor = properties.titleTextColorStory6,
+                                titleTextSize = properties.titleTextSizeStory6,
+                                image = properties.imageStory6,
+                                imageScaleType = properties.imageScaleTypeStory6,
+                                imageBorderColor = properties.imageBorderColorStory6,
+                                imageBorderWidth = properties.imageBorderWidthStory6,
+                            ),
+                        )
+                    )
+                }
+                storiesSliderView as? T
+            }
             else -> null
         }
     }
@@ -890,6 +958,28 @@ object DyWidgets {
             ctaButton2PressedBackgroundColor = ctaButton2PressedBackgroundColor,
             ctaButton2StrokeColor = ctaButton2StrokeColor,
             ctaButton2StrokeWidth = ctaButton2StrokeWidth,
+        )
+    }
+
+    fun createCircleStoryData(
+        titleText: String?,
+        titleTextColor: String,
+        titleTextSize: Int,
+        image: String?,
+        imageScaleType: String,
+        imageBorderColor: String?,
+        imageBorderWidth: Int?,
+    ): CircleStoryData? {
+        if (titleText.isNullOrBlank()) return null
+
+        return CircleStoryData(
+            titleText = titleText,
+            titleTextColor = titleTextColor,
+            titleTextSize = titleTextSize,
+            image = image,
+            imageScaleType = ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FILL,
+            imageBorderColor = imageBorderColor,
+            imageBorderWidth = imageBorderWidth ?: 0
         )
     }
 }
