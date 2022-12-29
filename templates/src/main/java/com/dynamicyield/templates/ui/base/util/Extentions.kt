@@ -17,8 +17,35 @@ fun Float.dpToPx(): Int = (this * Resources.getSystem().displayMetrics.density).
  */
 fun String?.parseColorOrNull(): Int? = try {
     Color.parseColor(this)
-} catch (e: RuntimeException) {
-    null
+} catch (e: IllegalArgumentException) {
+    var color: Int? = null
+    val colorWithoutSpaces = this?.replace("\\s".toRegex(), "")
+
+    if (colorWithoutSpaces != null
+        && colorWithoutSpaces.startsWith("rgba(") && colorWithoutSpaces.endsWith(")")
+    ) {
+        val components = colorWithoutSpaces
+            .substring(5, colorWithoutSpaces.lastIndex).split(",")
+        color = try {
+            val red = components[0].toInt().also {
+                if (it !in 0..255) throw IllegalArgumentException()
+            }
+            val green = components[1].toInt().also {
+                if (it !in 0..255) throw IllegalArgumentException()
+            }
+            val blue = components[2].toInt().also {
+                if (it !in 0..255) throw IllegalArgumentException()
+            }
+            val alpha = components[3].toFloat().also {
+                if (it !in 0f..1f) throw IllegalArgumentException()
+            }
+            Color.argb((alpha * 255).toInt(), red, green, blue)
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    color
 }
 
 /**
