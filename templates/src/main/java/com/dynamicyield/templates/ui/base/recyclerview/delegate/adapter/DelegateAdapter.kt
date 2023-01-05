@@ -1,4 +1,4 @@
-package com.dynamicyield.templates.ui.base.recyclerview
+package com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil

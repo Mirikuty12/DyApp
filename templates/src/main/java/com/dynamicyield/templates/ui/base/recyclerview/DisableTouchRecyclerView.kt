@@ -1,4 +1,4 @@
-package com.dynamicyield.templates.ui.crossupsell
+package com.dynamicyield.templates.ui.base.recyclerview
 
 import android.content.Context
 import android.util.AttributeSet

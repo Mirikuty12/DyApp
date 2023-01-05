@@ -33,9 +33,11 @@ import com.dynamicyield.templates.ui.DyWidget
 import com.dynamicyield.templates.ui.DyWidgetName
 import com.dynamicyield.templates.ui.base.data.ImageScaleType
 import com.dynamicyield.templates.ui.base.data.ImageSizeType
-import com.dynamicyield.templates.ui.base.recyclerview.DelegateAdapter
-import com.dynamicyield.templates.ui.base.recyclerview.bind
-import com.dynamicyield.templates.ui.base.recyclerview.itemDelegate
+import com.dynamicyield.templates.ui.base.recyclerview.DisableTouchRecyclerView
+import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.DelegateAdapter
+import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.bind
+import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.itemDelegate
+import com.dynamicyield.templates.ui.base.recyclerview.snap.SnapOnScrollListener
 import com.dynamicyield.templates.ui.base.util.*
 import kotlin.math.ceil
 

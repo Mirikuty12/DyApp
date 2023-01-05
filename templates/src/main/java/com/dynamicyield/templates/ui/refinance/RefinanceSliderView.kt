@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dynamicyield.templates.R
 import com.dynamicyield.templates.ui.DyWidget
 import com.dynamicyield.templates.ui.DyWidgetName
-import com.dynamicyield.templates.ui.base.recyclerview.DelegateAdapter
-import com.dynamicyield.templates.ui.base.recyclerview.bind
-import com.dynamicyield.templates.ui.base.recyclerview.create
-import com.dynamicyield.templates.ui.base.recyclerview.itemDelegate
+import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.DelegateAdapter
+import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.bind
+import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.create
+import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.itemDelegate
 import com.dynamicyield.templates.ui.base.util.dpToPx
 
 class RefinanceSliderView : ConstraintLayout, DyWidget {

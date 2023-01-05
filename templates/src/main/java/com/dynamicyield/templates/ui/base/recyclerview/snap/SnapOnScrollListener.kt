@@ -1,4 +1,4 @@
-package com.dynamicyield.templates.ui.crossupsell
+package com.dynamicyield.templates.ui.base.recyclerview.snap
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper

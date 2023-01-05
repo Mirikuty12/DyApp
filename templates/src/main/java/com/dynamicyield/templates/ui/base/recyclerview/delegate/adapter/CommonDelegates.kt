@@ -1,4 +1,4 @@
-package com.dynamicyield.templates.ui.base.recyclerview
+package com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
