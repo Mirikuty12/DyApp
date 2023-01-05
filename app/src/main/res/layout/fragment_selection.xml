@@ -115,6 +115,14 @@
                 android:text="Stories Slider"
                 android:textAllCaps="false" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/storiesDialogBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:text="Stories"
+                android:textAllCaps="false" />
+
         </LinearLayout>
 
     </ScrollView>

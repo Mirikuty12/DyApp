@@ -16,6 +16,8 @@ import com.dynamicyield.templates.ui.activation.ActivationDialogFragment
 import com.dynamicyield.templates.ui.crossupsell.CrossUpsellDialogFragment
 import com.dynamicyield.templates.ui.offers.OfferData
 import com.dynamicyield.templates.ui.offers.OffersDialogFragment
+import com.dynamicyield.templates.ui.stories.dialog.StoriesDialogFragment
+import com.dynamicyield.templates.ui.stories.dialog.StoryData
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
 
@@ -46,6 +48,7 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
         findViewById<MaterialButton>(R.id.refinanceSliderBtn).setOnClickListener(selectionListener)
         findViewById<MaterialButton>(R.id.stimulationBtn).setOnClickListener(selectionListener)
         findViewById<MaterialButton>(R.id.storiesSliderBtn).setOnClickListener(selectionListener)
+        findViewById<MaterialButton>(R.id.storiesDialogBtn).setOnClickListener(selectionListener)
     }
 
     private val selectionListener = View.OnClickListener {
@@ -71,6 +74,10 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
             R.id.refinanceSliderBtn -> RefinanceSliderFragment.newInstance()
             R.id.stimulationBtn -> StimulationFragment.newInstance()
             R.id.storiesSliderBtn -> StoriesSliderFragment.newInstance()
+            R.id.storiesDialogBtn -> {
+                loadStories()
+                return@OnClickListener
+            }
             else -> return@OnClickListener
         }
 
@@ -138,7 +145,8 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
     }
 
     private fun showActivation(vararg choices: DyWidgetChoice) {
-        val activationChoice = choices.find { it.name == DyWidgetName.Activation.selector } ?: return
+        val activationChoice =
+            choices.find { it.name == DyWidgetName.Activation.selector } ?: return
         val activationDialogFragment = DyWidgets.createDyWidgetFromChoice<ActivationDialogFragment>(
             requireContext(), activationChoice
         ) ?: return
@@ -191,6 +199,48 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
         })
 
         offersDialogFragment.show(childFragmentManager, OffersDialogFragment.TAG)
+    }
+
+    private fun loadStories() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            DyWidgets.chooseDyWidgets(DyWidgetName.Stories)
+                .onSuccess { choices ->
+                    showStories(*choices.toTypedArray())
+                }
+                .onError { error ->
+                    Log.e("SelectionFragment", "error: $error")
+                    Toast.makeText(context, "$error", Toast.LENGTH_SHORT).show()
+                }
+                .onRawError { code, msg ->
+                    Log.e("SelectionFragment", "raw error: code=$code, msg=$msg")
+                    Toast.makeText(context, "$code $msg", Toast.LENGTH_SHORT).show()
+                }
+        }
+    }
+
+    private fun showStories(vararg choices: DyWidgetChoice) {
+        val storiesChoice = choices.find { it.name == DyWidgetName.Stories.selector } ?: return
+        val storiesDialogFragment = DyWidgets.createDyWidgetFromChoice<StoriesDialogFragment>(
+            requireContext(), storiesChoice
+        ) ?: return
+
+        storiesDialogFragment.setListener(object : StoriesDialogFragment.StoriesListener {
+            override fun onChoose(position: Int, storyData: StoryData?) {
+                Log.d("SelectionFragment", "StoriesListener.onLearnStory(position=$position)")
+                Toast.makeText(context, "Choose: position=$position", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onEnd() {
+                Log.d("SelectionFragment", "StoriesListener.onEnd()")
+                Toast.makeText(context, "End of Stories", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onCancel(position: Int, storyData: StoryData?) {
+                Log.d("SelectionFragment", "StoriesListener.onCancel(position=$position)")
+                Toast.makeText(context, "Cancel: position=$position", Toast.LENGTH_SHORT).show()
+            }
+        })
+        storiesDialogFragment.show(childFragmentManager, StoriesDialogFragment.TAG)
     }
 
     companion object {

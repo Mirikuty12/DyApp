@@ -26,6 +26,8 @@ import com.dynamicyield.templates.ui.refinance.RefinanceData
 import com.dynamicyield.templates.ui.refinance.RefinanceSliderView
 import com.dynamicyield.templates.ui.refinance.RefinanceView
 import com.dynamicyield.templates.ui.stimulation.StimulationView
+import com.dynamicyield.templates.ui.stories.dialog.StoriesDialogFragment
+import com.dynamicyield.templates.ui.stories.dialog.StoryData
 import com.dynamicyield.templates.ui.stories.slider.CircleStoryData
 import com.dynamicyield.templates.ui.stories.slider.StoriesSliderView
 import kotlinx.coroutines.Dispatchers
@@ -786,6 +788,118 @@ object DyWidgets {
                 }
                 storiesSliderView as? T
             }
+            DyWidgetName.Stories.selector -> {
+                val storiesChoice = (choice as? DyStoriesChoice) ?: return null
+                val variation = storiesChoice.variations.firstOrNull() ?: return null
+                val properties = variation.payload.properties
+                val storiesDialogFragment = StoriesDialogFragment().apply {
+                    setBackgroundColor(properties.backgroundColor)
+                    setCloseBtnColor(properties.closeButtonColor)
+                    setTimelineColors(
+                        backgroundColor = properties.timelineBackgroundColor,
+                        progressColor = properties.timelineProgressColor
+                    )
+                    setChooseButtonProps(
+                        buttonText = properties.chooseButtonText,
+                        buttonTextSize = properties.chooseButtonTextSize,
+                        buttonTextColor = properties.chooseButtonTextColor,
+                        pressedButtonTextColor = properties.chooseButtonPressedTextColor,
+                        buttonBackgroundColor = properties.chooseButtonBackgroundColor,
+                        pressedButtonBackgroundColor = properties.chooseButtonPressedBackgroundColor,
+                        buttonStrokeColor = properties.chooseButtonBorderColor,
+                        buttonStrokeWidth = properties.chooseButtonBorderWidth
+                    )
+                    setStories(listOf(
+                        createStoryData(
+                            backgroundImage = properties.backgroundImageStory1,
+                            backgroundImageScaleType = properties.backgroundImageScaleTypeStory1,
+                            contentOffset = properties.contentOffsetStory1,
+                            logoImage = properties.logoImageStory1,
+                            logoImageScaleType = properties.logoImageScaleTypeStory1,
+                            titleText = properties.titleTextStory1,
+                            titleTextColor = properties.titleTextColorStory1,
+                            titleTextSize = properties.titleTextSizeStory1,
+                            titleTextBackgroundColor = properties.titleTextBackgroundColorStory1,
+                            subtitleText = properties.subtitleTextStory1,
+                            subtitleTextColor = properties.subtitleTextColorStory1,
+                            subtitleTextSize = properties.subtitleTextSizeStory1,
+                            subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory1,
+                            timeMillis = properties.timeMillisStory1,
+                            overlayColor = properties.overlayColorStory1,
+                        ),
+                        createStoryData(
+                            backgroundImage = properties.backgroundImageStory2,
+                            backgroundImageScaleType = properties.backgroundImageScaleTypeStory2,
+                            contentOffset = properties.contentOffsetStory2,
+                            logoImage = properties.logoImageStory2,
+                            logoImageScaleType = properties.logoImageScaleTypeStory2,
+                            titleText = properties.titleTextStory2,
+                            titleTextColor = properties.titleTextColorStory2,
+                            titleTextSize = properties.titleTextSizeStory2,
+                            titleTextBackgroundColor = properties.titleTextBackgroundColorStory2,
+                            subtitleText = properties.subtitleTextStory2,
+                            subtitleTextColor = properties.subtitleTextColorStory2,
+                            subtitleTextSize = properties.subtitleTextSizeStory2,
+                            subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory2,
+                            timeMillis = properties.timeMillisStory2,
+                            overlayColor = properties.overlayColorStory2,
+                        ),
+                        createStoryData(
+                            backgroundImage = properties.backgroundImageStory3,
+                            backgroundImageScaleType = properties.backgroundImageScaleTypeStory3,
+                            contentOffset = properties.contentOffsetStory3,
+                            logoImage = properties.logoImageStory3,
+                            logoImageScaleType = properties.logoImageScaleTypeStory3,
+                            titleText = properties.titleTextStory3,
+                            titleTextColor = properties.titleTextColorStory3,
+                            titleTextSize = properties.titleTextSizeStory3,
+                            titleTextBackgroundColor = properties.titleTextBackgroundColorStory3,
+                            subtitleText = properties.subtitleTextStory3,
+                            subtitleTextColor = properties.subtitleTextColorStory3,
+                            subtitleTextSize = properties.subtitleTextSizeStory3,
+                            subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory3,
+                            timeMillis = properties.timeMillisStory3,
+                            overlayColor = properties.overlayColorStory3,
+                        ),
+                        createStoryData(
+                            backgroundImage = properties.backgroundImageStory4,
+                            backgroundImageScaleType = properties.backgroundImageScaleTypeStory4,
+                            contentOffset = properties.contentOffsetStory4,
+                            logoImage = properties.logoImageStory4,
+                            logoImageScaleType = properties.logoImageScaleTypeStory4,
+                            titleText = properties.titleTextStory4,
+                            titleTextColor = properties.titleTextColorStory4,
+                            titleTextSize = properties.titleTextSizeStory4,
+                            titleTextBackgroundColor = properties.titleTextBackgroundColorStory4,
+                            subtitleText = properties.subtitleTextStory4,
+                            subtitleTextColor = properties.subtitleTextColorStory4,
+                            subtitleTextSize = properties.subtitleTextSizeStory4,
+                            subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory4,
+                            timeMillis = properties.timeMillisStory4,
+                            overlayColor = properties.overlayColorStory4,
+                        ),
+                        createStoryData(
+                            backgroundImage = properties.backgroundImageStory5,
+                            backgroundImageScaleType = properties.backgroundImageScaleTypeStory5,
+                            contentOffset = properties.contentOffsetStory5,
+                            logoImage = properties.logoImageStory5,
+                            logoImageScaleType = properties.logoImageScaleTypeStory5,
+                            titleText = properties.titleTextStory5,
+                            titleTextColor = properties.titleTextColorStory5,
+                            titleTextSize = properties.titleTextSizeStory5,
+                            titleTextBackgroundColor = properties.titleTextBackgroundColorStory5,
+                            subtitleText = properties.subtitleTextStory5,
+                            subtitleTextColor = properties.subtitleTextColorStory5,
+                            subtitleTextSize = properties.subtitleTextSizeStory5,
+                            subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory5,
+                            timeMillis = properties.timeMillisStory5,
+                            overlayColor = properties.overlayColorStory5,
+                        ),
+                    ))
+                }
+
+                storiesDialogFragment as? T
+            }
             else -> null
         }
     }
@@ -982,4 +1096,38 @@ object DyWidgets {
             imageBorderWidth = imageBorderWidth ?: 0
         )
     }
+
+    fun createStoryData(
+        backgroundImage: String?,
+        backgroundImageScaleType: String,
+        contentOffset: Float,
+        logoImage: String?,
+        logoImageScaleType: String,
+        titleText: String?,
+        titleTextColor: String,
+        titleTextSize: Int,
+        titleTextBackgroundColor: String,
+        subtitleText: String?,
+        subtitleTextColor: String,
+        subtitleTextSize: Int,
+        subtitleTextBackgroundColor: String,
+        timeMillis: Long,
+        overlayColor: String,
+    ) = StoryData(
+        backgroundImage = backgroundImage,
+        backgroundImageScaleType = ImageScaleType.fromString(backgroundImageScaleType) ?: ImageScaleType.FILL,
+        contentOffset = contentOffset,
+        logoImage = logoImage,
+        logoImageScaleType = ImageScaleType.fromString(logoImageScaleType) ?: ImageScaleType.FILL,
+        titleText = titleText,
+        titleTextColor = titleTextColor,
+        titleTextSize = titleTextSize,
+        titleTextBackgroundColor = titleTextBackgroundColor,
+        subtitleText = subtitleText,
+        subtitleTextColor = subtitleTextColor,
+        subtitleTextSize = subtitleTextSize,
+        subtitleTextBackgroundColor = subtitleTextBackgroundColor,
+        timeMillis = timeMillis,
+        overlayColor = overlayColor
+    )
 }
