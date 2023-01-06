@@ -29,7 +29,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="#E91E63" />
 
-            <com.dynamicyield.templates.ui.base.recyclerview.DisableTouchRecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/stepRecyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

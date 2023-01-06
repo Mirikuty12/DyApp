@@ -27,6 +27,7 @@ import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.dynamicyield.templates.R
 import com.dynamicyield.templates.core.DyApplication
@@ -34,7 +35,6 @@ import com.dynamicyield.templates.ui.DyWidget
 import com.dynamicyield.templates.ui.DyWidgetName
 import com.dynamicyield.templates.ui.base.data.ImageScaleType
 import com.dynamicyield.templates.ui.base.data.ImageSizeType
-import com.dynamicyield.templates.ui.base.recyclerview.DisableTouchRecyclerView
 import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.DelegateAdapter
 import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.bind
 import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.itemDelegate
@@ -45,7 +45,7 @@ import kotlin.math.ceil
 class CrossUpsellDialogFragment : DialogFragment(R.layout.cross_upsell_dialog_layout), DyWidget {
 
     private var backgroundColor = "#00FFFF"
-    private var cornerRadiusPx  = 4f.dpToPx()
+    private var cornerRadiusPx = 4f.dpToPx()
     private var closeButtonColor = "#FF0000"
 
     private var crossUpsellListener: CrossUpsellListener? = null
@@ -53,7 +53,7 @@ class CrossUpsellDialogFragment : DialogFragment(R.layout.cross_upsell_dialog_la
     private lateinit var contentCardView: CardView
     private lateinit var contentConstraintLayout: ConstraintLayout
     private lateinit var closeImageView: ImageView
-    private lateinit var stepRecyclerView: DisableTouchRecyclerView
+    private lateinit var stepRecyclerView: RecyclerView
     private lateinit var progressTextView: TextView
     private lateinit var progressBar: ProgressBar
 
