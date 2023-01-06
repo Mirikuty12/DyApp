@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.dynamicyield.templates.R
+import com.dynamicyield.templates.core.DyApplication
 import com.dynamicyield.templates.ui.DyWidget
 import com.dynamicyield.templates.ui.DyWidgetName
 import com.dynamicyield.templates.ui.base.data.ImageScaleType
@@ -356,9 +357,10 @@ class StoriesDialogFragment : DialogFragment(R.layout.story_dialog_layout), DyWi
                 ImageScaleType.FIT -> ImageView.ScaleType.FIT_CENTER
                 ImageScaleType.FILL -> ImageView.ScaleType.CENTER_CROP
             }
-            storyIv.load(storyData.backgroundImage) {
-                crossfade(true)
-            }
+            storyIv.load(
+                data = storyData.backgroundImage,
+                imageLoader = DyApplication.imageLoader(storyIv.context)
+            )
 
             // logo image
             logoSiv.updateLayoutParams<ConstraintLayout.LayoutParams> {
@@ -369,9 +371,10 @@ class StoriesDialogFragment : DialogFragment(R.layout.story_dialog_layout), DyWi
                 ImageScaleType.FIT -> ImageView.ScaleType.FIT_CENTER
                 ImageScaleType.FILL -> ImageView.ScaleType.CENTER_CROP
             }
-            logoSiv.load(storyData.logoImage) {
-                crossfade(true)
-            }
+            logoSiv.load(
+                data = storyData.logoImage,
+                imageLoader = DyApplication.imageLoader(logoSiv.context)
+            )
 
             // title
             titleTv.isVisible = !storyData.titleText.isNullOrBlank()

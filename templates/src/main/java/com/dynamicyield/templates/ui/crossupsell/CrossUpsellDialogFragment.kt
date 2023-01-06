@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import coil.load
 import com.dynamicyield.templates.R
+import com.dynamicyield.templates.core.DyApplication
 import com.dynamicyield.templates.ui.DyWidget
 import com.dynamicyield.templates.ui.DyWidgetName
 import com.dynamicyield.templates.ui.base.data.ImageScaleType
@@ -242,7 +243,10 @@ class CrossUpsellDialogFragment : DialogFragment(R.layout.cross_upsell_dialog_la
                     ImageScaleType.FIT -> ImageView.ScaleType.FIT_CENTER
                     ImageScaleType.FILL -> ImageView.ScaleType.CENTER_CROP
                 }
-                imageView.load(crossUpsellStepData.image) { crossfade(true) }
+                imageView.load(
+                    data = crossUpsellStepData.image,
+                    imageLoader = DyApplication.imageLoader(imageView.context)
+                )
 
                 // set title
                 titleTv.text = crossUpsellStepData.title

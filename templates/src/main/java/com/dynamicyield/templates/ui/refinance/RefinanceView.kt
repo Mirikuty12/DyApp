@@ -16,6 +16,7 @@ import androidx.core.view.doOnLayout
 import androidx.core.view.isVisible
 import coil.load
 import com.dynamicyield.templates.R
+import com.dynamicyield.templates.core.DyApplication
 import com.dynamicyield.templates.ui.DyWidget
 import com.dynamicyield.templates.ui.DyWidgetName
 import com.dynamicyield.templates.ui.base.data.ImageScaleType
@@ -82,9 +83,7 @@ class RefinanceView : CardView, DyWidget {
             ImageScaleType.FILL -> ImageView.ScaleType.CENTER_CROP
         }
         imageView.isVisible = !url.isNullOrBlank()
-        imageView.load(url) {
-            crossfade(true)
-        }
+        imageView.load(data = url, imageLoader = DyApplication.imageLoader(imageView.context))
     }
 
     fun setTitle(text: String?, textColor: String, textSize: Float) {

@@ -15,6 +15,7 @@ import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import coil.load
 import com.dynamicyield.templates.R
+import com.dynamicyield.templates.core.DyApplication
 import com.dynamicyield.templates.ui.base.data.ImageScaleType
 import com.dynamicyield.templates.ui.base.util.createGradientRectDrawable
 import com.dynamicyield.templates.ui.base.util.createRectDrawable
@@ -86,9 +87,10 @@ class OfferView : CardView {
             ImageScaleType.FIT -> ImageView.ScaleType.FIT_CENTER
             ImageScaleType.FILL -> ImageView.ScaleType.CENTER_CROP
         }
-        backgroundImageView.load(url) {
-            crossfade(true)
-        }
+        backgroundImageView.load(
+            data = url,
+            imageLoader = DyApplication.imageLoader(backgroundImageView.context)
+        )
     }
 
     fun setLogoImage(url: String?, scaleType: ImageScaleType = ImageScaleType.FIT) {
@@ -96,9 +98,10 @@ class OfferView : CardView {
             ImageScaleType.FIT -> ImageView.ScaleType.FIT_CENTER
             ImageScaleType.FILL -> ImageView.ScaleType.CENTER_CROP
         }
-        logoShapeableImageView.load(url) {
-            crossfade(true)
-        }
+        logoShapeableImageView.load(
+            data = url,
+            imageLoader = DyApplication.imageLoader(logoShapeableImageView.context)
+        )
     }
 
     fun setLabel(text: String?, textColor: String, textSize: Float, backgroundColor: String) {

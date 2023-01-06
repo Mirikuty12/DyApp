@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import coil.load
 import com.dynamicyield.templates.R
+import com.dynamicyield.templates.core.DyApplication
 import com.dynamicyield.templates.ui.base.data.ImageScaleType
 import com.dynamicyield.templates.ui.base.util.createRectDrawable
 import com.dynamicyield.templates.ui.base.util.dpToPx
@@ -94,9 +95,7 @@ class QuickActionView : ConstraintLayout {
             ImageScaleType.FIT -> ImageView.ScaleType.FIT_CENTER
             ImageScaleType.FILL -> ImageView.ScaleType.CENTER_CROP
         }
-        imageView.load(url) {
-            crossfade(true)
-        }
+        imageView.load(data = url, imageLoader = DyApplication.imageLoader(imageView.context))
     }
 
     /**

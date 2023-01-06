@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.dynamicyield.templates.R
+import com.dynamicyield.templates.core.DyApplication
 import com.dynamicyield.templates.ui.DyWidget
 import com.dynamicyield.templates.ui.DyWidgetName
 import com.dynamicyield.templates.ui.base.data.ImageScaleType
@@ -119,7 +120,10 @@ class StoriesSliderView : ConstraintLayout, DyWidget {
                     ImageScaleType.FIT -> ImageView.ScaleType.FIT_CENTER
                     ImageScaleType.FILL -> ImageView.ScaleType.CENTER_CROP
                 }
-                previewIv.load(storyData.image) { crossfade(true) }
+                previewIv.load(
+                    data = storyData.image,
+                    imageLoader = DyApplication.imageLoader(previewIv.context)
+                )
                 previewIv.strokeColor = storyData.imageBorderColor.parseColorOrNull()?.let {
                     ColorStateList.valueOf(it)
                 }

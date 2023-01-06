@@ -9,6 +9,7 @@ import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import coil.load
 import com.dynamicyield.templates.R
+import com.dynamicyield.templates.core.DyApplication
 import com.dynamicyield.templates.ui.DyWidget
 import com.dynamicyield.templates.ui.DyWidgetName
 import com.dynamicyield.templates.ui.base.data.ImageScaleType
@@ -106,9 +107,10 @@ class CardPromotionView : MaterialCardView, DyWidget {
             ImageScaleType.FIT -> ImageView.ScaleType.FIT_CENTER
             ImageScaleType.FILL -> ImageView.ScaleType.CENTER_CROP
         }
-        promotionImageView.load(url) {
-            crossfade(true)
-        }
+        promotionImageView.load(
+            data = url,
+            imageLoader = DyApplication.imageLoader(promotionImageView.context)
+        )
     }
 
     /**

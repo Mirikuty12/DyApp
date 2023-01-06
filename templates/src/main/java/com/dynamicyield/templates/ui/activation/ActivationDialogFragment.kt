@@ -19,6 +19,7 @@ import androidx.core.view.setMargins
 import androidx.core.view.updateLayoutParams
 import coil.load
 import com.dynamicyield.templates.R
+import com.dynamicyield.templates.core.DyApplication
 import com.dynamicyield.templates.ui.DyWidget
 import com.dynamicyield.templates.ui.DyWidgetName
 import com.dynamicyield.templates.ui.base.data.ImageScaleType
@@ -215,7 +216,10 @@ class ActivationDialogFragment : BottomSheetDialogFragment(R.layout.activation_d
             ImageScaleType.FIT -> ImageView.ScaleType.FIT_CENTER
             ImageScaleType.FILL -> ImageView.ScaleType.CENTER_CROP
         }
-        shapeableImageView.load(imageUrl)
+        shapeableImageView.load(
+            data = imageUrl,
+            imageLoader = DyApplication.imageLoader(shapeableImageView.context)
+        )
     }
 
     private fun setupTitle() = with(titleTv) {
