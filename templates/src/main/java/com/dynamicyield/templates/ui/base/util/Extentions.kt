@@ -46,6 +46,8 @@ fun String?.parseColorOrNull(): Int? = try {
     }
 
     color
+} catch (e: NullPointerException) {
+    null
 }
 
 /**
