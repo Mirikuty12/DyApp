@@ -26,6 +26,7 @@ data class DyCrossUpsellProperties(
     @SerialName("progressBarColorStep1") val progressBarColorStep1: String,
     @SerialName("progressBarBackgroundColorStep1") val progressBarBackgroundColorStep1: String,
     @SerialName("progressTextColorStep1") val progressTextColorStep1: String,
+    @SerialName("previousTextColorStep1") val previousTextColorStep1: String,
 
     @SerialName("imageStep2") val imageStep2: String,
     @SerialName("imageScaleTypeStep2") val imageScaleTypeStep2: String,
@@ -44,6 +45,7 @@ data class DyCrossUpsellProperties(
     @SerialName("progressBarColorStep2") val progressBarColorStep2: String,
     @SerialName("progressBarBackgroundColorStep2") val progressBarBackgroundColorStep2: String,
     @SerialName("progressTextColorStep2") val progressTextColorStep2: String,
+    @SerialName("previousTextColorStep2") val previousTextColorStep2: String,
 
     @SerialName("imageStep3") val imageStep3: String,
     @SerialName("imageScaleTypeStep3") val imageScaleTypeStep3: String,
@@ -62,4 +64,5 @@ data class DyCrossUpsellProperties(
     @SerialName("progressBarColorStep3") val progressBarColorStep3: String,
     @SerialName("progressBarBackgroundColorStep3") val progressBarBackgroundColorStep3: String,
     @SerialName("progressTextColorStep3") val progressTextColorStep3: String,
+    @SerialName("previousTextColorStep3") val previousTextColorStep3: String,
 ) : DyWidgetProperties

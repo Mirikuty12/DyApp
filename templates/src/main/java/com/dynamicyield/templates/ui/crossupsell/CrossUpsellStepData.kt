@@ -21,4 +21,5 @@ data class CrossUpsellStepData(
     val progressBarColor: String,
     val progressBarBackgroundColor: String,
     val progressTextColor: String,
+    val previousTextColor: String,
 )

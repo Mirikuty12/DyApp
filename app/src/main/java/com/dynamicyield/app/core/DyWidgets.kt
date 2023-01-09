@@ -346,6 +346,7 @@ object DyWidgets {
                         progressBarColor = properties.progressBarColorStep1,
                         progressBarBackgroundColor = properties.progressBarBackgroundColorStep1,
                         progressTextColor = properties.progressTextColorStep1,
+                        previousTextColor = properties.previousTextColorStep1
                     ),
                     CrossUpsellStepData(
                         image = properties.imageStep2,
@@ -365,6 +366,7 @@ object DyWidgets {
                         progressBarColor = properties.progressBarColorStep2,
                         progressBarBackgroundColor = properties.progressBarBackgroundColorStep2,
                         progressTextColor = properties.progressTextColorStep2,
+                        previousTextColor = properties.previousTextColorStep2
                     ),
                     CrossUpsellStepData(
                         image = properties.imageStep3,
@@ -384,6 +386,7 @@ object DyWidgets {
                         progressBarColor = properties.progressBarColorStep3,
                         progressBarBackgroundColor = properties.progressBarBackgroundColorStep3,
                         progressTextColor = properties.progressTextColorStep3,
+                        previousTextColor = properties.previousTextColorStep3
                     )
                 )
 

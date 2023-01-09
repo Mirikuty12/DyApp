@@ -55,6 +55,7 @@ class CrossUpsellDialogFragment : DialogFragment(R.layout.cross_upsell_dialog_la
     private lateinit var closeImageView: ImageView
     private lateinit var stepRecyclerView: RecyclerView
     private lateinit var progressTextView: TextView
+    private lateinit var previousTv: TextView
     private lateinit var progressBar: ProgressBar
 
     private val stepAdapter = DelegateAdapter(createCrossUpsellDelegate())
@@ -64,14 +65,28 @@ class CrossUpsellDialogFragment : DialogFragment(R.layout.cross_upsell_dialog_la
         currentStepIndex = position
         val crossUpsellStepData = stepAdapter.currentList.getOrNull(position)
             ?: return@SnapOnScrollListener
+
+        // progress bar
         setupProgressBackground(
             backgroundColor = crossUpsellStepData.progressBarBackgroundColor,
             progressColor = crossUpsellStepData.progressBarColor,
             progress = ceil((((position + 1f) / stepAdapter.currentList.size) * 100)).toInt()
         )
+
+        // previous text view
+        previousTv.visibility = when (position > 0 && stepAdapter.currentList.size > 0) {
+            true -> View.VISIBLE
+            else -> View.INVISIBLE
+        }
+        crossUpsellStepData.previousTextColor.parseColorOrNull()?.let { colorInt ->
+            previousTv.setTextColor(colorInt)
+            previousTv.compoundDrawables.forEach { it?.setTint(colorInt) }
+        }
+
+        // steps text view
         progressTextView.text = "${position + 1}/${stepAdapter.currentList.size}"
-        crossUpsellStepData.progressTextColor.parseColorOrNull()?.let {
-            progressTextView.setTextColor(it)
+        crossUpsellStepData.progressTextColor.parseColorOrNull()?.let { colorInt ->
+            progressTextView.setTextColor(colorInt)
         }
     }
 
@@ -100,6 +115,7 @@ class CrossUpsellDialogFragment : DialogFragment(R.layout.cross_upsell_dialog_la
         contentConstraintLayout = view.findViewById(R.id.contentConstraintLayout)
         closeImageView = view.findViewById(R.id.closeIv)
         progressTextView = view.findViewById(R.id.progressTextView)
+        previousTv = view.findViewById(R.id.previousTv)
         progressBar = view.findViewById(R.id.progressBar)
         stepRecyclerView = view.findViewById(R.id.stepRecyclerView)
 
@@ -112,6 +128,9 @@ class CrossUpsellDialogFragment : DialogFragment(R.layout.cross_upsell_dialog_la
 
         // recycler view
         setupRecyclerView()
+
+        // previous button
+        setupPreviousTv()
     }
 
     override fun onDismiss(dialog: DialogInterface) {
@@ -162,6 +181,12 @@ class CrossUpsellDialogFragment : DialogFragment(R.layout.cross_upsell_dialog_la
         }
     }
 
+    private fun setupPreviousTv() {
+        previousTv.setOnClickListener {
+            showPreviousStepOrCancel()
+        }
+    }
+
     private fun setupRecyclerView() {
         stepRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -202,6 +227,19 @@ class CrossUpsellDialogFragment : DialogFragment(R.layout.cross_upsell_dialog_la
         )
         progressAnimator.start()
 //        progressBar.progress = progress
+    }
+
+    private fun showPreviousStepOrCancel() {
+        val itemCount = stepRecyclerView.adapter?.itemCount ?: return
+        val previousPosition = (currentStepIndex - 1) % itemCount
+
+
+        if (previousPosition !in 0 until itemCount) {
+            crossUpsellListener?.onCancel(currentStepIndex)
+            dismiss()
+        }
+//        stepRecyclerView.smoothScrollToPosition(nextPosition)
+        stepRecyclerView.scrollToPosition(previousPosition)
     }
 
     private fun showNextStepOrFinishSuccess() {
