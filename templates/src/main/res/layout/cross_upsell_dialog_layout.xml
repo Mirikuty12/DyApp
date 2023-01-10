@@ -78,7 +78,7 @@
                 app:layout_constraintTop_toBottomOf="@id/recyclerViewBottomBarrier"
                 tools:text="2/5" />
 
-            <ProgressBar
+            <com.dynamicyield.templates.ui.crossupsell.DyProgressBar
                 android:id="@+id/progressBar"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="0dp"

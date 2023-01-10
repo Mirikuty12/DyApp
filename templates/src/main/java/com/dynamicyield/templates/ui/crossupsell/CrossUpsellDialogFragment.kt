@@ -1,24 +1,18 @@
 package com.dynamicyield.templates.ui.crossupsell
 
-import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.LayerDrawable
-import android.graphics.drawable.ScaleDrawable
 import android.graphics.drawable.StateListDrawable
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
-import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -56,7 +50,7 @@ class CrossUpsellDialogFragment : DialogFragment(R.layout.cross_upsell_dialog_la
     private lateinit var stepRecyclerView: RecyclerView
     private lateinit var progressTextView: TextView
     private lateinit var previousTv: TextView
-    private lateinit var progressBar: ProgressBar
+    private lateinit var progressBar: DyProgressBar
 
     private val stepAdapter = DelegateAdapter(createCrossUpsellDelegate())
     private val pagerSnapHelper = PagerSnapHelper()
@@ -200,33 +194,16 @@ class CrossUpsellDialogFragment : DialogFragment(R.layout.cross_upsell_dialog_la
         progressColor: String,
         progress: Int
     ) {
-        Log.d("setupProgressBack()", "progress=$progress")
         val isInProgress = progress < 100
-        val backgroundDrawable = createRectDrawable(fillColor = backgroundColor.parseColorOrNull())
-        val progressDrawable = createRectDrawable(
-            fillColor = progressColor.parseColorOrNull(),
-            trCornerRadiusPx = if (isInProgress) 16f.dpToPx() else 0,
-            brCornerRadiusPx = if (isInProgress) 16f.dpToPx() else 0,
+        progressBar.setProgressCorners(
+            topRight = if (isInProgress) 16f else 0f,
+            bottomRight = if (isInProgress) 16f else 0f,
         )
-        val progressScaleDrawable = ScaleDrawable(
-            progressDrawable, Gravity.LEFT, 1f, -1f
+        progressBar.animateState(
+            newProgress = progress,
+            newProgressColor = progressColor.parseColorOrNull(),
+            newBackgroundColor = backgroundColor.parseColorOrNull()
         )
-
-        // set background
-        progressBar.progressDrawable = LayerDrawable(
-            arrayOf(backgroundDrawable, progressScaleDrawable)
-        ).apply {
-            setId(0, android.R.id.background)
-            setId(1, android.R.id.progress)
-        }
-
-        // set progress with animation
-        val progressAnimator = ObjectAnimator.ofInt(
-            progressBar, "progress",
-            progressBar.progress, progress
-        )
-        progressAnimator.start()
-//        progressBar.progress = progress
     }
 
     private fun showPreviousStepOrCancel() {
