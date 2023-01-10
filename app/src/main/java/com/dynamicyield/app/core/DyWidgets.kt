@@ -66,6 +66,7 @@ object DyWidgets {
                     setBottomPanelTextSize(properties.bottomPanelTextSize.toFloat())
                     setBottomPanelButtonText(properties.bottomPanelButtonText)
                     setBottomPanelButtonTextSize(properties.bottomPanelButtonTextSize.toFloat())
+                    setBottomPanelButtonTextColor(properties.bottomPanelButtonTextColor)
                     setupBottomPanelButtonBackground(
                         backgroundColor = properties.bottomPanelButtonColor,
                         pressedBackgroundColor = properties.bottomPanelButtonHoverColor,
