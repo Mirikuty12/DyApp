@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.dynamicyield.app.core.DyWidgets
@@ -58,7 +59,7 @@ class StimulationFragment : Fragment(R.layout.fragment_stimulation) {
             override fun onClose() {
                 Log.d("StimulationListener", "onClose()")
                 Toast.makeText(context, "onClose()", Toast.LENGTH_SHORT).show()
-
+                stimulationView.isVisible = false
             }
         })
 
