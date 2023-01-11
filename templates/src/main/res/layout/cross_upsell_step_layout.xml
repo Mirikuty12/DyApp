@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -28,14 +29,15 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="40sp"
-        android:text="Select Plan"
+        android:fontFamily="@font/inter_medium"
         android:textAlignment="center"
         android:textColor="#21262F"
         android:textSize="28sp"
         app:layout_constrainedHeight="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView" />
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        tools:text="Select Plan" />
 
     <TextView
         android:id="@+id/subtitleTv"
@@ -43,28 +45,30 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16sp"
-        android:text="Start by selecting the subscription plan that suits you the best."
+        android:fontFamily="@font/inter"
         android:textAlignment="center"
         android:textColor="#40454F"
         android:textSize="18sp"
         app:layout_constrainedHeight="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTv" />
+        app:layout_constraintTop_toBottomOf="@id/titleTv"
+        tools:text="Start by selecting the subscription plan that suits you the best." />
 
     <Button
         android:id="@+id/actionBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:text="Next Step"
-        android:textAllCaps="false"
         android:layout_marginVertical="16dp"
+        android:fontFamily="@font/inter_semibold"
+        android:textAllCaps="false"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/subtitleTv"
-        app:layout_constraintVertical_bias="0.3"/>
+        app:layout_constraintVertical_bias="0.3"
+        tools:text="Next Step" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
