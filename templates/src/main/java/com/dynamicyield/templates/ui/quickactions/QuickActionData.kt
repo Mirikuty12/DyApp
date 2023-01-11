@@ -7,7 +7,7 @@ import com.dynamicyield.templates.ui.base.data.ImageScaleType
  * in the QuickActionsView and QuickActionsSliderView
  */
 interface IQuickActionData {
-    val title: String
+    val title: String?
     val titleColor: String
     val titleSize: Int
     val image: String?
@@ -28,7 +28,7 @@ interface IQuickActionData {
  * in the QuickActionsView and QuickActionsSliderView
  */
 data class QuickActionData(
-    override val title: String,
+    override val title: String?,
     override val titleColor: String,
     override val titleSize: Int,
     override val image: String?,
@@ -50,7 +50,7 @@ data class QuickActionData(
  * in the QuickActionsView and QuickActionsSliderView
  */
 data class FeaturedQuickActionData(
-    override val title: String,
+    override val title: String?,
     override val titleColor: String,
     override val titleSize: Int,
     override val image: String?,

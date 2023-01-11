@@ -38,7 +38,8 @@ object DyWidgets {
 
     @OptIn(ExperimentalSerializationApi::class)
     private val dyApi = DyApiBuilder.buildDyApi()
-    private val dyWidgetRepository: DyWidgetRepository = DyWidgetRepositoryImpl(dyApi, Dispatchers.IO)
+    private val dyWidgetRepository: DyWidgetRepository =
+        DyWidgetRepositoryImpl(dyApi, Dispatchers.IO)
 
     suspend fun chooseDyWidgets(
         vararg widgetNames: DyWidgetName
@@ -46,8 +47,11 @@ object DyWidgets {
         dyWidgetRepository.chooseDyWidgets(*widgetNames)
             .also { Log.d(TAG, "resultWrapper = $it") }
 
-    inline fun <reified T : com.dynamicyield.templates.ui.DyWidget> createDyWidgetFromChoice(context: Context, choice: DyWidgetChoice): T? {
-        return when(choice.name) {
+    inline fun <reified T : com.dynamicyield.templates.ui.DyWidget> createDyWidgetFromChoice(
+        context: Context,
+        choice: DyWidgetChoice
+    ): T? {
+        return when (choice.name) {
             DyWidgetName.CreditCardPromotion.selector -> {
                 CardPromotionView(context).apply {
                     val bannerChoice = (choice as? DyCardPromotionChoice) ?: return@apply
@@ -55,7 +59,10 @@ object DyWidgets {
                     val properties = variation.payload.properties
 
                     // set UI properties
-                    setBackgroundGradient(properties.topGradientColor, properties.bottomGradientColor)
+                    setBackgroundGradient(
+                        properties.topGradientColor,
+                        properties.bottomGradientColor
+                    )
                     setImage(
                         properties.image,
                         ImageScaleType.fromString(properties.imageScaleType) ?: ImageScaleType.FIT
@@ -79,12 +86,12 @@ object DyWidgets {
                 val variation = bannerChoice.variations.firstOrNull() ?: return null
                 val properties = variation.payload.properties
 
-                val cardPromotionDataList = listOf(
-                    CardPromotionData(
+                val cardPromotionDataList = listOfNotNull(
+                    createCardPromotionData(
                         topGradientColor = properties.topGradientColorCard1,
                         bottomGradientColor = properties.bottomGradientColorCard1,
                         image = properties.imageCard1,
-                        imageScaleType = ImageScaleType.fromString(properties.imageScaleTypeCard1) ?: ImageScaleType.FIT,
+                        imageScaleType = properties.imageScaleTypeCard1,
                         bottomPanelColor = properties.bottomPanelColorCard1,
                         bottomPanelText = properties.bottomPanelTextCard1,
                         bottomPanelTextColor = properties.bottomPanelTextColorCard1,
@@ -95,11 +102,11 @@ object DyWidgets {
                         bottomPanelButtonColor = properties.bottomPanelButtonColorCard1,
                         bottomPanelButtonHoverColor = properties.bottomPanelButtonHoverColorCard1,
                     ),
-                    CardPromotionData(
+                    createCardPromotionData(
                         topGradientColor = properties.topGradientColorCard2,
                         bottomGradientColor = properties.bottomGradientColorCard2,
                         image = properties.imageCard2,
-                        imageScaleType = ImageScaleType.fromString(properties.imageScaleTypeCard2) ?: ImageScaleType.FIT,
+                        imageScaleType = properties.imageScaleTypeCard2,
                         bottomPanelColor = properties.bottomPanelColorCard2,
                         bottomPanelText = properties.bottomPanelTextCard2,
                         bottomPanelTextColor = properties.bottomPanelTextColorCard2,
@@ -110,11 +117,11 @@ object DyWidgets {
                         bottomPanelButtonColor = properties.bottomPanelButtonColorCard2,
                         bottomPanelButtonHoverColor = properties.bottomPanelButtonHoverColorCard2,
                     ),
-                    CardPromotionData(
+                    createCardPromotionData(
                         topGradientColor = properties.topGradientColorCard3,
                         bottomGradientColor = properties.bottomGradientColorCard3,
                         image = properties.imageCard3,
-                        imageScaleType = ImageScaleType.fromString(properties.imageScaleTypeCard3) ?: ImageScaleType.FIT,
+                        imageScaleType = properties.imageScaleTypeCard3,
                         bottomPanelColor = properties.bottomPanelColorCard3,
                         bottomPanelText = properties.bottomPanelTextCard3,
                         bottomPanelTextColor = properties.bottomPanelTextColorCard3,
@@ -232,7 +239,8 @@ object DyWidgets {
             }
             DyWidgetName.QuickActionsSlider.selector -> {
                 val quickActionsSliderView = QuickActionsSliderView(context)
-                val quickActionsSliderChoice = (choice as? DyQuickActionsSliderChoice) ?: return null
+                val quickActionsSliderChoice =
+                    (choice as? DyQuickActionsSliderChoice) ?: return null
                 val variation = quickActionsSliderChoice.variations.firstOrNull() ?: return null
                 val properties = variation.payload.properties
 
@@ -328,11 +336,11 @@ object DyWidgets {
                 val variation = bannerChoice.variations.firstOrNull() ?: return null
                 val properties = variation.payload.properties
 
-                val steps = listOf(
-                    CrossUpsellStepData(
+                val steps = listOfNotNull(
+                    createCrossUpsellStepData(
                         image = properties.imageStep1,
-                        imageScaleType = ImageScaleType.fromString(properties.imageScaleTypeStep1) ?: ImageScaleType.FIT,
-                        imageSizeType = ImageSizeType.fromString(properties.imageSizeTypeStep1) ?: ImageSizeType.MEDIUM,
+                        imageScaleType = properties.imageScaleTypeStep1,
+                        imageSizeType = properties.imageSizeTypeStep1,
                         title = properties.titleStep1,
                         titleSize = properties.titleSizeStep1,
                         titleColor = properties.titleColorStep1,
@@ -349,10 +357,10 @@ object DyWidgets {
                         progressTextColor = properties.progressTextColorStep1,
                         previousTextColor = properties.previousTextColorStep1
                     ),
-                    CrossUpsellStepData(
+                    createCrossUpsellStepData(
                         image = properties.imageStep2,
-                        imageScaleType = ImageScaleType.fromString(properties.imageScaleTypeStep2) ?: ImageScaleType.FIT,
-                        imageSizeType = ImageSizeType.fromString(properties.imageSizeTypeStep2) ?: ImageSizeType.MEDIUM,
+                        imageScaleType = properties.imageScaleTypeStep2,
+                        imageSizeType = properties.imageSizeTypeStep2,
                         title = properties.titleStep2,
                         titleSize = properties.titleSizeStep2,
                         titleColor = properties.titleColorStep2,
@@ -369,10 +377,10 @@ object DyWidgets {
                         progressTextColor = properties.progressTextColorStep2,
                         previousTextColor = properties.previousTextColorStep2
                     ),
-                    CrossUpsellStepData(
+                    createCrossUpsellStepData(
                         image = properties.imageStep3,
-                        imageScaleType = ImageScaleType.fromString(properties.imageScaleTypeStep3) ?: ImageScaleType.FIT,
-                        imageSizeType = ImageSizeType.fromString(properties.imageSizeTypeStep3) ?: ImageSizeType.MEDIUM,
+                        imageScaleType = properties.imageScaleTypeStep3,
+                        imageSizeType = properties.imageSizeTypeStep3,
                         title = properties.titleStep3,
                         titleSize = properties.titleSizeStep3,
                         titleColor = properties.titleColorStep3,
@@ -388,7 +396,47 @@ object DyWidgets {
                         progressBarBackgroundColor = properties.progressBarBackgroundColorStep3,
                         progressTextColor = properties.progressTextColorStep3,
                         previousTextColor = properties.previousTextColorStep3
-                    )
+                    ),
+                    createCrossUpsellStepData(
+                        image = properties.imageStep4,
+                        imageScaleType = properties.imageScaleTypeStep4,
+                        imageSizeType = properties.imageSizeTypeStep4,
+                        title = properties.titleStep4,
+                        titleSize = properties.titleSizeStep4,
+                        titleColor = properties.titleColorStep4,
+                        subtitle = properties.subtitleStep4,
+                        subtitleSize = properties.subtitleSizeStep4,
+                        subtitleColor = properties.subtitleColorStep4,
+                        buttonColor = properties.buttonColorStep4,
+                        buttonHoverColor = properties.buttonHoverColorStep4,
+                        buttonText = properties.buttonTextStep4,
+                        buttonTextSize = properties.buttonTextSizeStep4,
+                        buttonTextColor = properties.buttonTextColorStep4,
+                        progressBarColor = properties.progressBarColorStep4,
+                        progressBarBackgroundColor = properties.progressBarBackgroundColorStep4,
+                        progressTextColor = properties.progressTextColorStep4,
+                        previousTextColor = properties.previousTextColorStep4
+                    ),
+                    createCrossUpsellStepData(
+                        image = properties.imageStep5,
+                        imageScaleType = properties.imageScaleTypeStep5,
+                        imageSizeType = properties.imageSizeTypeStep5,
+                        title = properties.titleStep5,
+                        titleSize = properties.titleSizeStep5,
+                        titleColor = properties.titleColorStep5,
+                        subtitle = properties.subtitleStep5,
+                        subtitleSize = properties.subtitleSizeStep5,
+                        subtitleColor = properties.subtitleColorStep5,
+                        buttonColor = properties.buttonColorStep5,
+                        buttonHoverColor = properties.buttonHoverColorStep5,
+                        buttonText = properties.buttonTextStep5,
+                        buttonTextSize = properties.buttonTextSizeStep5,
+                        buttonTextColor = properties.buttonTextColorStep5,
+                        progressBarColor = properties.progressBarColorStep5,
+                        progressBarBackgroundColor = properties.progressBarBackgroundColorStep5,
+                        progressTextColor = properties.progressTextColorStep5,
+                        previousTextColor = properties.previousTextColorStep5
+                    ),
                 )
 
                 crossUpsellDialogFragment.setCornerRadius(properties.cornerRadius.toFloat())
@@ -412,8 +460,10 @@ object DyWidgets {
                     )
                     setImageProps(
                         imageUrl = properties.image,
-                        imageScaleType = ImageScaleType.fromString(properties.imageScaleType) ?: ImageScaleType.FIT,
-                        imageSizeType = ImageSizeType.fromString(properties.imageSizeType) ?: ImageSizeType.MEDIUM
+                        imageScaleType = ImageScaleType.fromString(properties.imageScaleType)
+                            ?: ImageScaleType.FIT,
+                        imageSizeType = ImageSizeType.fromString(properties.imageSizeType)
+                            ?: ImageSizeType.MEDIUM
                     )
                     setTitleProps(
                         titleText = properties.title,
@@ -568,7 +618,8 @@ object DyWidgets {
                     setBackgroundColorStr(properties.backgroundColor)
                     setImage(
                         url = properties.image,
-                        scaleType = ImageScaleType.fromString(properties.imageScaleType) ?: ImageScaleType.FILL,
+                        scaleType = ImageScaleType.fromString(properties.imageScaleType)
+                            ?: ImageScaleType.FILL,
                     )
                     setTitle(
                         text = properties.title,
@@ -813,93 +864,95 @@ object DyWidgets {
                         buttonStrokeColor = properties.chooseButtonBorderColor,
                         buttonStrokeWidth = properties.chooseButtonBorderWidth
                     )
-                    setStories(listOf(
-                        createStoryData(
-                            backgroundImage = properties.backgroundImageStory1,
-                            backgroundImageScaleType = properties.backgroundImageScaleTypeStory1,
-                            contentOffset = properties.contentOffsetStory1,
-                            logoImage = properties.logoImageStory1,
-                            logoImageScaleType = properties.logoImageScaleTypeStory1,
-                            titleText = properties.titleTextStory1,
-                            titleTextColor = properties.titleTextColorStory1,
-                            titleTextSize = properties.titleTextSizeStory1,
-                            titleTextBackgroundColor = properties.titleTextBackgroundColorStory1,
-                            subtitleText = properties.subtitleTextStory1,
-                            subtitleTextColor = properties.subtitleTextColorStory1,
-                            subtitleTextSize = properties.subtitleTextSizeStory1,
-                            subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory1,
-                            timeMillis = properties.timeMillisStory1,
-                            overlayColor = properties.overlayColorStory1,
-                        ),
-                        createStoryData(
-                            backgroundImage = properties.backgroundImageStory2,
-                            backgroundImageScaleType = properties.backgroundImageScaleTypeStory2,
-                            contentOffset = properties.contentOffsetStory2,
-                            logoImage = properties.logoImageStory2,
-                            logoImageScaleType = properties.logoImageScaleTypeStory2,
-                            titleText = properties.titleTextStory2,
-                            titleTextColor = properties.titleTextColorStory2,
-                            titleTextSize = properties.titleTextSizeStory2,
-                            titleTextBackgroundColor = properties.titleTextBackgroundColorStory2,
-                            subtitleText = properties.subtitleTextStory2,
-                            subtitleTextColor = properties.subtitleTextColorStory2,
-                            subtitleTextSize = properties.subtitleTextSizeStory2,
-                            subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory2,
-                            timeMillis = properties.timeMillisStory2,
-                            overlayColor = properties.overlayColorStory2,
-                        ),
-                        createStoryData(
-                            backgroundImage = properties.backgroundImageStory3,
-                            backgroundImageScaleType = properties.backgroundImageScaleTypeStory3,
-                            contentOffset = properties.contentOffsetStory3,
-                            logoImage = properties.logoImageStory3,
-                            logoImageScaleType = properties.logoImageScaleTypeStory3,
-                            titleText = properties.titleTextStory3,
-                            titleTextColor = properties.titleTextColorStory3,
-                            titleTextSize = properties.titleTextSizeStory3,
-                            titleTextBackgroundColor = properties.titleTextBackgroundColorStory3,
-                            subtitleText = properties.subtitleTextStory3,
-                            subtitleTextColor = properties.subtitleTextColorStory3,
-                            subtitleTextSize = properties.subtitleTextSizeStory3,
-                            subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory3,
-                            timeMillis = properties.timeMillisStory3,
-                            overlayColor = properties.overlayColorStory3,
-                        ),
-                        createStoryData(
-                            backgroundImage = properties.backgroundImageStory4,
-                            backgroundImageScaleType = properties.backgroundImageScaleTypeStory4,
-                            contentOffset = properties.contentOffsetStory4,
-                            logoImage = properties.logoImageStory4,
-                            logoImageScaleType = properties.logoImageScaleTypeStory4,
-                            titleText = properties.titleTextStory4,
-                            titleTextColor = properties.titleTextColorStory4,
-                            titleTextSize = properties.titleTextSizeStory4,
-                            titleTextBackgroundColor = properties.titleTextBackgroundColorStory4,
-                            subtitleText = properties.subtitleTextStory4,
-                            subtitleTextColor = properties.subtitleTextColorStory4,
-                            subtitleTextSize = properties.subtitleTextSizeStory4,
-                            subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory4,
-                            timeMillis = properties.timeMillisStory4,
-                            overlayColor = properties.overlayColorStory4,
-                        ),
-                        createStoryData(
-                            backgroundImage = properties.backgroundImageStory5,
-                            backgroundImageScaleType = properties.backgroundImageScaleTypeStory5,
-                            contentOffset = properties.contentOffsetStory5,
-                            logoImage = properties.logoImageStory5,
-                            logoImageScaleType = properties.logoImageScaleTypeStory5,
-                            titleText = properties.titleTextStory5,
-                            titleTextColor = properties.titleTextColorStory5,
-                            titleTextSize = properties.titleTextSizeStory5,
-                            titleTextBackgroundColor = properties.titleTextBackgroundColorStory5,
-                            subtitleText = properties.subtitleTextStory5,
-                            subtitleTextColor = properties.subtitleTextColorStory5,
-                            subtitleTextSize = properties.subtitleTextSizeStory5,
-                            subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory5,
-                            timeMillis = properties.timeMillisStory5,
-                            overlayColor = properties.overlayColorStory5,
-                        ),
-                    ))
+                    setStories(
+                        listOfNotNull(
+                            createStoryData(
+                                backgroundImage = properties.backgroundImageStory1,
+                                backgroundImageScaleType = properties.backgroundImageScaleTypeStory1,
+                                contentOffset = properties.contentOffsetStory1,
+                                logoImage = properties.logoImageStory1,
+                                logoImageScaleType = properties.logoImageScaleTypeStory1,
+                                titleText = properties.titleTextStory1,
+                                titleTextColor = properties.titleTextColorStory1,
+                                titleTextSize = properties.titleTextSizeStory1,
+                                titleTextBackgroundColor = properties.titleTextBackgroundColorStory1,
+                                subtitleText = properties.subtitleTextStory1,
+                                subtitleTextColor = properties.subtitleTextColorStory1,
+                                subtitleTextSize = properties.subtitleTextSizeStory1,
+                                subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory1,
+                                timeMillis = properties.timeMillisStory1,
+                                overlayColor = properties.overlayColorStory1,
+                            ),
+                            createStoryData(
+                                backgroundImage = properties.backgroundImageStory2,
+                                backgroundImageScaleType = properties.backgroundImageScaleTypeStory2,
+                                contentOffset = properties.contentOffsetStory2,
+                                logoImage = properties.logoImageStory2,
+                                logoImageScaleType = properties.logoImageScaleTypeStory2,
+                                titleText = properties.titleTextStory2,
+                                titleTextColor = properties.titleTextColorStory2,
+                                titleTextSize = properties.titleTextSizeStory2,
+                                titleTextBackgroundColor = properties.titleTextBackgroundColorStory2,
+                                subtitleText = properties.subtitleTextStory2,
+                                subtitleTextColor = properties.subtitleTextColorStory2,
+                                subtitleTextSize = properties.subtitleTextSizeStory2,
+                                subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory2,
+                                timeMillis = properties.timeMillisStory2,
+                                overlayColor = properties.overlayColorStory2,
+                            ),
+                            createStoryData(
+                                backgroundImage = properties.backgroundImageStory3,
+                                backgroundImageScaleType = properties.backgroundImageScaleTypeStory3,
+                                contentOffset = properties.contentOffsetStory3,
+                                logoImage = properties.logoImageStory3,
+                                logoImageScaleType = properties.logoImageScaleTypeStory3,
+                                titleText = properties.titleTextStory3,
+                                titleTextColor = properties.titleTextColorStory3,
+                                titleTextSize = properties.titleTextSizeStory3,
+                                titleTextBackgroundColor = properties.titleTextBackgroundColorStory3,
+                                subtitleText = properties.subtitleTextStory3,
+                                subtitleTextColor = properties.subtitleTextColorStory3,
+                                subtitleTextSize = properties.subtitleTextSizeStory3,
+                                subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory3,
+                                timeMillis = properties.timeMillisStory3,
+                                overlayColor = properties.overlayColorStory3,
+                            ),
+                            createStoryData(
+                                backgroundImage = properties.backgroundImageStory4,
+                                backgroundImageScaleType = properties.backgroundImageScaleTypeStory4,
+                                contentOffset = properties.contentOffsetStory4,
+                                logoImage = properties.logoImageStory4,
+                                logoImageScaleType = properties.logoImageScaleTypeStory4,
+                                titleText = properties.titleTextStory4,
+                                titleTextColor = properties.titleTextColorStory4,
+                                titleTextSize = properties.titleTextSizeStory4,
+                                titleTextBackgroundColor = properties.titleTextBackgroundColorStory4,
+                                subtitleText = properties.subtitleTextStory4,
+                                subtitleTextColor = properties.subtitleTextColorStory4,
+                                subtitleTextSize = properties.subtitleTextSizeStory4,
+                                subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory4,
+                                timeMillis = properties.timeMillisStory4,
+                                overlayColor = properties.overlayColorStory4,
+                            ),
+                            createStoryData(
+                                backgroundImage = properties.backgroundImageStory5,
+                                backgroundImageScaleType = properties.backgroundImageScaleTypeStory5,
+                                contentOffset = properties.contentOffsetStory5,
+                                logoImage = properties.logoImageStory5,
+                                logoImageScaleType = properties.logoImageScaleTypeStory5,
+                                titleText = properties.titleTextStory5,
+                                titleTextColor = properties.titleTextColorStory5,
+                                titleTextSize = properties.titleTextSizeStory5,
+                                titleTextBackgroundColor = properties.titleTextBackgroundColorStory5,
+                                subtitleText = properties.subtitleTextStory5,
+                                subtitleTextColor = properties.subtitleTextColorStory5,
+                                subtitleTextSize = properties.subtitleTextSizeStory5,
+                                subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory5,
+                                timeMillis = properties.timeMillisStory5,
+                                overlayColor = properties.overlayColorStory5,
+                            ),
+                        )
+                    )
                 }
 
                 storiesDialogFragment as? T
@@ -908,18 +961,52 @@ object DyWidgets {
         }
     }
 
+    fun createCardPromotionData(
+        topGradientColor: String,
+        bottomGradientColor: String,
+        image: String?,
+        imageScaleType: String,
+        bottomPanelColor: String,
+        bottomPanelText: String?,
+        bottomPanelTextColor: String,
+        bottomPanelTextSize: Int,
+        bottomPanelButtonText: String?,
+        bottomPanelButtonTextSize: Int,
+        bottomPanelButtonTextColor: String,
+        bottomPanelButtonColor: String,
+        bottomPanelButtonHoverColor: String,
+    ): CardPromotionData? {
+        if (image.isNullOrBlank() && bottomPanelText.isNullOrBlank()) return null
+
+        return CardPromotionData(
+            topGradientColor = topGradientColor,
+            bottomGradientColor = bottomGradientColor,
+            image = image,
+            imageScaleType = ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
+            bottomPanelColor = bottomPanelColor,
+            bottomPanelText = bottomPanelText,
+            bottomPanelTextColor = bottomPanelTextColor,
+            bottomPanelTextSize = bottomPanelTextSize,
+            bottomPanelButtonText = bottomPanelButtonText,
+            bottomPanelButtonTextSize = bottomPanelButtonTextSize,
+            bottomPanelButtonTextColor = bottomPanelButtonTextColor,
+            bottomPanelButtonColor = bottomPanelButtonColor,
+            bottomPanelButtonHoverColor = bottomPanelButtonHoverColor,
+        )
+    }
+
     fun createIQuickAction(
-        title: String,
+        title: String?,
         titleColor: String,
         titleSize: Int,
-        image: String,
+        image: String?,
         imageScaleType: String,
         backgroundColor: String,
         backgroundHoverColor: String,
         borderColor: String,
         isFeaturedStr: String,
-    ): IQuickActionData?  {
-        if (title.isBlank() && image.isBlank()) return null
+    ): IQuickActionData? {
+        if (title.isNullOrBlank() && image.isNullOrBlank()) return null
 
         return when (isFeaturedStr.toBooleanStrict()) {
             true -> FeaturedQuickActionData(
@@ -956,16 +1043,16 @@ object DyWidgets {
     }
 
     fun createQuickAction(
-        title: String,
+        title: String?,
         titleColor: String,
         titleSize: Int,
-        image: String,
+        image: String?,
         imageScaleType: String,
         backgroundColor: String,
         backgroundHoverColor: String,
         borderColor: String,
-    ): QuickActionData?  {
-        if (title.isBlank() && image.isBlank()) return null
+    ): QuickActionData? {
+        if (title.isNullOrBlank() && image.isNullOrBlank()) return null
 
         return QuickActionData(
             title = title,
@@ -984,6 +1071,50 @@ object DyWidgets {
         )
     }
 
+    fun createCrossUpsellStepData(
+        image: String?,
+        imageScaleType: String,
+        imageSizeType: String,
+        title: String?,
+        titleSize: Int,
+        titleColor: String,
+        subtitle: String?,
+        subtitleSize: Int,
+        subtitleColor: String,
+        buttonColor: String,
+        buttonHoverColor: String,
+        buttonText: String?,
+        buttonTextSize: Int,
+        buttonTextColor: String,
+        progressBarColor: String,
+        progressBarBackgroundColor: String,
+        progressTextColor: String,
+        previousTextColor: String,
+    ): CrossUpsellStepData? {
+        if (title.isNullOrBlank() && image.isNullOrBlank()) return null
+
+        return CrossUpsellStepData(
+            image = image,
+            imageScaleType = ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
+            imageSizeType = ImageSizeType.fromString(imageSizeType) ?: ImageSizeType.MEDIUM,
+            title = title,
+            titleSize = titleSize,
+            titleColor = titleColor,
+            subtitle = subtitle,
+            subtitleSize = subtitleSize,
+            subtitleColor = subtitleColor,
+            buttonColor = buttonColor,
+            buttonHoverColor = buttonHoverColor,
+            buttonText = buttonText,
+            buttonTextSize = buttonTextSize,
+            buttonTextColor = buttonTextColor,
+            progressBarColor = progressBarColor,
+            progressBarBackgroundColor = progressBarBackgroundColor,
+            progressTextColor = progressTextColor,
+            previousTextColor = previousTextColor
+        )
+    }
+
     fun createOfferData(
         backgroundImage: String?,
         backgroundImageScaleType: String,
@@ -997,13 +1128,15 @@ object DyWidgets {
         titleTextColor: String,
         titleTextSize: Int,
     ): OfferData? {
-        if (titleText.isNullOrBlank()) return null
+        if (titleText.isNullOrBlank() && backgroundImage.isNullOrBlank()) return null
 
         return OfferData(
             backgroundImage = backgroundImage,
-            backgroundImageScaleType = ImageScaleType.fromString(backgroundImageScaleType) ?: ImageScaleType.FIT,
+            backgroundImageScaleType = ImageScaleType.fromString(backgroundImageScaleType)
+                ?: ImageScaleType.FIT,
             logoImage = logoImage,
-            logoImageScaleType = ImageScaleType.fromString(logoImageScaleType) ?: ImageScaleType.FIT,
+            logoImageScaleType = ImageScaleType.fromString(logoImageScaleType)
+                ?: ImageScaleType.FIT,
             labelText = labelText,
             labelTextColor = labelTextColor,
             labelTextSize = labelTextSize,
@@ -1019,10 +1152,10 @@ object DyWidgets {
         cornerRadius: Int,
         image: String?,
         imageScaleType: String,
-        title: String,
+        title: String?,
         titleTextColor: String,
         titleTextSize: Int,
-        subtitle: String,
+        subtitle: String?,
         subtitleTextColor: String,
         subtitleTextSize: Int,
         ctaButton1Text: String?,
@@ -1042,7 +1175,7 @@ object DyWidgets {
         ctaButton2StrokeColor: String,
         ctaButton2StrokeWidth: Float,
     ): RefinanceData? {
-        if (title.isNullOrBlank()) return null
+        if (title.isNullOrBlank() && image.isNullOrBlank()) return null
 
         return RefinanceData(
             backgroundColor = backgroundColor,
@@ -1088,7 +1221,7 @@ object DyWidgets {
         imageBorderColor: String?,
         imageBorderWidth: Int?,
     ): CircleStoryData? {
-        if (titleText.isNullOrBlank()) return null
+        if (titleText.isNullOrBlank() && image.isNullOrBlank()) return null
 
         return CircleStoryData(
             titleText = titleText,
@@ -1117,21 +1250,27 @@ object DyWidgets {
         subtitleTextBackgroundColor: String,
         timeMillis: Long,
         overlayColor: String,
-    ) = StoryData(
-        backgroundImage = backgroundImage,
-        backgroundImageScaleType = ImageScaleType.fromString(backgroundImageScaleType) ?: ImageScaleType.FILL,
-        contentOffset = contentOffset,
-        logoImage = logoImage,
-        logoImageScaleType = ImageScaleType.fromString(logoImageScaleType) ?: ImageScaleType.FILL,
-        titleText = titleText,
-        titleTextColor = titleTextColor,
-        titleTextSize = titleTextSize,
-        titleTextBackgroundColor = titleTextBackgroundColor,
-        subtitleText = subtitleText,
-        subtitleTextColor = subtitleTextColor,
-        subtitleTextSize = subtitleTextSize,
-        subtitleTextBackgroundColor = subtitleTextBackgroundColor,
-        timeMillis = timeMillis,
-        overlayColor = overlayColor
-    )
+    ): StoryData? {
+        if (titleText.isNullOrBlank() && backgroundImage.isNullOrBlank()) return null
+
+        return StoryData(
+            backgroundImage = backgroundImage,
+            backgroundImageScaleType = ImageScaleType.fromString(backgroundImageScaleType)
+                ?: ImageScaleType.FILL,
+            contentOffset = contentOffset,
+            logoImage = logoImage,
+            logoImageScaleType = ImageScaleType.fromString(logoImageScaleType)
+                ?: ImageScaleType.FILL,
+            titleText = titleText,
+            titleTextColor = titleTextColor,
+            titleTextSize = titleTextSize,
+            titleTextBackgroundColor = titleTextBackgroundColor,
+            subtitleText = subtitleText,
+            subtitleTextColor = subtitleTextColor,
+            subtitleTextSize = subtitleTextSize,
+            subtitleTextBackgroundColor = subtitleTextBackgroundColor,
+            timeMillis = timeMillis,
+            overlayColor = overlayColor
+        )
+    }
 }

@@ -12,11 +12,11 @@ data class DyRefinanceSliderProperties(
     @SerialName("imageItem1") val imageItem1: String?,
     @SerialName("imageScaleTypeItem1") val imageScaleTypeItem1: String,
 
-    @SerialName("titleItem1") val titleItem1: String,
+    @SerialName("titleItem1") val titleItem1: String?,
     @SerialName("titleTextColorItem1") val titleTextColorItem1: String,
     @SerialName("titleTextSizeItem1") val titleTextSizeItem1: Int,
 
-    @SerialName("subtitleItem1") val subtitleItem1: String,
+    @SerialName("subtitleItem1") val subtitleItem1: String?,
     @SerialName("subtitleTextColorItem1") val subtitleTextColorItem1: String,
     @SerialName("subtitleTextSizeItem1") val subtitleTextSizeItem1: Int,
 
@@ -45,11 +45,11 @@ data class DyRefinanceSliderProperties(
     @SerialName("imageItem2") val imageItem2: String?,
     @SerialName("imageScaleTypeItem2") val imageScaleTypeItem2: String,
 
-    @SerialName("titleItem2") val titleItem2: String,
+    @SerialName("titleItem2") val titleItem2: String?,
     @SerialName("titleTextColorItem2") val titleTextColorItem2: String,
     @SerialName("titleTextSizeItem2") val titleTextSizeItem2: Int,
 
-    @SerialName("subtitleItem2") val subtitleItem2: String,
+    @SerialName("subtitleItem2") val subtitleItem2: String?,
     @SerialName("subtitleTextColorItem2") val subtitleTextColorItem2: String,
     @SerialName("subtitleTextSizeItem2") val subtitleTextSizeItem2: Int,
 
@@ -78,11 +78,11 @@ data class DyRefinanceSliderProperties(
     @SerialName("imageItem3") val imageItem3: String?,
     @SerialName("imageScaleTypeItem3") val imageScaleTypeItem3: String,
 
-    @SerialName("titleItem3") val titleItem3: String,
+    @SerialName("titleItem3") val titleItem3: String?,
     @SerialName("titleTextColorItem3") val titleTextColorItem3: String,
     @SerialName("titleTextSizeItem3") val titleTextSizeItem3: Int,
 
-    @SerialName("subtitleItem3") val subtitleItem3: String,
+    @SerialName("subtitleItem3") val subtitleItem3: String?,
     @SerialName("subtitleTextColorItem3") val subtitleTextColorItem3: String,
     @SerialName("subtitleTextSizeItem3") val subtitleTextSizeItem3: Int,
 

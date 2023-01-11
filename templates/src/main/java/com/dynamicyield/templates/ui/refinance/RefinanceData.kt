@@ -9,11 +9,11 @@ data class RefinanceData(
     val image: String?,
     val imageScaleType: ImageScaleType,
 
-    val title: String,
+    val title: String?,
     val titleTextColor: String,
     val titleTextSize: Int,
 
-    val subtitle: String,
+    val subtitle: String?,
     val subtitleTextColor: String,
     val subtitleTextSize: Int,
 

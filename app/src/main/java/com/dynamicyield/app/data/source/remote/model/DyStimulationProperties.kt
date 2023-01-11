@@ -13,7 +13,7 @@ data class DisplayRecommendation(
 data class DyStimulationProperties(
     @SerialName("backgroundColor") val backgroundColor: String,
 
-    @SerialName("title") val title: String,
+    @SerialName("title") val title: String?,
     @SerialName("titleTextColor") val titleTextColor: String,
     @SerialName("titleTextSize") val titleTextSize: Int,
 

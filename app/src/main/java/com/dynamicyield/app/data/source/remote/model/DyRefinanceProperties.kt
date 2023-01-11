@@ -11,11 +11,11 @@ data class DyRefinanceProperties(
     @SerialName("image") val image: String?,
     @SerialName("imageScaleType") val imageScaleType: String,
 
-    @SerialName("title") val title: String,
+    @SerialName("title") val title: String?,
     @SerialName("titleTextColor") val titleTextColor: String,
     @SerialName("titleTextSize") val titleTextSize: Int,
 
-    @SerialName("subtitle") val subtitle: String,
+    @SerialName("subtitle") val subtitle: String?,
     @SerialName("subtitleTextColor") val subtitleTextColor: String,
     @SerialName("subtitleTextSize") val subtitleTextSize: Int,
 
