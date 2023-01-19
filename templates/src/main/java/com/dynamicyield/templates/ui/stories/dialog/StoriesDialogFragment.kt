@@ -333,7 +333,7 @@ class StoriesDialogFragment : DialogFragment(R.layout.story_dialog_layout), DyWi
         }
     }
 
-    private fun createStoryDelegate() = itemDelegate<StoryData>(R.layout.story_item_layout)
+    private fun createStoryDelegate() = itemDelegate<StoryData>(R.layout.slide_item_layout)
         .create { parent ->
             val logoSiv = itemView.findViewById<ShapeableImageView>(R.id.logoSiv)
             logoSiv.shapeAppearanceModel = logoSiv.shapeAppearanceModel.toBuilder().apply {
