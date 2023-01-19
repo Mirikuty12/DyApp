@@ -55,32 +55,34 @@ class CrossUpsellDialogFragment : DialogFragment(R.layout.cross_upsell_dialog_la
     private val stepAdapter = DelegateAdapter(createCrossUpsellDelegate())
     private val pagerSnapHelper = PagerSnapHelper()
     private var currentStepIndex: Int = -1
-    private val snapOnScrollListener = SnapOnScrollListener(pagerSnapHelper) { position ->
-        currentStepIndex = position
-        val crossUpsellStepData = stepAdapter.currentList.getOrNull(position)
-            ?: return@SnapOnScrollListener
+    private val snapOnScrollListener = object : SnapOnScrollListener(pagerSnapHelper) {
+        override fun onSnapPositionChanged(newPosition: Int) {
+            currentStepIndex = newPosition
+            val crossUpsellStepData = stepAdapter.currentList.getOrNull(newPosition)
+                ?: return
 
-        // progress bar
-        setupProgressBackground(
-            backgroundColor = crossUpsellStepData.progressBarBackgroundColor,
-            progressColor = crossUpsellStepData.progressBarColor,
-            progress = ceil((((position + 1f) / stepAdapter.currentList.size) * 100)).toInt()
-        )
+            // progress bar
+            setupProgressBackground(
+                backgroundColor = crossUpsellStepData.progressBarBackgroundColor,
+                progressColor = crossUpsellStepData.progressBarColor,
+                progress = ceil((((newPosition + 1f) / stepAdapter.currentList.size) * 100)).toInt()
+            )
 
-        // previous text view
-        previousTv.visibility = when (position > 0 && stepAdapter.currentList.size > 0) {
-            true -> View.VISIBLE
-            else -> View.INVISIBLE
-        }
-        crossUpsellStepData.previousTextColor.parseColorOrNull()?.let { colorInt ->
-            previousTv.setTextColor(colorInt)
-            previousTv.compoundDrawables.forEach { it?.setTint(colorInt) }
-        }
+            // previous text view
+            previousTv.visibility = when (newPosition > 0 && stepAdapter.currentList.size > 0) {
+                true -> View.VISIBLE
+                else -> View.INVISIBLE
+            }
+            crossUpsellStepData.previousTextColor.parseColorOrNull()?.let { colorInt ->
+                previousTv.setTextColor(colorInt)
+                previousTv.compoundDrawables.forEach { it?.setTint(colorInt) }
+            }
 
-        // steps text view
-        progressTextView.text = "${position + 1}/${stepAdapter.currentList.size}"
-        crossUpsellStepData.progressTextColor.parseColorOrNull()?.let { colorInt ->
-            progressTextView.setTextColor(colorInt)
+            // steps text view
+            progressTextView.text = "${newPosition + 1}/${stepAdapter.currentList.size}"
+            crossUpsellStepData.progressTextColor.parseColorOrNull()?.let { colorInt ->
+                progressTextView.setTextColor(colorInt)
+            }
         }
     }
 

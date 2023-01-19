@@ -70,11 +70,14 @@ class StoryView : ConstraintLayout {
     private val pagerSnapHelper = PagerSnapHelper()
     var currentSlideIndex: Int = -1
         private set
-    private val snapOnScrollListener = SnapOnScrollListener(pagerSnapHelper) { position ->
-        currentSlideIndex = position
-        if (timelineProgressHelper.currentTimeIndex != position
-            && timelineProgressHelper.state != TimelineProgressHelper.State.IDLE) {
-            timelineProgressHelper.start(position)
+
+    private val snapOnScrollListener = object : SnapOnScrollListener(pagerSnapHelper) {
+        override fun onSnapPositionChanged(newPosition: Int) {
+            currentSlideIndex = newPosition
+            if (timelineProgressHelper.currentTimeIndex != newPosition
+                && timelineProgressHelper.state != TimelineProgressHelper.State.IDLE) {
+                timelineProgressHelper.start(newPosition)
+            }
         }
     }
 

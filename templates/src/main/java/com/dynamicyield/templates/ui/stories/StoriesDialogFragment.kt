@@ -23,7 +23,7 @@ import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.Delegate
 import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.bind
 import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.create
 import com.dynamicyield.templates.ui.base.recyclerview.delegate.adapter.itemDelegate
-import com.dynamicyield.templates.ui.base.recyclerview.snap.SnapOnScrollListener2
+import com.dynamicyield.templates.ui.base.recyclerview.snap.SnapOnScrollListener
 import com.dynamicyield.templates.ui.base.util.lockOrientation
 import com.dynamicyield.templates.ui.base.util.unlockOrientation
 
@@ -38,7 +38,7 @@ class StoriesDialogFragment : DialogFragment(R.layout.stories_dialog_layout), Dy
     private val pagerSnapHelper = PagerSnapHelper()
     private var currentStoryIndex: Int = -1
 
-    private val snapOnScrollListener2 = object : SnapOnScrollListener2(
+    private val snapOnScrollListener2 = object : SnapOnScrollListener(
         pagerSnapHelper, NOTIFY_ON_SCROLL_STATE_IDLE
     ) {
         private var isIdle = true

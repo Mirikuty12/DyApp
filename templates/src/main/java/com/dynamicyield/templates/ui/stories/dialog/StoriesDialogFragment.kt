@@ -101,12 +101,14 @@ class StoriesDialogFragment : DialogFragment(R.layout.story_dialog_layout), DyWi
     private val storiesAdapter = DelegateAdapter(createStoryDelegate())
     private val pagerSnapHelper = PagerSnapHelper()
     private var currentStoryIndex: Int = -1
-    private val snapOnScrollListener = SnapOnScrollListener(
+    private val snapOnScrollListener = object : SnapOnScrollListener(
         pagerSnapHelper, NOTIFY_ON_SCROLL_STATE_IDLE
-    ) { position ->
-        currentStoryIndex = position
-        if (timelineProgressHelper.currentTimeIndex != position) {
-            timelineProgressHelper.start(position)
+    ) {
+        override fun onSnapPositionChanged(newPosition: Int) {
+            currentStoryIndex = newPosition
+            if (timelineProgressHelper.currentTimeIndex != newPosition) {
+                timelineProgressHelper.start(newPosition)
+            }
         }
     }
 
