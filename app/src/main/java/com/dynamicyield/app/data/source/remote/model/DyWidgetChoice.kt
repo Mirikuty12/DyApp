@@ -150,17 +150,6 @@ data class DyStimulationChoice(
 ) : DyWidgetChoice()
 
 @Serializable
-data class DyStoriesSliderChoice(
-    override val id: Long,
-    override val name: String,
-    override val type: String,
-    override val groups: List<String>,
-    override val decisionId: String,
-    @SerialName("variations")
-    val variations: List<DyWidgetVariation<DyStoriesSliderProperties>>
-) : DyWidgetChoice()
-
-@Serializable
 data class DyStoriesChoice(
     override val id: Long,
     override val name: String,
@@ -185,7 +174,6 @@ object DyWidgetChoiceSerializer : JsonContentPolymorphicSerializer<DyWidgetChoic
             Refinance.selector -> DyRefinanceChoice.serializer()
             RefinanceSlider.selector -> DyRefinanceSliderChoice.serializer()
             Stimulation.selector -> DyStimulationChoice.serializer()
-            StoriesSlider.selector -> DyStoriesSliderChoice.serializer()
             Stories.selector -> DyStoriesChoice.serializer()
             else -> throw SerializationException("Unknown DyWidgetChoice: key 'name' does not matches any widget name. Value of key 'name' is '$widgetName'")
         }

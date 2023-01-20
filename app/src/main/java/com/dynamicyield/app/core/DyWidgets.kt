@@ -26,10 +26,7 @@ import com.dynamicyield.templates.ui.refinance.RefinanceData
 import com.dynamicyield.templates.ui.refinance.RefinanceSliderView
 import com.dynamicyield.templates.ui.refinance.RefinanceView
 import com.dynamicyield.templates.ui.stimulation.StimulationView
-import com.dynamicyield.templates.ui.stories.dialog.StoriesDialogFragment
-import com.dynamicyield.templates.ui.stories.dialog.StoryData
-import com.dynamicyield.templates.ui.stories.slider.CircleStoryData
-import com.dynamicyield.templates.ui.stories.slider.StoriesSliderView
+import com.dynamicyield.templates.ui.stories.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.ExperimentalSerializationApi
 
@@ -777,185 +774,27 @@ object DyWidgets {
                 }
                 stimulationView as? T
             }
-            DyWidgetName.StoriesSlider.selector -> {
-                val storiesSliderChoice = (choice as? DyStoriesSliderChoice) ?: return null
-                val variation = storiesSliderChoice.variations.firstOrNull() ?: return null
-                val properties = variation.payload.properties
-                val storiesSliderView = StoriesSliderView(context).apply {
-                    setStoryDataList(
-                        listOfNotNull(
-                            createCircleStoryData(
-                                titleText = properties.titleTextStory1,
-                                titleTextColor = properties.titleTextColorStory1,
-                                titleTextSize = properties.titleTextSizeStory1,
-                                image = properties.imageStory1,
-                                imageScaleType = properties.imageScaleTypeStory1,
-                                imageBorderColor = properties.imageBorderColorStory1,
-                                imageBorderWidth = properties.imageBorderWidthStory1,
-                            ),
-                            createCircleStoryData(
-                                titleText = properties.titleTextStory2,
-                                titleTextColor = properties.titleTextColorStory2,
-                                titleTextSize = properties.titleTextSizeStory2,
-                                image = properties.imageStory2,
-                                imageScaleType = properties.imageScaleTypeStory2,
-                                imageBorderColor = properties.imageBorderColorStory2,
-                                imageBorderWidth = properties.imageBorderWidthStory2,
-                            ),
-                            createCircleStoryData(
-                                titleText = properties.titleTextStory3,
-                                titleTextColor = properties.titleTextColorStory3,
-                                titleTextSize = properties.titleTextSizeStory3,
-                                image = properties.imageStory3,
-                                imageScaleType = properties.imageScaleTypeStory3,
-                                imageBorderColor = properties.imageBorderColorStory3,
-                                imageBorderWidth = properties.imageBorderWidthStory3,
-                            ),
-                            createCircleStoryData(
-                                titleText = properties.titleTextStory4,
-                                titleTextColor = properties.titleTextColorStory4,
-                                titleTextSize = properties.titleTextSizeStory4,
-                                image = properties.imageStory4,
-                                imageScaleType = properties.imageScaleTypeStory4,
-                                imageBorderColor = properties.imageBorderColorStory4,
-                                imageBorderWidth = properties.imageBorderWidthStory4,
-                            ),
-                            createCircleStoryData(
-                                titleText = properties.titleTextStory5,
-                                titleTextColor = properties.titleTextColorStory5,
-                                titleTextSize = properties.titleTextSizeStory5,
-                                image = properties.imageStory5,
-                                imageScaleType = properties.imageScaleTypeStory5,
-                                imageBorderColor = properties.imageBorderColorStory5,
-                                imageBorderWidth = properties.imageBorderWidthStory5,
-                            ),
-                            createCircleStoryData(
-                                titleText = properties.titleTextStory6,
-                                titleTextColor = properties.titleTextColorStory6,
-                                titleTextSize = properties.titleTextSizeStory6,
-                                image = properties.imageStory6,
-                                imageScaleType = properties.imageScaleTypeStory6,
-                                imageBorderColor = properties.imageBorderColorStory6,
-                                imageBorderWidth = properties.imageBorderWidthStory6,
-                            ),
-                        )
-                    )
-                }
-                storiesSliderView as? T
-            }
             DyWidgetName.Stories.selector -> {
                 val storiesChoice = (choice as? DyStoriesChoice) ?: return null
                 val variation = storiesChoice.variations.firstOrNull() ?: return null
                 val properties = variation.payload.properties
-                val storiesDialogFragment = StoriesDialogFragment().apply {
-                    setBackgroundColor(properties.backgroundColor)
-                    setCloseBtnColor(properties.closeButtonColor)
-                    setTimelineColors(
-                        backgroundColor = properties.timelineBackgroundColor,
-                        progressColor = properties.timelineProgressColor
-                    )
-                    setChooseButtonProps(
-                        buttonText = properties.chooseButtonText,
-                        buttonTextSize = properties.chooseButtonTextSize,
-                        buttonTextColor = properties.chooseButtonTextColor,
-                        pressedButtonTextColor = properties.chooseButtonPressedTextColor,
-                        buttonBackgroundColor = properties.chooseButtonBackgroundColor,
-                        pressedButtonBackgroundColor = properties.chooseButtonPressedBackgroundColor,
-                        buttonStrokeColor = properties.chooseButtonBorderColor,
-                        buttonStrokeWidth = properties.chooseButtonBorderWidth
-                    )
-                    setStories(
+                val storyView = StoriesView(context).apply {
+                    setStoryDataList(
                         listOfNotNull(
-                            createStoryData(
-                                backgroundImage = properties.backgroundImageStory1,
-                                backgroundImageScaleType = properties.backgroundImageScaleTypeStory1,
-                                contentOffset = properties.contentOffsetStory1,
-                                logoImage = properties.logoImageStory1,
-                                logoImageScaleType = properties.logoImageScaleTypeStory1,
-                                titleText = properties.titleTextStory1,
-                                titleTextColor = properties.titleTextColorStory1,
-                                titleTextSize = properties.titleTextSizeStory1,
-                                titleTextBackgroundColor = properties.titleTextBackgroundColorStory1,
-                                subtitleText = properties.subtitleTextStory1,
-                                subtitleTextColor = properties.subtitleTextColorStory1,
-                                subtitleTextSize = properties.subtitleTextSizeStory1,
-                                subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory1,
-                                timeMillis = properties.timeMillisStory1,
-                                overlayColor = properties.overlayColorStory1,
-                            ),
-                            createStoryData(
-                                backgroundImage = properties.backgroundImageStory2,
-                                backgroundImageScaleType = properties.backgroundImageScaleTypeStory2,
-                                contentOffset = properties.contentOffsetStory2,
-                                logoImage = properties.logoImageStory2,
-                                logoImageScaleType = properties.logoImageScaleTypeStory2,
-                                titleText = properties.titleTextStory2,
-                                titleTextColor = properties.titleTextColorStory2,
-                                titleTextSize = properties.titleTextSizeStory2,
-                                titleTextBackgroundColor = properties.titleTextBackgroundColorStory2,
-                                subtitleText = properties.subtitleTextStory2,
-                                subtitleTextColor = properties.subtitleTextColorStory2,
-                                subtitleTextSize = properties.subtitleTextSizeStory2,
-                                subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory2,
-                                timeMillis = properties.timeMillisStory2,
-                                overlayColor = properties.overlayColorStory2,
-                            ),
-                            createStoryData(
-                                backgroundImage = properties.backgroundImageStory3,
-                                backgroundImageScaleType = properties.backgroundImageScaleTypeStory3,
-                                contentOffset = properties.contentOffsetStory3,
-                                logoImage = properties.logoImageStory3,
-                                logoImageScaleType = properties.logoImageScaleTypeStory3,
-                                titleText = properties.titleTextStory3,
-                                titleTextColor = properties.titleTextColorStory3,
-                                titleTextSize = properties.titleTextSizeStory3,
-                                titleTextBackgroundColor = properties.titleTextBackgroundColorStory3,
-                                subtitleText = properties.subtitleTextStory3,
-                                subtitleTextColor = properties.subtitleTextColorStory3,
-                                subtitleTextSize = properties.subtitleTextSizeStory3,
-                                subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory3,
-                                timeMillis = properties.timeMillisStory3,
-                                overlayColor = properties.overlayColorStory3,
-                            ),
-                            createStoryData(
-                                backgroundImage = properties.backgroundImageStory4,
-                                backgroundImageScaleType = properties.backgroundImageScaleTypeStory4,
-                                contentOffset = properties.contentOffsetStory4,
-                                logoImage = properties.logoImageStory4,
-                                logoImageScaleType = properties.logoImageScaleTypeStory4,
-                                titleText = properties.titleTextStory4,
-                                titleTextColor = properties.titleTextColorStory4,
-                                titleTextSize = properties.titleTextSizeStory4,
-                                titleTextBackgroundColor = properties.titleTextBackgroundColorStory4,
-                                subtitleText = properties.subtitleTextStory4,
-                                subtitleTextColor = properties.subtitleTextColorStory4,
-                                subtitleTextSize = properties.subtitleTextSizeStory4,
-                                subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory4,
-                                timeMillis = properties.timeMillisStory4,
-                                overlayColor = properties.overlayColorStory4,
-                            ),
-                            createStoryData(
-                                backgroundImage = properties.backgroundImageStory5,
-                                backgroundImageScaleType = properties.backgroundImageScaleTypeStory5,
-                                contentOffset = properties.contentOffsetStory5,
-                                logoImage = properties.logoImageStory5,
-                                logoImageScaleType = properties.logoImageScaleTypeStory5,
-                                titleText = properties.titleTextStory5,
-                                titleTextColor = properties.titleTextColorStory5,
-                                titleTextSize = properties.titleTextSizeStory5,
-                                titleTextBackgroundColor = properties.titleTextBackgroundColorStory5,
-                                subtitleText = properties.subtitleTextStory5,
-                                subtitleTextColor = properties.subtitleTextColorStory5,
-                                subtitleTextSize = properties.subtitleTextSizeStory5,
-                                subtitleTextBackgroundColor = properties.subtitleTextBackgroundColorStory5,
-                                timeMillis = properties.timeMillisStory5,
-                                overlayColor = properties.overlayColorStory5,
-                            ),
+                            createStoryData(properties.story1),
+                            createStoryData(properties.story2),
+                            createStoryData(properties.story3),
+                            createStoryData(properties.story4),
+                            createStoryData(properties.story5),
+                            createStoryData(properties.story6),
+                            createStoryData(properties.story7),
+                            createStoryData(properties.story8),
+                            createStoryData(properties.story9),
+                            createStoryData(properties.story10),
                         )
                     )
                 }
-
-                storiesDialogFragment as? T
+                storyView as? T
             }
             else -> null
         }
@@ -1212,65 +1051,88 @@ object DyWidgets {
         )
     }
 
-    fun createCircleStoryData(
-        titleText: String?,
-        titleTextColor: String,
-        titleTextSize: Int,
-        image: String?,
-        imageScaleType: String,
-        imageBorderColor: String?,
-        imageBorderWidth: Int?,
-    ): CircleStoryData? {
-        if (titleText.isNullOrBlank() && image.isNullOrBlank()) return null
+    fun createStoryData(storyProperties: StoryProperties?): StoryData? {
+        storyProperties ?: return null
 
-        return CircleStoryData(
-            titleText = titleText,
-            titleTextColor = titleTextColor,
-            titleTextSize = titleTextSize,
-            image = image,
-            imageScaleType = ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FILL,
-            imageBorderColor = imageBorderColor,
-            imageBorderWidth = imageBorderWidth ?: 0
+        val previewProperties = storyProperties.previewProperties ?: return null
+        if (previewProperties.titleText.isNullOrBlank() && previewProperties.image.isNullOrBlank()) return null
+
+        val previewStoryData = PreviewStoryData(
+            titleText = previewProperties.titleText,
+            titleTextColor = previewProperties.titleTextColor ?: return null,
+            titleTextSize = previewProperties.titleTextSize ?: return null,
+            image = previewProperties.image,
+            imageScaleType = previewProperties.imageScaleType?.let { ImageScaleType.fromString(it) }
+                ?: ImageScaleType.FILL,
+            imageBorderColor = previewProperties.imageBorderColor,
+            imageBorderWidth = previewProperties.imageBorderWidth ?: 0,
+        )
+
+        val fullscreenProperties = storyProperties.fullscreenProperties ?: return null
+
+        val fullscreenStoryData = FullscreenStoryData(
+            backgroundColor = fullscreenProperties.backgroundColor ?: return null,
+            closeButtonColor = fullscreenProperties.closeButtonColor ?: return null,
+            timelineBackgroundColor = fullscreenProperties.timelineBackgroundColor ?: return null,
+            timelineProgressColor = fullscreenProperties.timelineProgressColor ?: return null,
+            buttonText = fullscreenProperties.buttonText,
+            buttonTextSizeSp = fullscreenProperties.buttonTextSize ?: return null,
+            buttonTextColorString = fullscreenProperties.buttonTextColor ?: return null,
+            pressedButtonTextColorString = fullscreenProperties.pressedButtonTextColor
+                ?: return null,
+            buttonBackgroundColorString = fullscreenProperties.buttonBackgroundColor ?: return null,
+            pressedButtonBackgroundColorString = fullscreenProperties.pressedButtonBackgroundColor
+                ?: return null,
+            buttonStrokeColorString = fullscreenProperties.buttonStrokeColor ?: return null,
+            buttonStrokeWidth = fullscreenProperties.buttonStrokeWidth ?: 0f,
+            slides = listOfNotNull(
+                createSlideData(fullscreenProperties.slides?.slide1),
+                createSlideData(fullscreenProperties.slides?.slide2),
+                createSlideData(fullscreenProperties.slides?.slide3),
+                createSlideData(fullscreenProperties.slides?.slide4),
+                createSlideData(fullscreenProperties.slides?.slide5),
+                createSlideData(fullscreenProperties.slides?.slide6),
+                createSlideData(fullscreenProperties.slides?.slide7),
+                createSlideData(fullscreenProperties.slides?.slide8),
+                createSlideData(fullscreenProperties.slides?.slide9),
+                createSlideData(fullscreenProperties.slides?.slide10),
+            ),
+        )
+
+        if (fullscreenStoryData.slides.isEmpty()) return null
+
+        return StoryData(
+            previewData = previewStoryData,
+            fullscreenData = fullscreenStoryData
         )
     }
 
-    fun createStoryData(
-        backgroundImage: String?,
-        backgroundImageScaleType: String,
-        contentOffset: Float,
-        logoImage: String?,
-        logoImageScaleType: String,
-        titleText: String?,
-        titleTextColor: String,
-        titleTextSize: Int,
-        titleTextBackgroundColor: String,
-        subtitleText: String?,
-        subtitleTextColor: String,
-        subtitleTextSize: Int,
-        subtitleTextBackgroundColor: String,
-        timeMillis: Long,
-        overlayColor: String,
-    ): StoryData? {
-        if (titleText.isNullOrBlank() && backgroundImage.isNullOrBlank()) return null
+    fun createSlideData(slideProperties: SlideProperties?): SlideData? {
+        slideProperties ?: return null
 
-        return StoryData(
-            backgroundImage = backgroundImage,
-            backgroundImageScaleType = ImageScaleType.fromString(backgroundImageScaleType)
+        if (slideProperties.backgroundImage.isNullOrBlank() &&
+            slideProperties.titleText.isNullOrBlank() &&
+            slideProperties.subtitleText.isNullOrBlank()
+        ) return null
+
+        return SlideData(
+            backgroundImage = slideProperties.backgroundImage,
+            backgroundImageScaleType = ImageScaleType.fromString(slideProperties.backgroundImageScaleType)
                 ?: ImageScaleType.FILL,
-            contentOffset = contentOffset,
-            logoImage = logoImage,
-            logoImageScaleType = ImageScaleType.fromString(logoImageScaleType)
+            contentOffset = slideProperties.contentOffset ?: 0,
+            logoImage = slideProperties.logoImage,
+            logoImageScaleType = ImageScaleType.fromString(slideProperties.logoImageScaleType)
                 ?: ImageScaleType.FILL,
-            titleText = titleText,
-            titleTextColor = titleTextColor,
-            titleTextSize = titleTextSize,
-            titleTextBackgroundColor = titleTextBackgroundColor,
-            subtitleText = subtitleText,
-            subtitleTextColor = subtitleTextColor,
-            subtitleTextSize = subtitleTextSize,
-            subtitleTextBackgroundColor = subtitleTextBackgroundColor,
-            timeMillis = timeMillis,
-            overlayColor = overlayColor
+            titleText = slideProperties.titleText,
+            titleTextColor = slideProperties.titleTextColor ?: return null,
+            titleTextSize = slideProperties.titleTextSize ?: return null,
+            titleTextBackgroundColor = slideProperties.titleTextBackgroundColor,
+            subtitleText = slideProperties.subtitleText,
+            subtitleTextColor = slideProperties.subtitleTextColor ?: return null,
+            subtitleTextSize = slideProperties.subtitleTextSize ?: return null,
+            subtitleTextBackgroundColor = slideProperties.subtitleTextBackgroundColor,
+            durationMillis = slideProperties.durationMillis ?: return null,
+            overlayColor = slideProperties.overlayColor,
         )
     }
 }

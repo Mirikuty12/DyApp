@@ -64,17 +64,17 @@ data class SlideData(
     val titleText: String?,
     val titleTextColor: String,
     val titleTextSize: Int,
-    val titleTextBackgroundColor: String,
+    val titleTextBackgroundColor: String?,
 
     // subtitle
     val subtitleText: String?,
     val subtitleTextColor: String,
     val subtitleTextSize: Int,
-    val subtitleTextBackgroundColor: String,
+    val subtitleTextBackgroundColor: String?,
 
     // slide duration
     val durationMillis: Long,
 
     // overlay color
-    val overlayColor: String,
+    val overlayColor: String?,
 )

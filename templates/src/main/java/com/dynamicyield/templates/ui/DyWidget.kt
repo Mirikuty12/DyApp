@@ -23,7 +23,6 @@ enum class DyWidgetName(val selector: String) {
     Refinance("refinance"),
     RefinanceSlider("refinance-slider"),
     Stimulation("stimulation"),
-    StoriesSlider("stories-slider"),
     Stories("stories");
 
     companion object {
@@ -39,7 +38,6 @@ enum class DyWidgetName(val selector: String) {
             Refinance.selector -> Refinance
             RefinanceSlider.selector -> RefinanceSlider
             Stimulation.selector -> Stimulation
-            StoriesSlider.selector -> StoriesSlider
             Stories.selector -> Stories
             else -> null
         }

@@ -33,7 +33,6 @@ import com.dynamicyield.templates.ui.base.recyclerview.snap.SnapOnScrollListener
 import com.dynamicyield.templates.ui.base.util.createRectDrawable
 import com.dynamicyield.templates.ui.base.util.dpToPx
 import com.dynamicyield.templates.ui.base.util.parseColorOrNull
-import com.dynamicyield.templates.ui.stories.dialog.TextLineBackgroundSpan
 import com.google.android.material.imageview.ShapeableImageView
 import kotlin.math.max
 

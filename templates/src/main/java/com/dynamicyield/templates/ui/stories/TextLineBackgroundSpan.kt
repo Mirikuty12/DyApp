@@ -1,4 +1,4 @@
-package com.dynamicyield.templates.ui.stories.dialog
+package com.dynamicyield.templates.ui.stories
 
 import android.graphics.Canvas
 import android.graphics.Paint
