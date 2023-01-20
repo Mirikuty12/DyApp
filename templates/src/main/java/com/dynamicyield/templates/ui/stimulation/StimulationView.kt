@@ -121,6 +121,9 @@ class StimulationView : CardView, DyWidget {
         textColor.parseColorOrNull()?.let { timerTv.setTextColor(it) }
         this.expirationTimestampMillis = expirationTimestampSec?.times(1000L)
         updateTimer()
+
+        // show/hide Apply button
+        updateApplyButtonVisibility()
     }
 
     fun setButton(
@@ -130,8 +133,8 @@ class StimulationView : CardView, DyWidget {
         buttonBackgroundColorString: String = "#FFFFFF",
         pressedButtonBackgroundColorString: String = "#F3F2F2",
     ) = with (applyBtn) {
-        isVisible = !buttonText.isNullOrBlank()
         text = buttonText
+        updateApplyButtonVisibility()
 
         setTextSize(TypedValue.COMPLEX_UNIT_SP, buttonTextSizeSp)
         buttonTextColorString.parseColorOrNull()?.let { setTextColor(it) }
@@ -161,6 +164,10 @@ class StimulationView : CardView, DyWidget {
 
     fun setStimulationListener(listener: StimulationListener?) {
         stimulationListener = listener
+    }
+
+    private fun updateApplyButtonVisibility() {
+        applyBtn.isVisible = !applyBtn.text.isNullOrBlank() && this.expirationTimestampMillis == null
     }
 
     private fun updateTimer() {
