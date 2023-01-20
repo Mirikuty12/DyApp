@@ -179,7 +179,7 @@ class StimulationView : CardView, DyWidget {
         val timerTime = endTimestamp - System.currentTimeMillis()
         if (timerTime <= 0) { // time is over
             stimulationListener?.onTimeOver()
-            timerTv.text = "00"
+            timerTv.text = timerStringFormatter.format(0)
             timerTv.isVisible = true
             return
         }
@@ -229,7 +229,7 @@ class StimulationView : CardView, DyWidget {
 
 
 
-            return array.dropWhile { it == 0L }.joinToString(separator = " : ") {
+            return array/*.dropWhile { it == 0L }*/.joinToString(separator = " : ") {
                 decimalFormat.format(it)
             }
         }
