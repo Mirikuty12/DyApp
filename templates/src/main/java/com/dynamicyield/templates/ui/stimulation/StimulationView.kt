@@ -22,6 +22,7 @@ import com.dynamicyield.templates.ui.base.util.createRectDrawable
 import com.dynamicyield.templates.ui.base.util.dpToPx
 import com.dynamicyield.templates.ui.base.util.parseColorOrNull
 import java.text.DecimalFormat
+import kotlin.math.ceil
 
 class StimulationView : CardView, DyWidget {
 
@@ -170,31 +171,46 @@ class StimulationView : CardView, DyWidget {
         applyBtn.isVisible = !applyBtn.text.isNullOrBlank() && this.expirationTimestampMillis == null
     }
 
+    private fun setTimerText(timeString: String?) {
+        val currentLength = timerTv.text?.length ?: 0
+        val newLength = timeString?.length ?: 0
+
+        if (currentLength != newLength) {
+            // set min width fot timer text view
+            timerTv.minWidth = timeString?.replace(Regex("\\d"), "0")?.let {
+                ceil(timerTv.paint.measureText(it)).toInt()
+            } ?: 0
+        }
+
+        // set visibility
+        timerTv.isVisible = newLength > 0
+
+        // set text
+        timerTv.text = timeString
+    }
+
     private fun updateTimer() {
         // cancel previous timer
         countDownTimer?.cancel()
 
         // check end time
-        val endTimestamp = expirationTimestampMillis ?: 0
-        if (endTimestamp <= 0) { // no timer needed
-            timerTv.text = ""
-            timerTv.isVisible = false
+        if (expirationTimestampMillis == null) { // no timer needed
+            setTimerText("")
             return
         }
 
         // check timer time
-        val timerTime = endTimestamp - System.currentTimeMillis()
+        val timerTime = (expirationTimestampMillis ?: 0) - System.currentTimeMillis()
         if (timerTime <= 0) { // time is over
             stimulationListener?.onTimeOver()
-            timerTv.text = timerStringFormatter.format(0)
-            timerTv.isVisible = true
+            setTimerText(timerStringFormatter.format(0))
             return
         }
 
         // start new timer
         countDownTimer = object : CountDownTimer(timerTime, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                timerTv.text = timerStringFormatter.format(millisUntilFinished)
+                setTimerText(timerStringFormatter.format(millisUntilFinished))
             }
 
             override fun onFinish() {
@@ -202,7 +218,6 @@ class StimulationView : CardView, DyWidget {
             }
 
         }.start()
-        timerTv.isVisible = true
     }
 
     interface StimulationListener {
