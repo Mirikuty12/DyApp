@@ -217,19 +217,19 @@ object DyWidgets {
                 val properties = variation.payload.properties
                 val offersDialogFragment = OffersDialogFragment().apply {
                     setBackgroundProps(
-                        backgroundColor = properties.backgroundColor,
-                        topCornerRadius = properties.topCornerRadius.toFloat()
+                        backgroundColor = properties.backgroundColor ?: "#FFFFFF",
+                        topCornerRadius = properties.topCornerRadius?.toFloat() ?: 0f
                     )
-                    setTopHandleColor(properties.topHandleColor)
+                    setTopHandleColor(properties.topHandleColor ?: "#00FFFFFF")
                     setTitleProps(
                         titleText = properties.title,
-                        titleSizeSp = properties.titleSize,
-                        titleColorString = properties.titleColor
+                        titleSizeSp = properties.titleSize ?: return null,
+                        titleColorString = properties.titleColor ?: return null
                     )
                     setSubtitleProps(
                         subtitleText = properties.subtitle,
-                        subtitleSizeSp = properties.subtitleSize,
-                        subtitleColorString = properties.subtitleColor
+                        subtitleSizeSp = properties.subtitleSize ?: return null,
+                        subtitleColorString = properties.subtitleColor ?: return null
                     )
                     setOfferViewMode(
                         OfferView.OfferViewMode.fromString(properties.offerViewMode)
@@ -237,45 +237,16 @@ object DyWidgets {
                     )
                     setOffers(
                         listOfNotNull(
-                            createOfferData(
-                                backgroundImage = properties.backgroundImageOffer1,
-                                backgroundImageScaleType = properties.backgroundImageScaleTypeOffer1,
-                                logoImage = properties.logoImageOffer1,
-                                logoImageScaleType = properties.logoImageScaleTypeOffer1,
-                                labelText = properties.labelOffer1,
-                                labelTextColor = properties.labelTextColorOffer1,
-                                labelTextSize = properties.labelTextSizeOffer1,
-                                labelBackgroundColor = properties.labelBackgroundColorOffer1,
-                                titleText = properties.titleOffer1,
-                                titleTextColor = properties.titleTextColorOffer1,
-                                titleTextSize = properties.titleTextSizeOffer1,
-                            ),
-                            createOfferData(
-                                backgroundImage = properties.backgroundImageOffer2,
-                                backgroundImageScaleType = properties.backgroundImageScaleTypeOffer2,
-                                logoImage = properties.logoImageOffer2,
-                                logoImageScaleType = properties.logoImageScaleTypeOffer2,
-                                labelText = properties.labelOffer2,
-                                labelTextColor = properties.labelTextColorOffer2,
-                                labelTextSize = properties.labelTextSizeOffer2,
-                                labelBackgroundColor = properties.labelBackgroundColorOffer2,
-                                titleText = properties.titleOffer2,
-                                titleTextColor = properties.titleTextColorOffer2,
-                                titleTextSize = properties.titleTextSizeOffer2,
-                            ),
-                            createOfferData(
-                                backgroundImage = properties.backgroundImageOffer3,
-                                backgroundImageScaleType = properties.backgroundImageScaleTypeOffer3,
-                                logoImage = properties.logoImageOffer3,
-                                logoImageScaleType = properties.logoImageScaleTypeOffer3,
-                                labelText = properties.labelOffer3,
-                                labelTextColor = properties.labelTextColorOffer3,
-                                labelTextSize = properties.labelTextSizeOffer3,
-                                labelBackgroundColor = properties.labelBackgroundColorOffer3,
-                                titleText = properties.titleOffer3,
-                                titleTextColor = properties.titleTextColorOffer3,
-                                titleTextSize = properties.titleTextSizeOffer3,
-                            ),
+                            createOfferData(properties.offer1),
+                            createOfferData(properties.offer2),
+                            createOfferData(properties.offer3),
+                            createOfferData(properties.offer4),
+                            createOfferData(properties.offer5),
+                            createOfferData(properties.offer6),
+                            createOfferData(properties.offer7),
+                            createOfferData(properties.offer8),
+                            createOfferData(properties.offer9),
+                            createOfferData(properties.offer10),
                         )
                     )
                 }
@@ -288,45 +259,16 @@ object DyWidgets {
                 val offersSliderView = OffersSliderView(context).apply {
                     setOfferDataList(
                         listOfNotNull(
-                            createOfferData(
-                                backgroundImage = properties.backgroundImageOffer1,
-                                backgroundImageScaleType = properties.backgroundImageScaleTypeOffer1,
-                                logoImage = properties.logoImageOffer1,
-                                logoImageScaleType = properties.logoImageScaleTypeOffer1,
-                                labelText = properties.labelOffer1,
-                                labelTextColor = properties.labelTextColorOffer1,
-                                labelTextSize = properties.labelTextSizeOffer1,
-                                labelBackgroundColor = properties.labelBackgroundColorOffer1,
-                                titleText = properties.titleOffer1,
-                                titleTextColor = properties.titleTextColorOffer1,
-                                titleTextSize = properties.titleTextSizeOffer1,
-                            ),
-                            createOfferData(
-                                backgroundImage = properties.backgroundImageOffer2,
-                                backgroundImageScaleType = properties.backgroundImageScaleTypeOffer2,
-                                logoImage = properties.logoImageOffer2,
-                                logoImageScaleType = properties.logoImageScaleTypeOffer2,
-                                labelText = properties.labelOffer2,
-                                labelTextColor = properties.labelTextColorOffer2,
-                                labelTextSize = properties.labelTextSizeOffer2,
-                                labelBackgroundColor = properties.labelBackgroundColorOffer2,
-                                titleText = properties.titleOffer2,
-                                titleTextColor = properties.titleTextColorOffer2,
-                                titleTextSize = properties.titleTextSizeOffer2,
-                            ),
-                            createOfferData(
-                                backgroundImage = properties.backgroundImageOffer3,
-                                backgroundImageScaleType = properties.backgroundImageScaleTypeOffer3,
-                                logoImage = properties.logoImageOffer3,
-                                logoImageScaleType = properties.logoImageScaleTypeOffer3,
-                                labelText = properties.labelOffer3,
-                                labelTextColor = properties.labelTextColorOffer3,
-                                labelTextSize = properties.labelTextSizeOffer3,
-                                labelBackgroundColor = properties.labelBackgroundColorOffer3,
-                                titleText = properties.titleOffer3,
-                                titleTextColor = properties.titleTextColorOffer3,
-                                titleTextSize = properties.titleTextSizeOffer3,
-                            ),
+                            createOfferData(properties.offer1),
+                            createOfferData(properties.offer2),
+                            createOfferData(properties.offer3),
+                            createOfferData(properties.offer4),
+                            createOfferData(properties.offer5),
+                            createOfferData(properties.offer6),
+                            createOfferData(properties.offer7),
+                            createOfferData(properties.offer8),
+                            createOfferData(properties.offer9),
+                            createOfferData(properties.offer10),
                         )
                     )
                 }
@@ -652,35 +594,25 @@ object DyWidgets {
         )
     }
 
-    fun createOfferData(
-        backgroundImage: String?,
-        backgroundImageScaleType: String,
-        logoImage: String?,
-        logoImageScaleType: String,
-        labelText: String?,
-        labelTextColor: String,
-        labelTextSize: Int,
-        labelBackgroundColor: String,
-        titleText: String?,
-        titleTextColor: String,
-        titleTextSize: Int,
-    ): OfferData? {
-        if (titleText.isNullOrBlank() && backgroundImage.isNullOrBlank()) return null
+    fun createOfferData(offerProperties: OfferProperties?): OfferData? {
+        offerProperties ?: return null
+        if (offerProperties.title.isNullOrBlank() &&
+            offerProperties.backgroundImage.isNullOrBlank()) return null
 
         return OfferData(
-            backgroundImage = backgroundImage,
-            backgroundImageScaleType = ImageScaleType.fromString(backgroundImageScaleType)
+            backgroundImage = offerProperties.backgroundImage,
+            backgroundImageScaleType = ImageScaleType.fromString(offerProperties.backgroundImageScaleType)
                 ?: ImageScaleType.FIT,
-            logoImage = logoImage,
-            logoImageScaleType = ImageScaleType.fromString(logoImageScaleType)
+            logoImage = offerProperties.logoImage,
+            logoImageScaleType = ImageScaleType.fromString(offerProperties.logoImageScaleType)
                 ?: ImageScaleType.FIT,
-            labelText = labelText,
-            labelTextColor = labelTextColor,
-            labelTextSize = labelTextSize,
-            labelBackgroundColor = labelBackgroundColor,
-            titleText = titleText,
-            titleTextColor = titleTextColor,
-            titleTextSize = titleTextSize,
+            labelText = offerProperties.label,
+            labelTextColor = offerProperties.labelTextColor ?: return null,
+            labelTextSize = offerProperties.labelTextSize ?: return null,
+            labelBackgroundColor = offerProperties.labelBackgroundColor ?: return null,
+            titleText = offerProperties.title,
+            titleTextColor = offerProperties.titleTextColor ?: return null,
+            titleTextSize = offerProperties.titleTextSize ?: return null,
         )
     }
 

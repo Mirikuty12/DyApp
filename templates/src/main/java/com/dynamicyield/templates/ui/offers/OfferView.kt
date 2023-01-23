@@ -155,7 +155,7 @@ class OfferView : CardView {
         SQUARE("square");
 
         companion object {
-            fun fromString(value: String) = when (value) {
+            fun fromString(value: String?) = when (value) {
                 RECTANGLE.valueStr -> RECTANGLE
                 SQUARE.valueStr -> SQUARE
                 else -> null
