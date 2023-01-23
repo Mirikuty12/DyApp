@@ -5,36 +5,50 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DyRefinanceProperties(
-    @SerialName("backgroundColor") val backgroundColor: String,
-    @SerialName("cornerRadius") val cornerRadius: Int,
+    @SerialName("backgroundColor") val backgroundColor: String? = null,
+    @SerialName("cornerRadius") val cornerRadius: Int? = null,
 
-    @SerialName("image") val image: String?,
-    @SerialName("imageScaleType") val imageScaleType: String,
+    @SerialName("image") val image: String? = null,
+    @SerialName("imageScaleType") val imageScaleType: String? = null,
 
-    @SerialName("title") val title: String?,
-    @SerialName("titleTextColor") val titleTextColor: String,
-    @SerialName("titleTextSize") val titleTextSize: Int,
+    @SerialName("title") val title: String? = null,
+    @SerialName("titleTextColor") val titleTextColor: String? = null,
+    @SerialName("titleTextSize") val titleTextSize: Int? = null,
 
-    @SerialName("subtitle") val subtitle: String?,
-    @SerialName("subtitleTextColor") val subtitleTextColor: String,
-    @SerialName("subtitleTextSize") val subtitleTextSize: Int,
+    @SerialName("subtitle") val subtitle: String? = null,
+    @SerialName("subtitleTextColor") val subtitleTextColor: String? = null,
+    @SerialName("subtitleTextSize") val subtitleTextSize: Int? = null,
 
-    @SerialName("ctaButton1Text") val ctaButton1Text: String?,
-    @SerialName("ctaButton1TextSize") val ctaButton1TextSize: Int,
-    @SerialName("ctaButton1TextColor") val ctaButton1TextColor: String,
-    @SerialName("ctaButton1PressedTextColor") val ctaButton1PressedTextColor: String,
-    @SerialName("ctaButton1BackgroundColor") val ctaButton1BackgroundColor: String,
-    @SerialName("ctaButton1PressedBackgroundColor") val ctaButton1PressedBackgroundColor: String,
-    @SerialName("ctaButton1StrokeColor") val ctaButton1StrokeColor: String,
-    @SerialName("ctaButton1StrokeWidth") val ctaButton1StrokeWidth: Float,
+    @SerialName("ctaButton1Text") val ctaButton1Text: String? = null,
+    @SerialName("ctaButton1TextSize") val ctaButton1TextSize: Int? = null,
+    @SerialName("ctaButton1TextColor") val ctaButton1TextColor: String? = null,
+    @SerialName("ctaButton1PressedTextColor") val ctaButton1PressedTextColor: String? = null,
+    @SerialName("ctaButton1BackgroundColor") val ctaButton1BackgroundColor: String? = null,
+    @SerialName("ctaButton1PressedBackgroundColor") val ctaButton1PressedBackgroundColor: String? = null,
+    @SerialName("ctaButton1StrokeColor") val ctaButton1StrokeColor: String? = null,
+    @SerialName("ctaButton1StrokeWidth") val ctaButton1StrokeWidth: Float? = null,
 
-    @SerialName("ctaButton2Text") val ctaButton2Text: String?,
-    @SerialName("ctaButton2TextSize") val ctaButton2TextSize: Int,
-    @SerialName("ctaButton2TextColor") val ctaButton2TextColor: String,
-    @SerialName("ctaButton2PressedTextColor") val ctaButton2PressedTextColor: String,
-    @SerialName("ctaButton2BackgroundColor") val ctaButton2BackgroundColor: String,
-    @SerialName("ctaButton2PressedBackgroundColor") val ctaButton2PressedBackgroundColor: String,
-    @SerialName("ctaButton2StrokeColor") val ctaButton2StrokeColor: String,
-    @SerialName("ctaButton2StrokeWidth") val ctaButton2StrokeWidth: Float,
+    @SerialName("ctaButton2Text") val ctaButton2Text: String? = null,
+    @SerialName("ctaButton2TextSize") val ctaButton2TextSize: Int? = null,
+    @SerialName("ctaButton2TextColor") val ctaButton2TextColor: String? = null,
+    @SerialName("ctaButton2PressedTextColor") val ctaButton2PressedTextColor: String? = null,
+    @SerialName("ctaButton2BackgroundColor") val ctaButton2BackgroundColor: String? = null,
+    @SerialName("ctaButton2PressedBackgroundColor") val ctaButton2PressedBackgroundColor: String? = null,
+    @SerialName("ctaButton2StrokeColor") val ctaButton2StrokeColor: String? = null,
+    @SerialName("ctaButton2StrokeWidth") val ctaButton2StrokeWidth: Float? = null,
 
-    ) : DyWidgetProperties
+) : DyWidgetProperties
+
+@Serializable
+data class DyRefinanceSliderProperties(
+    @SerialName("item1") val item1: DyRefinanceProperties? = null,
+    @SerialName("item2") val item2: DyRefinanceProperties? = null,
+    @SerialName("item3") val item3: DyRefinanceProperties? = null,
+    @SerialName("item4") val item4: DyRefinanceProperties? = null,
+    @SerialName("item5") val item5: DyRefinanceProperties? = null,
+    @SerialName("item6") val item6: DyRefinanceProperties? = null,
+    @SerialName("item7") val item7: DyRefinanceProperties? = null,
+    @SerialName("item8") val item8: DyRefinanceProperties? = null,
+    @SerialName("item9") val item9: DyRefinanceProperties? = null,
+    @SerialName("item10") val item10: DyRefinanceProperties? = null,
+) : DyWidgetProperties

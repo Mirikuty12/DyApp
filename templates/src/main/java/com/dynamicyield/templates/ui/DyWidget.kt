@@ -21,7 +21,7 @@ enum class DyWidgetName(val selector: String) {
     Offers("offers-2"),
     OffersSlider("offers-slider-2"),
     Refinance("refinance"),
-    RefinanceSlider("refinance-slider"),
+    RefinanceSlider("refinance-slider-2"),
     Stimulation("stimulation"),
     Stories("stories");
 
