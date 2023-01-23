@@ -57,20 +57,20 @@ object DyWidgets {
 
                     // set UI properties
                     setBackgroundGradient(
-                        properties.topGradientColor,
-                        properties.bottomGradientColor
+                        properties.topGradientColor ?: return null,
+                        properties.bottomGradientColor ?: return null
                     )
                     setImage(
                         properties.image,
                         ImageScaleType.fromString(properties.imageScaleType) ?: ImageScaleType.FIT
                     )
-                    setBottomPanelColor(properties.bottomPanelColor)
+                    setBottomPanelColor(properties.bottomPanelColor ?: return null)
                     setBottomPanelText(properties.bottomPanelText)
-                    setBottomPanelTextColor(properties.bottomPanelTextColor)
-                    setBottomPanelTextSize(properties.bottomPanelTextSize.toFloat())
+                    setBottomPanelTextColor(properties.bottomPanelTextColor ?: return null)
+                    setBottomPanelTextSize(properties.bottomPanelTextSize?.toFloat() ?: return null)
                     setBottomPanelButtonText(properties.bottomPanelButtonText)
-                    setBottomPanelButtonTextSize(properties.bottomPanelButtonTextSize.toFloat())
-                    setBottomPanelButtonTextColor(properties.bottomPanelButtonTextColor)
+                    setBottomPanelButtonTextSize(properties.bottomPanelButtonTextSize?.toFloat() ?: return null)
+                    setBottomPanelButtonTextColor(properties.bottomPanelButtonTextColor ?: return null)
                     setupBottomPanelButtonBackground(
                         backgroundColor = properties.bottomPanelButtonColor,
                         pressedBackgroundColor = properties.bottomPanelButtonHoverColor,
@@ -84,51 +84,16 @@ object DyWidgets {
                 val properties = variation.payload.properties
 
                 val cardPromotionDataList = listOfNotNull(
-                    createCardPromotionData(
-                        topGradientColor = properties.topGradientColorCard1,
-                        bottomGradientColor = properties.bottomGradientColorCard1,
-                        image = properties.imageCard1,
-                        imageScaleType = properties.imageScaleTypeCard1,
-                        bottomPanelColor = properties.bottomPanelColorCard1,
-                        bottomPanelText = properties.bottomPanelTextCard1,
-                        bottomPanelTextColor = properties.bottomPanelTextColorCard1,
-                        bottomPanelTextSize = properties.bottomPanelTextSizeCard1,
-                        bottomPanelButtonText = properties.bottomPanelButtonTextCard1,
-                        bottomPanelButtonTextSize = properties.bottomPanelButtonTextSizeCard1,
-                        bottomPanelButtonTextColor = properties.bottomPanelButtonTextColorCard1,
-                        bottomPanelButtonColor = properties.bottomPanelButtonColorCard1,
-                        bottomPanelButtonHoverColor = properties.bottomPanelButtonHoverColorCard1,
-                    ),
-                    createCardPromotionData(
-                        topGradientColor = properties.topGradientColorCard2,
-                        bottomGradientColor = properties.bottomGradientColorCard2,
-                        image = properties.imageCard2,
-                        imageScaleType = properties.imageScaleTypeCard2,
-                        bottomPanelColor = properties.bottomPanelColorCard2,
-                        bottomPanelText = properties.bottomPanelTextCard2,
-                        bottomPanelTextColor = properties.bottomPanelTextColorCard2,
-                        bottomPanelTextSize = properties.bottomPanelTextSizeCard2,
-                        bottomPanelButtonText = properties.bottomPanelButtonTextCard2,
-                        bottomPanelButtonTextSize = properties.bottomPanelButtonTextSizeCard2,
-                        bottomPanelButtonTextColor = properties.bottomPanelButtonTextColorCard2,
-                        bottomPanelButtonColor = properties.bottomPanelButtonColorCard2,
-                        bottomPanelButtonHoverColor = properties.bottomPanelButtonHoverColorCard2,
-                    ),
-                    createCardPromotionData(
-                        topGradientColor = properties.topGradientColorCard3,
-                        bottomGradientColor = properties.bottomGradientColorCard3,
-                        image = properties.imageCard3,
-                        imageScaleType = properties.imageScaleTypeCard3,
-                        bottomPanelColor = properties.bottomPanelColorCard3,
-                        bottomPanelText = properties.bottomPanelTextCard3,
-                        bottomPanelTextColor = properties.bottomPanelTextColorCard3,
-                        bottomPanelTextSize = properties.bottomPanelTextSizeCard3,
-                        bottomPanelButtonText = properties.bottomPanelButtonTextCard3,
-                        bottomPanelButtonTextSize = properties.bottomPanelButtonTextSizeCard3,
-                        bottomPanelButtonTextColor = properties.bottomPanelButtonTextColorCard3,
-                        bottomPanelButtonColor = properties.bottomPanelButtonColorCard3,
-                        bottomPanelButtonHoverColor = properties.bottomPanelButtonHoverColorCard3,
-                    )
+                    createCardPromotionData(properties.card1),
+                    createCardPromotionData(properties.card2),
+                    createCardPromotionData(properties.card3),
+                    createCardPromotionData(properties.card4),
+                    createCardPromotionData(properties.card5),
+                    createCardPromotionData(properties.card6),
+                    createCardPromotionData(properties.card7),
+                    createCardPromotionData(properties.card8),
+                    createCardPromotionData(properties.card9),
+                    createCardPromotionData(properties.card10),
                 )
 
                 cardPromotionSliderView.setBannerDataList(cardPromotionDataList)
@@ -801,36 +766,26 @@ object DyWidgets {
     }
 
     fun createCardPromotionData(
-        topGradientColor: String,
-        bottomGradientColor: String,
-        image: String?,
-        imageScaleType: String,
-        bottomPanelColor: String,
-        bottomPanelText: String?,
-        bottomPanelTextColor: String,
-        bottomPanelTextSize: Int,
-        bottomPanelButtonText: String?,
-        bottomPanelButtonTextSize: Int,
-        bottomPanelButtonTextColor: String,
-        bottomPanelButtonColor: String,
-        bottomPanelButtonHoverColor: String,
+        cardProperties: DyCreditCardPromotionProperties?
     ): CardPromotionData? {
-        if (image.isNullOrBlank() && bottomPanelText.isNullOrBlank()) return null
+        cardProperties ?: return null
+        if (cardProperties.image.isNullOrBlank() &&
+            cardProperties.bottomPanelText.isNullOrBlank()) return null
 
         return CardPromotionData(
-            topGradientColor = topGradientColor,
-            bottomGradientColor = bottomGradientColor,
-            image = image,
-            imageScaleType = ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
-            bottomPanelColor = bottomPanelColor,
-            bottomPanelText = bottomPanelText,
-            bottomPanelTextColor = bottomPanelTextColor,
-            bottomPanelTextSize = bottomPanelTextSize,
-            bottomPanelButtonText = bottomPanelButtonText,
-            bottomPanelButtonTextSize = bottomPanelButtonTextSize,
-            bottomPanelButtonTextColor = bottomPanelButtonTextColor,
-            bottomPanelButtonColor = bottomPanelButtonColor,
-            bottomPanelButtonHoverColor = bottomPanelButtonHoverColor,
+            topGradientColor = cardProperties.topGradientColor ?: return null,
+            bottomGradientColor = cardProperties.bottomGradientColor ?: return null,
+            image = cardProperties.image,
+            imageScaleType = ImageScaleType.fromString(cardProperties.imageScaleType) ?: ImageScaleType.FIT,
+            bottomPanelColor = cardProperties.bottomPanelColor ?: return null,
+            bottomPanelText = cardProperties.bottomPanelText,
+            bottomPanelTextColor = cardProperties.bottomPanelTextColor ?: return null,
+            bottomPanelTextSize = cardProperties.bottomPanelTextSize ?: return null,
+            bottomPanelButtonText = cardProperties.bottomPanelButtonText,
+            bottomPanelButtonTextSize = cardProperties.bottomPanelButtonTextSize ?: return null,
+            bottomPanelButtonTextColor = cardProperties.bottomPanelButtonTextColor ?: return null,
+            bottomPanelButtonColor = cardProperties.bottomPanelButtonColor ?: return null,
+            bottomPanelButtonHoverColor = cardProperties.bottomPanelButtonHoverColor ?: return null,
         )
     }
 

@@ -13,7 +13,7 @@ interface DyWidget {
  */
 enum class DyWidgetName(val selector: String) {
     CreditCardPromotion("credit-card-promotion"),
-    CreditCardPromotionSlider("credit-card-promotion-slider"),
+    CreditCardPromotionSlider("credit-card-promotion-slider-2"),
     QuickActions("quick-actions"),
     QuickActionsSlider("quick-actions-slider"),
     CrossUpsell("cross-upsell"),
