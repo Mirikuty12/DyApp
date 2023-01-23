@@ -14,8 +14,8 @@ interface DyWidget {
 enum class DyWidgetName(val selector: String) {
     CreditCardPromotion("credit-card-promotion"),
     CreditCardPromotionSlider("credit-card-promotion-slider-2"),
-    QuickActions("quick-actions"),
-    QuickActionsSlider("quick-actions-slider"),
+    QuickActions("quick-actions-2"),
+    QuickActionsSlider("quick-actions-slider-2"),
     CrossUpsell("cross-upsell"),
     Activation("activation"),
     Offers("offers"),

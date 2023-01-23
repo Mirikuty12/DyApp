@@ -62,17 +62,6 @@ data class DyQuickActionsChoice(
 ) : DyWidgetChoice()
 
 @Serializable
-data class DyQuickActionsSliderChoice(
-    override val id: Long,
-    override val name: String,
-    override val type: String,
-    override val groups: List<String>,
-    override val decisionId: String,
-    @SerialName("variations")
-    val variations: List<DyWidgetVariation<DyQuickActionsSliderProperties>>
-) : DyWidgetChoice()
-
-@Serializable
 data class DyCrossUpsellChoice(
     override val id: Long,
     override val name: String,
@@ -167,7 +156,7 @@ object DyWidgetChoiceSerializer : JsonContentPolymorphicSerializer<DyWidgetChoic
             CreditCardPromotionSlider.selector -> DyCardPromotionSliderChoice.serializer()
             CrossUpsell.selector -> DyCrossUpsellChoice.serializer()
             QuickActions.selector -> DyQuickActionsChoice.serializer()
-            QuickActionsSlider.selector -> DyQuickActionsSliderChoice.serializer()
+            QuickActionsSlider.selector -> DyQuickActionsChoice.serializer()
             Activation.selector -> DyActivationChoice.serializer()
             Offers.selector -> DyOffersChoice.serializer()
             OffersSlider.selector -> DyOffersSliderChoice.serializer()

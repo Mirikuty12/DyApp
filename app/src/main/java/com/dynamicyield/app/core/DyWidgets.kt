@@ -106,94 +106,16 @@ object DyWidgets {
                 val properties = variation.payload.properties
 
                 val quickActions = listOfNotNull(
-                    createIQuickAction(
-                        properties.titleAction1,
-                        properties.titleColorAction1,
-                        properties.titleSizeAction1,
-                        properties.imageAction1,
-                        properties.imageScaleTypeAction1,
-                        properties.backgroundColorAction1,
-                        properties.backgroundHoverColorAction1,
-                        properties.borderColorAction1,
-                        properties.isFeaturedAction1,
-                    ),
-                    createIQuickAction(
-                        properties.titleAction2,
-                        properties.titleColorAction2,
-                        properties.titleSizeAction2,
-                        properties.imageAction2,
-                        properties.imageScaleTypeAction2,
-                        properties.backgroundColorAction2,
-                        properties.backgroundHoverColorAction2,
-                        properties.borderColorAction2,
-                        properties.isFeaturedAction2,
-                    ),
-                    createIQuickAction(
-                        properties.titleAction3,
-                        properties.titleColorAction3,
-                        properties.titleSizeAction3,
-                        properties.imageAction3,
-                        properties.imageScaleTypeAction3,
-                        properties.backgroundColorAction3,
-                        properties.backgroundHoverColorAction3,
-                        properties.borderColorAction3,
-                        properties.isFeaturedAction3,
-                    ),
-                    createIQuickAction(
-                        properties.titleAction4,
-                        properties.titleColorAction4,
-                        properties.titleSizeAction4,
-                        properties.imageAction4,
-                        properties.imageScaleTypeAction4,
-                        properties.backgroundColorAction4,
-                        properties.backgroundHoverColorAction4,
-                        properties.borderColorAction4,
-                        properties.isFeaturedAction4,
-                    ),
-                    createIQuickAction(
-                        properties.titleAction5,
-                        properties.titleColorAction5,
-                        properties.titleSizeAction5,
-                        properties.imageAction5,
-                        properties.imageScaleTypeAction5,
-                        properties.backgroundColorAction5,
-                        properties.backgroundHoverColorAction5,
-                        properties.borderColorAction5,
-                        properties.isFeaturedAction5,
-                    ),
-                    createIQuickAction(
-                        properties.titleAction6,
-                        properties.titleColorAction6,
-                        properties.titleSizeAction6,
-                        properties.imageAction6,
-                        properties.imageScaleTypeAction6,
-                        properties.backgroundColorAction6,
-                        properties.backgroundHoverColorAction6,
-                        properties.borderColorAction6,
-                        properties.isFeaturedAction6,
-                    ),
-                    createIQuickAction(
-                        properties.titleAction7,
-                        properties.titleColorAction7,
-                        properties.titleSizeAction7,
-                        properties.imageAction7,
-                        properties.imageScaleTypeAction7,
-                        properties.backgroundColorAction7,
-                        properties.backgroundHoverColorAction7,
-                        properties.borderColorAction7,
-                        properties.isFeaturedAction7,
-                    ),
-                    createIQuickAction(
-                        properties.titleAction8,
-                        properties.titleColorAction8,
-                        properties.titleSizeAction8,
-                        properties.imageAction8,
-                        properties.imageScaleTypeAction8,
-                        properties.backgroundColorAction8,
-                        properties.backgroundHoverColorAction8,
-                        properties.borderColorAction8,
-                        properties.isFeaturedAction8,
-                    ),
+                    createIQuickAction(properties.action1),
+                    createIQuickAction(properties.action2),
+                    createIQuickAction(properties.action3),
+                    createIQuickAction(properties.action4),
+                    createIQuickAction(properties.action5),
+                    createIQuickAction(properties.action6),
+                    createIQuickAction(properties.action7),
+                    createIQuickAction(properties.action8),
+                    createIQuickAction(properties.action9),
+                    createIQuickAction(properties.action10),
                 )
 
                 quickActionsView.setQuickActions(quickActions)
@@ -201,92 +123,21 @@ object DyWidgets {
             }
             DyWidgetName.QuickActionsSlider.selector -> {
                 val quickActionsSliderView = QuickActionsSliderView(context)
-                val quickActionsSliderChoice =
-                    (choice as? DyQuickActionsSliderChoice) ?: return null
+                val quickActionsSliderChoice = (choice as? DyQuickActionsChoice) ?: return null
                 val variation = quickActionsSliderChoice.variations.firstOrNull() ?: return null
                 val properties = variation.payload.properties
 
                 val quickActions = listOfNotNull(
-                    createQuickAction(
-                        properties.titleAction1,
-                        properties.titleColorAction1,
-                        properties.titleSizeAction1,
-                        properties.imageAction1,
-                        properties.imageScaleTypeAction1,
-                        properties.backgroundColorAction1,
-                        properties.backgroundHoverColorAction1,
-                        properties.borderColorAction1,
-                    ),
-                    createQuickAction(
-                        properties.titleAction2,
-                        properties.titleColorAction2,
-                        properties.titleSizeAction2,
-                        properties.imageAction2,
-                        properties.imageScaleTypeAction2,
-                        properties.backgroundColorAction2,
-                        properties.backgroundHoverColorAction2,
-                        properties.borderColorAction2,
-                    ),
-                    createQuickAction(
-                        properties.titleAction3,
-                        properties.titleColorAction3,
-                        properties.titleSizeAction3,
-                        properties.imageAction3,
-                        properties.imageScaleTypeAction3,
-                        properties.backgroundColorAction3,
-                        properties.backgroundHoverColorAction3,
-                        properties.borderColorAction3,
-                    ),
-                    createQuickAction(
-                        properties.titleAction4,
-                        properties.titleColorAction4,
-                        properties.titleSizeAction4,
-                        properties.imageAction4,
-                        properties.imageScaleTypeAction4,
-                        properties.backgroundColorAction4,
-                        properties.backgroundHoverColorAction4,
-                        properties.borderColorAction4,
-                    ),
-                    createQuickAction(
-                        properties.titleAction5,
-                        properties.titleColorAction5,
-                        properties.titleSizeAction5,
-                        properties.imageAction5,
-                        properties.imageScaleTypeAction5,
-                        properties.backgroundColorAction5,
-                        properties.backgroundHoverColorAction5,
-                        properties.borderColorAction5,
-                    ),
-                    createQuickAction(
-                        properties.titleAction6,
-                        properties.titleColorAction6,
-                        properties.titleSizeAction6,
-                        properties.imageAction6,
-                        properties.imageScaleTypeAction6,
-                        properties.backgroundColorAction6,
-                        properties.backgroundHoverColorAction6,
-                        properties.borderColorAction6,
-                    ),
-                    createQuickAction(
-                        properties.titleAction7,
-                        properties.titleColorAction7,
-                        properties.titleSizeAction7,
-                        properties.imageAction7,
-                        properties.imageScaleTypeAction7,
-                        properties.backgroundColorAction7,
-                        properties.backgroundHoverColorAction7,
-                        properties.borderColorAction7,
-                    ),
-                    createQuickAction(
-                        properties.titleAction8,
-                        properties.titleColorAction8,
-                        properties.titleSizeAction8,
-                        properties.imageAction8,
-                        properties.imageScaleTypeAction8,
-                        properties.backgroundColorAction8,
-                        properties.backgroundHoverColorAction8,
-                        properties.borderColorAction8,
-                    ),
+                    createQuickAction(properties.action1),
+                    createQuickAction(properties.action2),
+                    createQuickAction(properties.action3),
+                    createQuickAction(properties.action4),
+                    createQuickAction(properties.action5),
+                    createQuickAction(properties.action6),
+                    createQuickAction(properties.action7),
+                    createQuickAction(properties.action8),
+                    createQuickAction(properties.action9),
+                    createQuickAction(properties.action10),
                 )
 
                 quickActionsSliderView.setQuickActions(quickActions)
@@ -789,77 +640,76 @@ object DyWidgets {
         )
     }
 
-    fun createIQuickAction(
-        title: String?,
-        titleColor: String,
-        titleSize: Int,
-        image: String?,
-        imageScaleType: String,
-        backgroundColor: String,
-        backgroundHoverColor: String,
-        borderColor: String,
-        isFeaturedStr: String,
-    ): IQuickActionData? {
-        if (title.isNullOrBlank() && image.isNullOrBlank()) return null
+    fun createIQuickAction(quickActionProperties: QuickActionProperties?): IQuickActionData? {
+        quickActionProperties ?: return null
+        if (quickActionProperties.title.isNullOrBlank() &&
+            quickActionProperties.image.isNullOrBlank()) return null
 
-        return when (isFeaturedStr.toBooleanStrict()) {
+        val title = quickActionProperties.title
+        val titleColor = quickActionProperties.titleColor ?: return null
+        val titleSize = quickActionProperties.titleSize ?: return null
+        val image = quickActionProperties.image
+        val imageScaleType = ImageScaleType.fromString(quickActionProperties.imageScaleType) ?: ImageScaleType.FIT
+        val backgroundColor = quickActionProperties.backgroundColor
+        val borderColor = quickActionProperties.borderColor
+        val borderWidth = 1
+        val cornerRadius = 16
+        val pressedBackgroundColor = quickActionProperties.backgroundHoverColor
+        val pressedBorderColor = quickActionProperties.borderColor
+        val pressedBorderWidth = 1
+        val pressedCornerRadius = 16
+
+        return when (quickActionProperties.isFeatured?.toBooleanStrict() == true) {
             true -> FeaturedQuickActionData(
                 title = title,
                 titleColor = titleColor,
                 titleSize = titleSize,
                 image = image,
-                imageScaleType = ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
+                imageScaleType = imageScaleType,
                 backgroundColor = backgroundColor,
                 borderColor = borderColor,
-                borderWidth = 1,
-                cornerRadius = 16,
-                pressedBackgroundColor = backgroundHoverColor,
-                pressedBorderColor = borderColor,
-                pressedBorderWidth = 1,
-                pressedCornerRadius = 16,
+                borderWidth = borderWidth,
+                cornerRadius = cornerRadius,
+                pressedBackgroundColor = pressedBackgroundColor,
+                pressedBorderColor = pressedBorderColor,
+                pressedBorderWidth = pressedBorderWidth,
+                pressedCornerRadius = pressedCornerRadius,
             )
             false -> QuickActionData(
                 title = title,
                 titleColor = titleColor,
                 titleSize = titleSize,
                 image = image,
-                imageScaleType = ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
+                imageScaleType = imageScaleType,
                 backgroundColor = backgroundColor,
                 borderColor = borderColor,
-                borderWidth = 1,
-                cornerRadius = 16,
-                pressedBackgroundColor = backgroundHoverColor,
-                pressedBorderColor = borderColor,
-                pressedBorderWidth = 1,
-                pressedCornerRadius = 16,
+                borderWidth = borderWidth,
+                cornerRadius = cornerRadius,
+                pressedBackgroundColor = pressedBackgroundColor,
+                pressedBorderColor = pressedBorderColor,
+                pressedBorderWidth = pressedBorderWidth,
+                pressedCornerRadius = pressedCornerRadius,
             )
         }
     }
 
-    fun createQuickAction(
-        title: String?,
-        titleColor: String,
-        titleSize: Int,
-        image: String?,
-        imageScaleType: String,
-        backgroundColor: String,
-        backgroundHoverColor: String,
-        borderColor: String,
-    ): QuickActionData? {
-        if (title.isNullOrBlank() && image.isNullOrBlank()) return null
+    fun createQuickAction(quickActionProperties: QuickActionProperties?): QuickActionData? {
+        quickActionProperties ?: return null
+        if (quickActionProperties.title.isNullOrBlank() &&
+            quickActionProperties.image.isNullOrBlank()) return null
 
         return QuickActionData(
-            title = title,
-            titleColor = titleColor,
-            titleSize = titleSize,
-            image = image,
-            imageScaleType = ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
-            backgroundColor = backgroundColor,
-            borderColor = borderColor,
+            title = quickActionProperties.title,
+            titleColor = quickActionProperties.titleColor ?: return null,
+            titleSize = quickActionProperties.titleSize ?: return null,
+            image = quickActionProperties.image,
+            imageScaleType = ImageScaleType.fromString(quickActionProperties.imageScaleType) ?: ImageScaleType.FIT,
+            backgroundColor = quickActionProperties.backgroundColor,
+            borderColor = quickActionProperties.borderColor,
             borderWidth = 1,
             cornerRadius = 16,
-            pressedBackgroundColor = backgroundHoverColor,
-            pressedBorderColor = borderColor,
+            pressedBackgroundColor = quickActionProperties.backgroundHoverColor,
+            pressedBorderColor = quickActionProperties.borderColor,
             pressedBorderWidth = 1,
             pressedCornerRadius = 16,
         )
