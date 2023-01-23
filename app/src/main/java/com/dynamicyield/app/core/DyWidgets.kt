@@ -176,10 +176,10 @@ object DyWidgets {
                 val properties = variation.payload.properties
 
                 activationDialogFragment.apply {
-                    setTopHandleColor(color = properties.topHandleColor)
+                    setTopHandleColor(color = properties.topHandleColor ?: "#00FFFFFF")
                     setBackgroundProps(
-                        backgroundColor = properties.backgroundColor,
-                        topCornerRadius = properties.topCornerRadius.toFloat()
+                        backgroundColor = properties.backgroundColor ?: "#FFFFFF",
+                        topCornerRadius = properties.topCornerRadius?.toFloat() ?: 0f
                     )
                     setImageProps(
                         imageUrl = properties.image,
@@ -190,23 +190,23 @@ object DyWidgets {
                     )
                     setTitleProps(
                         titleText = properties.title,
-                        titleSizeSp = properties.titleSize,
-                        titleColorString = properties.titleColor
+                        titleSizeSp = properties.titleSize ?: return null,
+                        titleColorString = properties.titleColor ?: return null
                     )
                     setSubtitleProps(
                         subtitleText = properties.subtitle,
-                        subtitleSizeSp = properties.subtitleSize,
-                        subtitleColorString = properties.subtitleColor
+                        subtitleSizeSp = properties.subtitleSize ?: return null,
+                        subtitleColorString = properties.subtitleColor ?: return null
                     )
                     setButtonProps(
                         buttonText = properties.buttonText,
-                        buttonTextSizeSp = properties.buttonTextSize,
-                        buttonTextColorString = properties.buttonTextColor,
-                        pressedButtonTextColorString = properties.pressedButtonTextColor,
-                        buttonBackgroundColorString = properties.buttonBackgroundColor,
-                        pressedButtonBackgroundColorString = properties.pressedButtonBackgroundColor,
-                        buttonStrokeColorString = properties.buttonBorderColor,
-                        buttonStrokeWidth = properties.buttonBorderWidth.toFloat(),
+                        buttonTextSizeSp = properties.buttonTextSize ?: return null,
+                        buttonTextColorString = properties.buttonTextColor ?: return null,
+                        pressedButtonTextColorString = properties.pressedButtonTextColor ?: return null,
+                        buttonBackgroundColorString = properties.buttonBackgroundColor ?: return null,
+                        pressedButtonBackgroundColorString = properties.pressedButtonBackgroundColor ?: return null,
+                        buttonStrokeColorString = properties.buttonBorderColor ?: "#00FFFFFF",
+                        buttonStrokeWidth = properties.buttonBorderWidth?.toFloat() ?: 0f,
                     )
                 }
                 activationDialogFragment as? T
