@@ -150,111 +150,21 @@ object DyWidgets {
                 val properties = variation.payload.properties
 
                 val steps = listOfNotNull(
-                    createCrossUpsellStepData(
-                        image = properties.imageStep1,
-                        imageScaleType = properties.imageScaleTypeStep1,
-                        imageSizeType = properties.imageSizeTypeStep1,
-                        title = properties.titleStep1,
-                        titleSize = properties.titleSizeStep1,
-                        titleColor = properties.titleColorStep1,
-                        subtitle = properties.subtitleStep1,
-                        subtitleSize = properties.subtitleSizeStep1,
-                        subtitleColor = properties.subtitleColorStep1,
-                        buttonColor = properties.buttonColorStep1,
-                        buttonHoverColor = properties.buttonHoverColorStep1,
-                        buttonText = properties.buttonTextStep1,
-                        buttonTextSize = properties.buttonTextSizeStep1,
-                        buttonTextColor = properties.buttonTextColorStep1,
-                        progressBarColor = properties.progressBarColorStep1,
-                        progressBarBackgroundColor = properties.progressBarBackgroundColorStep1,
-                        progressTextColor = properties.progressTextColorStep1,
-                        previousTextColor = properties.previousTextColorStep1
-                    ),
-                    createCrossUpsellStepData(
-                        image = properties.imageStep2,
-                        imageScaleType = properties.imageScaleTypeStep2,
-                        imageSizeType = properties.imageSizeTypeStep2,
-                        title = properties.titleStep2,
-                        titleSize = properties.titleSizeStep2,
-                        titleColor = properties.titleColorStep2,
-                        subtitle = properties.subtitleStep2,
-                        subtitleSize = properties.subtitleSizeStep2,
-                        subtitleColor = properties.subtitleColorStep2,
-                        buttonColor = properties.buttonColorStep2,
-                        buttonHoverColor = properties.buttonHoverColorStep2,
-                        buttonText = properties.buttonTextStep2,
-                        buttonTextSize = properties.buttonTextSizeStep2,
-                        buttonTextColor = properties.buttonTextColorStep2,
-                        progressBarColor = properties.progressBarColorStep2,
-                        progressBarBackgroundColor = properties.progressBarBackgroundColorStep2,
-                        progressTextColor = properties.progressTextColorStep2,
-                        previousTextColor = properties.previousTextColorStep2
-                    ),
-                    createCrossUpsellStepData(
-                        image = properties.imageStep3,
-                        imageScaleType = properties.imageScaleTypeStep3,
-                        imageSizeType = properties.imageSizeTypeStep3,
-                        title = properties.titleStep3,
-                        titleSize = properties.titleSizeStep3,
-                        titleColor = properties.titleColorStep3,
-                        subtitle = properties.subtitleStep3,
-                        subtitleSize = properties.subtitleSizeStep3,
-                        subtitleColor = properties.subtitleColorStep3,
-                        buttonColor = properties.buttonColorStep3,
-                        buttonHoverColor = properties.buttonHoverColorStep3,
-                        buttonText = properties.buttonTextStep3,
-                        buttonTextSize = properties.buttonTextSizeStep3,
-                        buttonTextColor = properties.buttonTextColorStep3,
-                        progressBarColor = properties.progressBarColorStep3,
-                        progressBarBackgroundColor = properties.progressBarBackgroundColorStep3,
-                        progressTextColor = properties.progressTextColorStep3,
-                        previousTextColor = properties.previousTextColorStep3
-                    ),
-                    createCrossUpsellStepData(
-                        image = properties.imageStep4,
-                        imageScaleType = properties.imageScaleTypeStep4,
-                        imageSizeType = properties.imageSizeTypeStep4,
-                        title = properties.titleStep4,
-                        titleSize = properties.titleSizeStep4,
-                        titleColor = properties.titleColorStep4,
-                        subtitle = properties.subtitleStep4,
-                        subtitleSize = properties.subtitleSizeStep4,
-                        subtitleColor = properties.subtitleColorStep4,
-                        buttonColor = properties.buttonColorStep4,
-                        buttonHoverColor = properties.buttonHoverColorStep4,
-                        buttonText = properties.buttonTextStep4,
-                        buttonTextSize = properties.buttonTextSizeStep4,
-                        buttonTextColor = properties.buttonTextColorStep4,
-                        progressBarColor = properties.progressBarColorStep4,
-                        progressBarBackgroundColor = properties.progressBarBackgroundColorStep4,
-                        progressTextColor = properties.progressTextColorStep4,
-                        previousTextColor = properties.previousTextColorStep4
-                    ),
-                    createCrossUpsellStepData(
-                        image = properties.imageStep5,
-                        imageScaleType = properties.imageScaleTypeStep5,
-                        imageSizeType = properties.imageSizeTypeStep5,
-                        title = properties.titleStep5,
-                        titleSize = properties.titleSizeStep5,
-                        titleColor = properties.titleColorStep5,
-                        subtitle = properties.subtitleStep5,
-                        subtitleSize = properties.subtitleSizeStep5,
-                        subtitleColor = properties.subtitleColorStep5,
-                        buttonColor = properties.buttonColorStep5,
-                        buttonHoverColor = properties.buttonHoverColorStep5,
-                        buttonText = properties.buttonTextStep5,
-                        buttonTextSize = properties.buttonTextSizeStep5,
-                        buttonTextColor = properties.buttonTextColorStep5,
-                        progressBarColor = properties.progressBarColorStep5,
-                        progressBarBackgroundColor = properties.progressBarBackgroundColorStep5,
-                        progressTextColor = properties.progressTextColorStep5,
-                        previousTextColor = properties.previousTextColorStep5
-                    ),
+                    createCrossUpsellStepData(properties.step1),
+                    createCrossUpsellStepData(properties.step2),
+                    createCrossUpsellStepData(properties.step3),
+                    createCrossUpsellStepData(properties.step4),
+                    createCrossUpsellStepData(properties.step5),
+                    createCrossUpsellStepData(properties.step6),
+                    createCrossUpsellStepData(properties.step7),
+                    createCrossUpsellStepData(properties.step8),
+                    createCrossUpsellStepData(properties.step9),
+                    createCrossUpsellStepData(properties.step10),
                 )
 
-                crossUpsellDialogFragment.setCornerRadius(properties.cornerRadius.toFloat())
-                crossUpsellDialogFragment.setBackgroundColor(properties.backgroundColor)
-                crossUpsellDialogFragment.setCloseButtonColor(properties.closeButtonColor)
+                crossUpsellDialogFragment.setCornerRadius(properties.cornerRadius?.toFloat() ?: 0f)
+                crossUpsellDialogFragment.setBackgroundColor(properties.backgroundColor ?: "#00FFFFFF")
+                crossUpsellDialogFragment.setCloseButtonColor(properties.closeButtonColor ?: "#FF0000")
                 crossUpsellDialogFragment.setSteps(steps)
 
                 crossUpsellDialogFragment as? T
@@ -715,47 +625,30 @@ object DyWidgets {
         )
     }
 
-    fun createCrossUpsellStepData(
-        image: String?,
-        imageScaleType: String,
-        imageSizeType: String,
-        title: String?,
-        titleSize: Int,
-        titleColor: String,
-        subtitle: String?,
-        subtitleSize: Int,
-        subtitleColor: String,
-        buttonColor: String,
-        buttonHoverColor: String,
-        buttonText: String?,
-        buttonTextSize: Int,
-        buttonTextColor: String,
-        progressBarColor: String,
-        progressBarBackgroundColor: String,
-        progressTextColor: String,
-        previousTextColor: String,
-    ): CrossUpsellStepData? {
-        if (title.isNullOrBlank() && image.isNullOrBlank()) return null
+    fun createCrossUpsellStepData(crossUpsellStep: CrossUpsellStep?): CrossUpsellStepData? {
+        crossUpsellStep ?: return null
+        if (crossUpsellStep.title.isNullOrBlank() &&
+            crossUpsellStep.image.isNullOrBlank()) return null
 
         return CrossUpsellStepData(
-            image = image,
-            imageScaleType = ImageScaleType.fromString(imageScaleType) ?: ImageScaleType.FIT,
-            imageSizeType = ImageSizeType.fromString(imageSizeType) ?: ImageSizeType.MEDIUM,
-            title = title,
-            titleSize = titleSize,
-            titleColor = titleColor,
-            subtitle = subtitle,
-            subtitleSize = subtitleSize,
-            subtitleColor = subtitleColor,
-            buttonColor = buttonColor,
-            buttonHoverColor = buttonHoverColor,
-            buttonText = buttonText,
-            buttonTextSize = buttonTextSize,
-            buttonTextColor = buttonTextColor,
-            progressBarColor = progressBarColor,
-            progressBarBackgroundColor = progressBarBackgroundColor,
-            progressTextColor = progressTextColor,
-            previousTextColor = previousTextColor
+            image = crossUpsellStep.image,
+            imageScaleType = ImageScaleType.fromString(crossUpsellStep.imageScaleType) ?: ImageScaleType.FIT,
+            imageSizeType = ImageSizeType.fromString(crossUpsellStep.imageSizeType) ?: ImageSizeType.MEDIUM,
+            title = crossUpsellStep.title,
+            titleSize = crossUpsellStep.titleSize ?: return null,
+            titleColor = crossUpsellStep.titleColor ?: return null,
+            subtitle = crossUpsellStep.subtitle,
+            subtitleSize = crossUpsellStep.subtitleSize ?: return null,
+            subtitleColor = crossUpsellStep.subtitleColor ?: return null,
+            buttonColor = crossUpsellStep.buttonColor ?: return null,
+            buttonHoverColor = crossUpsellStep.buttonHoverColor ?: return null,
+            buttonText = crossUpsellStep.buttonText,
+            buttonTextSize = crossUpsellStep.buttonTextSize ?: return null,
+            buttonTextColor = crossUpsellStep.buttonTextColor ?: return null,
+            progressBarColor = crossUpsellStep.progressBarColor ?: return null,
+            progressBarBackgroundColor = crossUpsellStep.progressBarBackgroundColor ?: return null,
+            progressTextColor = crossUpsellStep.progressTextColor ?: return null,
+            previousTextColor = crossUpsellStep.previousTextColor ?: return null,
         )
     }
 

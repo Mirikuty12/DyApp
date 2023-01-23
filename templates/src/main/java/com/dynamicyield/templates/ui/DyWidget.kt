@@ -16,7 +16,7 @@ enum class DyWidgetName(val selector: String) {
     CreditCardPromotionSlider("credit-card-promotion-slider-2"),
     QuickActions("quick-actions-2"),
     QuickActionsSlider("quick-actions-slider-2"),
-    CrossUpsell("cross-upsell"),
+    CrossUpsell("cross-upsell-2"),
     Activation("activation"),
     Offers("offers"),
     OffersSlider("offers-slider"),

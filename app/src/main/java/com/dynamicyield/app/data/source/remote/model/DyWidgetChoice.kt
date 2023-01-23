@@ -69,7 +69,7 @@ data class DyCrossUpsellChoice(
     override val groups: List<String>,
     override val decisionId: String,
     @SerialName("variations")
-    val variations: List<DyWidgetVariation<DyCrossUpsellProperties>>
+    val variations: List<DyWidgetVariation<DyCrossUpsellsProperties>>
 ) : DyWidgetChoice()
 
 @Serializable
