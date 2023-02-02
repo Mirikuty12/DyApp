@@ -13,15 +13,15 @@ interface DyWidget {
  */
 enum class DyWidgetName(val selector: String) {
     CreditCardPromotion("credit-card-promotion"),
-    CreditCardPromotionSlider("credit-card-promotion-slider-2"),
-    QuickActions("quick-actions-2"),
-    QuickActionsSlider("quick-actions-slider-2"),
-    CrossUpsell("cross-upsell-2"),
+    CreditCardPromotionSlider("credit-card-promotion-slider"),
+    QuickActions("quick-actions"),
+    QuickActionsSlider("quick-actions-slider"),
+    CrossUpsell("cross-upsell"),
     Activation("activation"),
-    Offers("offers-2"),
-    OffersSlider("offers-slider-2"),
+    Offers("offers"),
+    OffersSlider("offers-slider"),
     Refinance("refinance"),
-    RefinanceSlider("refinance-slider-2"),
+    RefinanceSlider("refinance-slider"),
     Stimulation("stimulation"),
     Stories("stories");
 
